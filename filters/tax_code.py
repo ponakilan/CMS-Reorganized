@@ -12,7 +12,7 @@ class TaxCodeDataProcessor:
     def get_required_codes(self):
         required_codes = list(
             map(
-                lambda obj: obj.code,
+                lambda obj: obj.Code,
                 self.tax_codes.select('Code').collect()
             )
         )
