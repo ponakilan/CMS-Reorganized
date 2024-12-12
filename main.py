@@ -2,12 +2,19 @@
 from filters.utils import shape
 from filters.openpay import OpenPayDataProcessor
 from filters.nppes_nucc import NPPESNUCCDataProcessor
+from filters.tax_code import TaxCodeDataProcessor
 from filters.cms import CMSBDataProcessor, CMSDDataProcessor
+
+# Import built-in dependencies
+import time
 
 # Import external dependencies
 import pandas as pd
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import *
+
+# Start timer
+start = time.time()
 
 # Create a spark session
 spark = SparkSession.builder.appName("CMS-Reorganized").getOrCreate()
@@ -136,4 +143,42 @@ nppes_nucc_processor = NPPESNUCCDataProcessor(
 )
 nppes_nucc = nppes_nucc_processor.merge_nppes_nucc()
 
+"""
+Filtering records containing required taxonomy codes
+"""
+tax_code_processor = TaxCodeDataProcessor(
+    tax_codes=excel_2_df("taxonomy"),
+    nppes_nucc=nppes_nucc
+)
+tax_code_filtered = tax_code_processor.process()
 
+"""
+Merging the filtered data with CMS
+"""
+# Merge with CMS data and drop the duplicate NPI column
+final_joined = tax_code_filtered.join(
+    openpay_cms_final,
+    tax_code_filtered.NPI == openpay_cms_final.Covered_Recipient_NPI,
+    'inner'
+)
+final = final_joined.drop("Covered_Recipient_NPI")
+
+# Renaming the columns
+for col in final.columns:
+    if "Tot_Benes" in col:
+        final = final.withColumnRenamed(col, col.replace("Tot_Benes", "Patients"))
+    if "Tot_Clms" in col:
+        final = final.withColumnRenamed(col, col.replace("Tot_Clms", "Claims"))
+
+for col in final.columns:
+    if "sum(" in col:
+        final = final.withColumnRenamed(col, col.replace("sum(", "").replace(")", ""))
+
+# Generate the output file
+final.toPandas().to_csv("final_out.csv")
+
+# End timer
+end = time.time()
+
+print(f"Output of shape {shape(final)} saved to final_out.csv")
+print(f"Processing completed in {end - start} seconds.")
