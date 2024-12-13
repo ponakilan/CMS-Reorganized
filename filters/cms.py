@@ -3,6 +3,22 @@ from pyspark.sql import DataFrame
 from pyspark.sql.functions import *
 
 
+def merge_cms(cms_b: DataFrame, cms_d: DataFrame):
+    cms_combined = cms_b.union(cms_d)
+    cms_grouped = cms_combined.groupBy("NPI", "Drug_Name").agg(
+        sum("Tot_Benes").alias("Tot_Benes"),
+        sum("Tot_Clms").alias("Tot_Clms")
+    )
+    cms_pivot = (
+        cms_grouped
+        .groupBy("NPI")
+        .pivot("Drug_Name")
+        .sum("Tot_Benes", "Tot_Clms")
+    )
+    cms_merged = cms_pivot.fillna(value=0)
+    return cms_merged
+
+
 class CMSBDataProcessor:
 
     def __init__(self, cms_b: DataFrame, interested_drugs: DataFrame):

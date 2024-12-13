@@ -9,7 +9,7 @@ class OpenPayDataProcessor:
         self.interested_drugs = interested_drugs
 
         self.open_payments_filtered = None
-        self.open_payments_pivoted = None
+        self.open_payments_processed = None
 
     def filter_interested_drugs(self, enforce=False):
         if not self.open_payments_filtered or enforce:
@@ -37,7 +37,7 @@ class OpenPayDataProcessor:
         return self.open_payments_filtered
 
     def process(self, enforce=False):
-        if not self.open_payments_pivoted or enforce:
+        if not self.open_payments_processed or enforce:
 
             if not self.open_payments_filtered:
                 self.filter_interested_drugs()
@@ -68,11 +68,34 @@ class OpenPayDataProcessor:
             )
 
             # Pivot 'Name_of_Drug_or_Biological_or_Device_or_Medical_Supply_1'
-            self.open_payments_pivoted = (
+            self.open_payments_processed = (
                 open_payments_pivot_1
                 .groupBy("Covered_Recipient_NPI")
                 .pivot("Name_of_Drug_or_Biological_or_Device_or_Medical_Supply_1")
                 .sum('CONSULTING', 'EDUCATION', 'FOOD&BEVERAGE', 'OTHERS_GENERAL', 'SPEAKER', 'TRAVEL')
             )
 
-        return self.open_payments_pivoted
+        return self.open_payments_processed
+
+    def merge_cms(self, cms: DataFrame, open_payments_processed: DataFrame):
+        # Outer join based on 'NPI'
+        openpay_cms = open_payments_processed.join(
+            cms,
+            open_payments_processed.Covered_Recipient_NPI == cms.NPI,
+            "outer"
+        )
+
+        # Combine both the NPI fields
+        openpay_cms_combined_npi = openpay_cms.withColumn(
+            "Covered_Recipient_NPI",
+            coalesce(
+                openpay_cms['Covered_Recipient_NPI'],
+                openpay_cms['NPI']
+            )
+        )
+
+        # Drop the duplicate NPI field and fill null values with 0
+        openpay_cms_drop_NPI = openpay_cms_combined_npi.drop("NPI")
+        openpay_cms = openpay_cms_drop_NPI.fillna(value=0)
+
+        return openpay_cms

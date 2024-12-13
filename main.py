@@ -3,7 +3,7 @@ from filters.utils import shape
 from filters.openpay import OpenPayDataProcessor
 from filters.nppes_nucc import NPPESNUCCDataProcessor
 from filters.tax_code import TaxCodeDataProcessor
-from filters.cms import CMSBDataProcessor, CMSDDataProcessor
+from filters.cms import CMSBDataProcessor, CMSDDataProcessor, merge_cms
 
 # Import built-in dependencies
 import time
@@ -29,7 +29,7 @@ public_files = {
     "cms_d": "MUP_DPR_RY24_P04_V10_DY22_NPIBN.csv",
     "openpay": "OP_DTL_GNRL_PGYR2023_P06282024_06122024.csv",
     "nppes": "npidata_pfile_20050523-20241110.csv",
-    "nucc": "nucc_taxonomy_241.csv"
+    "nucc": "nucc_taxonomy_241.csv",
 }
 
 private_sheets = {
@@ -74,31 +74,9 @@ cms_d_full = cms_d_processor.process()
 print(f"Shape of CMS-B after processing: {shape(cms_b_full)}")
 print(f"Shape of CMS-D after processing: {shape(cms_d_full)}")
 
-"""
-## Combining CMS-B and CMS-D
-This block processes CMS data by merging two datasets (`cms_b_corrected` and `cms_d_full`) into `cms_combined` and grouping it by `NPI` and `Drug_Name` to aggregate total beneficiaries (`Tot_Benes`) and claims (`Tot_Clms`). 
-The grouped data is pivoted on `Drug_Name` to create a wide-format table, `cms_pivot`, with sums for each drug. Missing values are filled with zeros, and null values are checked.
-"""
-# Merging CMS-B and CMS-D
-cms_combined = cms_b_full.union(cms_d_full)
-cms_grouped = cms_combined.groupBy("NPI", "Drug_Name").agg(
-    sum("Tot_Benes").alias("Tot_Benes"),
-    sum("Tot_Clms").alias("Tot_Clms")
-)
-cms_pivot = (
-    cms_grouped
-    .groupBy("NPI")
-    .pivot("Drug_Name")
-    .sum("Tot_Benes", "Tot_Clms")
-)
-cms_pivot = cms_pivot.fillna(value=0)
+# Merge CMS-B and CMS-D
+cms_merged = merge_cms(cms_b_full, cms_d_full)
 
-"""
-## Open Payments Data
-Only required columns are selected from the *Open Payments* data and the records containing **NULL** values in `Covered_Recipient_NPI` are dropped.
-The data is filtered based on interested drugs and then columns are renamed for convenience. 
-The data is pivoted on `Nature_Of_Payment` and `Covered_Recipient_NPI`.
-"""
 # Process Open Payments data
 openpay_processor = OpenPayDataProcessor(
     openpay=csv_2_df("openpay"),
@@ -109,70 +87,25 @@ openpay_processed = openpay_processor.process()
 # Testing
 print(f"Shape of Open Payments after processing: {shape(openpay_processed)}")
 
-"""
-## Merging CMS and OpenPayments
-The CMS and Open Payments data are combined using an outer join on NPI.
-The columns Covered_Recipient_NPI and NPI are combined since they both contain NPIs and the null values are filled with 0.
-"""
-# Outer join based on 'NPI'
-openpay_cms = openpay_processed.join(
-    cms_pivot,
-    openpay_processed.Covered_Recipient_NPI == cms_pivot.NPI,
-    "outer"
-)
+# Merge Openpay and CMS
+openpay_cms = openpay_processor.merge_cms(cms_merged, openpay_processed)
 
-# Combine both the NPI fields
-openpay_cms_combined_npi = openpay_cms.withColumn(
-    "Covered_Recipient_NPI",
-    coalesce(
-        openpay_cms['Covered_Recipient_NPI'],
-        openpay_cms['NPI']
-    )
-)
-
-# Drop the duplicate NPI field and fill null values with 0
-openpay_cms_drop_NPI = openpay_cms_combined_npi.drop("NPI")
-openpay_cms_final = openpay_cms_drop_NPI.fillna(value=0)
-
-"""
-Merging NPPES data and NUCC data
-"""
+# Merge NPPES and NUCC
 nppes_nucc_processor = NPPESNUCCDataProcessor(
     nppes=csv_2_df("nppes"),
     nucc=csv_2_df("nucc")
 )
 nppes_nucc = nppes_nucc_processor.merge_nppes_nucc()
 
-"""
-Filtering records containing required taxonomy codes
-"""
+# Filter based on taxonomy codes
 tax_code_processor = TaxCodeDataProcessor(
     tax_codes=excel_2_df("taxonomy"),
     nppes_nucc=nppes_nucc
 )
 tax_code_filtered = tax_code_processor.process()
 
-"""
-Merging the filtered data with CMS
-"""
-# Merge with CMS data and drop the duplicate NPI column
-final_joined = tax_code_filtered.join(
-    openpay_cms_final,
-    tax_code_filtered.NPI == openpay_cms_final.Covered_Recipient_NPI,
-    'inner'
-)
-final = final_joined.drop("Covered_Recipient_NPI")
-
-# Renaming the columns
-for col in final.columns:
-    if "Tot_Benes" in col:
-        final = final.withColumnRenamed(col, col.replace("Tot_Benes", "Patients"))
-    if "Tot_Clms" in col:
-        final = final.withColumnRenamed(col, col.replace("Tot_Clms", "Claims"))
-
-for col in final.columns:
-    if "sum(" in col:
-        final = final.withColumnRenamed(col, col.replace("sum(", "").replace(")", ""))
+# Merge with openpay_cms
+final = tax_code_processor.merge_openpay_cms(tax_code_filtered, openpay_cms)
 
 # Generate the output file
 final.toPandas().to_csv("final_out.csv")

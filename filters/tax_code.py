@@ -45,3 +45,25 @@ class TaxCodeDataProcessor:
             ])
 
         return self.nppes_nucc_filtered
+
+    def merge_openpay_cms(self, tax_code_filtered, openpay_cms):
+        # Merge with CMS data and drop the duplicate NPI column
+        final_joined = tax_code_filtered.join(
+            openpay_cms,
+            tax_code_filtered.NPI == openpay_cms.Covered_Recipient_NPI,
+            'inner'
+        )
+        final = final_joined.drop("Covered_Recipient_NPI")
+
+        # Renaming the columns
+        for col in final.columns:
+            if "Tot_Benes" in col:
+                final = final.withColumnRenamed(col, col.replace("Tot_Benes", "Patients"))
+            if "Tot_Clms" in col:
+                final = final.withColumnRenamed(col, col.replace("Tot_Clms", "Claims"))
+
+        for col in final.columns:
+            if "sum(" in col:
+                final = final.withColumnRenamed(col, col.replace("sum(", "").replace(")", ""))
+
+        return final
