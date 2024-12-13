@@ -4,9 +4,10 @@ from pyspark.sql.functions import *
 
 class OpenPayDataProcessor:
 
-    def __init__(self, openpay: DataFrame, interested_drugs: DataFrame):
+    def __init__(self, openpay: DataFrame, interested_drugs: DataFrame, mappings: DataFrame):
         self.open_payments = openpay
-        self.interested_drugs = interested_drugs
+        self.interested_drugs = interested_drugs 
+        self.category_mappings = mappings
 
         self.open_payments_filtered = None
         self.open_payments_processed = None
@@ -42,15 +43,37 @@ class OpenPayDataProcessor:
             if not self.open_payments_filtered:
                 self.filter_interested_drugs()
 
+            # Map existing categories with given values
+            original_values = list(
+                map(
+                    lambda x: x.Original,
+                    self.category_mappings.select('Original').collect()
+                )
+            )
+            mapped_values = list(
+                map(
+                    lambda x: x.Renamed,
+                    self.category_mappings.select('Renamed').collect()
+                )
+            )
+
+            cond = None
+            for i, (original, mapped) in enumerate(zip(original_values, mapped_values)):
+                if mapped not in ('NaN', 'null'):
+                    if i == 0:
+                        cond = when(col('Nature_of_Payment_or_Transfer_of_Value') == original, mapped)
+                    else:
+                        cond = cond.when(col('Nature_of_Payment_or_Transfer_of_Value') == original, mapped)
+            cond = cond.otherwise("OTHERS_GENERAL")
+
             open_payments_mapped = self.open_payments_filtered.withColumn(
                 "Nature_of_Payment",
-                when(col("Nature_of_Payment_or_Transfer_of_Value") == "Food and Beverage", "FOOD&BEVERAGE")
-                .when(col("Nature_of_Payment_or_Transfer_of_Value") == "Consulting Fee", "CONSULTING")
-                .when(col("Nature_of_Payment_or_Transfer_of_Value") == "Travel and Lodging", "TRAVEL")
-                .when(col("Nature_of_Payment_or_Transfer_of_Value") == "Education", "EDUCATION")
-                .when(col("Nature_of_Payment_or_Transfer_of_Value").rlike("Compensation"), "SPEAKER")
-                .otherwise("OTHERS_GENERAL")
+                cond
             )
+
+            # Append OTHERS_GENERAL and remove 'NaN' and 'null'
+            mapped_values.append("OTHERS_GENERAL")
+            mapped_values = set(mapped_values) - set(('NaN', 'null'))
 
             # Convert 'Total_Amount_of_Payment_USDollars' to 'int'
             open_payments_casted = open_payments_mapped.withColumn(
@@ -72,7 +95,7 @@ class OpenPayDataProcessor:
                 open_payments_pivot_1
                 .groupBy("Covered_Recipient_NPI")
                 .pivot("Name_of_Drug_or_Biological_or_Device_or_Medical_Supply_1")
-                .sum('CONSULTING', 'EDUCATION', 'FOOD&BEVERAGE', 'OTHERS_GENERAL', 'SPEAKER', 'TRAVEL')
+                .sum(*mapped_values)
             )
 
         return self.open_payments_processed
