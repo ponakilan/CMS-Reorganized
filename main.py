@@ -1,6 +1,9 @@
 # Import local dependencies
+from jedi.api.helpers import infer
+
 from filters.utils import shape
 from filters.openpay import OpenPayDataProcessor
+from filters.dac import DACDataProcessor
 from filters.nppes_nucc import NPPESNUCCDataProcessor
 from filters.tax_code import TaxCodeDataProcessor
 from filters.cms import CMSBDataProcessor, CMSDDataProcessor, merge_cms
@@ -11,7 +14,6 @@ import time
 # Import external dependencies
 import pandas as pd
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import *
 
 # Start timer
 start = time.time()
@@ -30,6 +32,8 @@ public_files = {
     "openpay": "OP_DTL_GNRL_PGYR2023_P06282024_06122024.csv",
     "nppes": "npidata_pfile_20050523-20241110.csv",
     "nucc": "nucc_taxonomy_241.csv",
+    "dac": "DAC_NationalDownloadableFile.csv",
+    "phase-1": "phase_1.csv"
 }
 
 private_sheets = {
@@ -105,13 +109,24 @@ tax_code_processor = TaxCodeDataProcessor(
 tax_code_filtered = tax_code_processor.process()
 
 # Merge with openpay_cms
-final = tax_code_processor.merge_openpay_cms(tax_code_filtered, openpay_cms)
+openpay_cms_taxcode = tax_code_processor.merge_openpay_cms(tax_code_filtered, openpay_cms)
+openpay_cms_taxcode.toPandas().to_csv(public_files['phase-1'], index=False)
 
-# Generate the output file
-final.toPandas().to_csv("final_out.csv")
+# Merge Physician compare data
+dac_processor = DACDataProcessor(dac=csv_2_df("dac"))
+final = dac_processor.merge(
+    phase_1=spark.read.csv(
+        public_files['phase-1'],
+        header=True,
+        inferSchema=True
+    )
+)
+
+# Export the final file
+final.toPandas().to_csv("final.csv", index=False)
 
 # End timer
 end = time.time()
 
-print(f"Output of shape {shape(final)} saved to final_out.csv")
+print(f"Output of shape {shape(final)} saved to final.csv")
 print(f"Processing completed in {end - start} seconds.")
