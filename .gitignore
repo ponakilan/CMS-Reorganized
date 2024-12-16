@@ -5,4 +5,4 @@ experiment.ipynb
 .idea/
 Data/Public
 __pycache__/
-outputs/
+**/outputs/
