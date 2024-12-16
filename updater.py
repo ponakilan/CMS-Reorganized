@@ -23,7 +23,6 @@ def update_cms_b(save_location):
 
     with open(save_location, "w", encoding='utf-8') as f:
         json.dump(unique_drugs, f, ensure_ascii=False, indent=4)
-    return unique_drugs
 
 
 def update_cms_d(save_location):
@@ -34,9 +33,20 @@ def update_cms_d(save_location):
 
     with open(save_location, "w", encoding='utf-8') as f:
         json.dump(unique_drugs, f, ensure_ascii=False, indent=4)
-    return unique_drugs
+
+
+def update_nucc(save_location):
+    nucc = spark.read.csv(f"{public_dir}/{public_files['nucc']}", header=True, inferSchema=True)
+    nucc_selected = nucc.select(['Code', 'Specialization'])
+    nucc_selected = nucc_selected.dropna()
+    unique_codes = nucc_selected.toJSON().map(lambda j: json.loads(j)).collect()
+    unique_codes = {"codes": unique_codes}
+
+    with open(save_location, "w", encoding='utf-8') as f:
+        json.dump(unique_codes, f, ensure_ascii=False, indent=4)
 
 
 if __name__ == "__main__":
     update_cms_b("Data/API/cms_b.json")
     update_cms_d("Data/API/cms_d.json")
+    update_nucc("Data/API/nucc.json")

@@ -34,6 +34,13 @@ async def cms_d(request: Request):
     return data
 
 
+@app.get('/nucc', response_class=JSONResponse)
+async def nucc(request: Request):
+    with open("Data/API/nucc.json", "r") as f:
+        data = json.load(f)
+    return data
+
+
 @app.post('/cms-b-selected', response_class=JSONResponse)
 async def cms_b_selected(request: Request):
     data = await request.json()
