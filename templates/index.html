@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HCPCS Dropdown</title>
+    <script src="/static/app.js" defer></script>
+</head>
+<body>
+    <h1>HCPCS Codes Selection</h1>
+    <form id="hcpcs-form">
+        <label for="hcpcs-dropdown">Select HCPCS Codes:</label><br>
+        <select id="hcpcs-dropdown" multiple style="width: 100%; height: 200px;">
+            <option value="" disabled>Select drugs</option>
+        </select><br><br>
+        <button type="button" id="submit-button">Submit Selected Codes</button>
+    </form>
+</body>
+</html>

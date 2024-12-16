@@ -3,5 +3,6 @@ filters/__pycache__/
 experiment.ipynb
 .ipynb_checkpoints/
 .idea/
-Data/
+Data/Public
 __pycache__/
+outputs/
