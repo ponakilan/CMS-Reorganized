@@ -1,6 +1,4 @@
 # Import local dependencies
-from jedi.api.helpers import infer
-
 from filters.utils import shape
 from filters.openpay import OpenPayDataProcessor
 from filters.dac import DACDataProcessor
