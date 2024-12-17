@@ -45,5 +45,7 @@ async def nucc(request: Request):
 async def cms_b_selected(request: Request):
     data = await request.json()
     selected_codes = data.get("selected_codes", [])
+    brand_names = data.get("brand_names", [])
     print(selected_codes)
+    print(brand_names)
     return {"count": len(selected_codes)}

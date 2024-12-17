@@ -2,43 +2,43 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="/static/js/app1.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HCPCS Selection with Search</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="stylesheet" href="/static/css/style.css">
-  <title>CMS-B Search</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+  
 </head>
 
 <body>
-  <form action="cms-d/" method="post">
-    <div id="select-container" class="container">
-      <h2>CMS-B HCPCS Selection</h2>
-      <div class="main">
-        <select name="select-1">
-          <option value="1">99443 - Telephone medical discussion with physician, 21-30 minutes</option>
-          <option value="2">70492 - Ct scan of soft tissue of neck before and after contrast</option>
-          <option value="3">73590 - X-ray of lower leg, 2 views</option>
-          <option value="4">99347 - Established patient home visit, typically 15 minutes</option>
-        </select>
-        <input type="text" name="text-1" class="form-control" placeholder="Brand name">
-        <button class="btn btn-danger dlt-btn" disabled>Delete</button>
-      </div>
-    </div>
-    <div class="container">
-      <input type="submit" class="btn btn-primary btn-submit" value="Submit">
-    </div>
-  </form>
-  <div class="container">
-    <button class="add-btn btn btn-secondary" onclick="addSelect()">Add New</button>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">HCPCS Codes Selection</h1>
+    <form id="hcpcs-form" action="/cms-d" method="get">
+        <!-- Brand Name Input -->
+        <div class="mb-3">
+            <label for="brand-name" class="form-label">Enter Brand Name:</label>
+            <input type="text" id="brand-name" name="brand_name" class="form-control" placeholder="Enter brand name" required>
+        </div>
+
+        <!-- Dropdown Container -->
+        <div id="dropdown-container" class="dropdown-container">
+            <!-- Dropdowns will be dynamically added here -->
+        </div>
+
+        <!-- Add New Dropdown Button -->
+        <button type="button" id="add-dropdown" class="btn btn-secondary mt-2">Add New Dropdown</button>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    </form>
+</div>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
-  <script src="/static/js/search.js"></script>
-  <script src="/static/js/app.js"></script>
+    <script src="/static/js/app.js" defer></script>
 </body>
 
 </html>
