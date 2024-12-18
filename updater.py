@@ -45,8 +45,29 @@ def update_nucc(save_location):
     with open(save_location, "w", encoding='utf-8') as f:
         json.dump(unique_codes, f, ensure_ascii=False, indent=4)
 
+def update_openpay(save_location):
+    openpay = spark.read.csv(f"{public_dir}/{public_files['openpay']}", header=True, inferSchema=True)
+    rename_mapping = {
+        "Education": "EDUCATION",
+        "Travel and Lodging": "TRAVEL",
+        "Food and Beverage": "FOOD&BEVERAGE",
+        "Consulting Fee": "CONSULTING",
+        "Compensation for services other than consulting, including serving as faculty or as a speaker at a venue other than a continuing education program": "SPEAKER",
+        "Compensation for serving as faculty or as a speaker for a medical education program": "SPEAKER"
+    }
+    openpay_selected = openpay.select("Nature_of_Payment_or_Transfer_of_Value").distinct().dropna()
+    categories = (
+        openpay_selected.rdd
+        .map(lambda row: {"Original": row["Nature_of_Payment_or_Transfer_of_Value"], 
+                          "Renamed": rename_mapping.get(row["Nature_of_Payment_or_Transfer_of_Value"], "")})
+        .collect()
+    )
+    final_json = {"categories": categories}
+    with open(save_location, "w", encoding="utf-8") as f:
+        json.dump(final_json, f, ensure_ascii=False, indent=4)
 
 if __name__ == "__main__":
     update_cms_b("Data/API/cms_b.json")
     update_cms_d("Data/API/cms_d.json")
     update_nucc("Data/API/nucc.json")
+    update_openpay("Data/API/openpay.json")
