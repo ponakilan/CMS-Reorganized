@@ -2,8 +2,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     const dropdownContainer = document.getElementById("dropdown-container");
     const addDropdownButton = document.getElementById("add-dropdown");
     const form = document.getElementById("hcpcs-form");
+    const heading = document.querySelector("h1"); // Heading to be dynamically updated
 
-    let hcpcsData = [];
+    let hcpcsData = []; // Stores initial HCPCS data
+    let drugsData = []; // Stores data from /cms-d
+    let isSecondSubmission = false; // Flag to track form submission phase
 
     // Fetch HCPCS data from backend
     async function fetchHCPCSData() {
@@ -22,8 +25,25 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     }
 
-    // Function to create dropdown with search functionality and delete button
-    function createDropdown(id, isDeletable = true) {
+    // Fetch Drugs data from backend
+    async function fetchDrugsData() {
+        try {
+            const response = await fetch("/cms-d");
+            if (!response.ok) throw new Error("Failed to fetch Drugs data");
+
+            const data = await response.json();
+            drugsData = data.drugs.map((item) => ({
+                value: `${item.Brnd_Name} - ${item.Gnrc_Name}`,
+                label: `${item.Brnd_Name} - ${item.Gnrc_Name}`,
+            }));
+        } catch (error) {
+            console.error("Error fetching Drugs data:", error);
+            alert("Failed to load Drugs data. Please try again.");
+        }
+    }
+
+    // Function to create dropdown with search, input box, and delete button
+    function createDropdown(id, dataSource, placeholder = "Search...", isDeletable = true) {
         const dropdownGroup = document.createElement("div");
         dropdownGroup.classList.add("mb-3", "dropdown-group");
         dropdownGroup.id = id;
@@ -31,24 +51,24 @@ document.addEventListener("DOMContentLoaded", async () => {
         // Search box for filtering dropdown
         const searchBox = document.createElement("input");
         searchBox.type = "text";
-        searchBox.placeholder = "Search...";
+        searchBox.placeholder = placeholder;
         searchBox.classList.add("form-control", "search-box");
 
         // Dropdown element
         const select = document.createElement("select");
-        select.name = "hcpcs_codes";
+        select.name = "dropdown-select";
         select.classList.add("form-select", "dropdown");
         select.size = 5;
 
         // Populate dropdown options
-        hcpcsData.forEach((item) => {
+        dataSource.forEach((item) => {
             const option = document.createElement("option");
             option.value = item.value;
             option.textContent = item.label;
             select.appendChild(option);
         });
 
-        // Add search functionality
+        // Search functionality
         searchBox.addEventListener("input", () => {
             const query = searchBox.value.toLowerCase();
             Array.from(select.options).forEach((option) => {
@@ -56,6 +76,15 @@ document.addEventListener("DOMContentLoaded", async () => {
             });
         });
 
+        // Input box for brand name
+        const brandInput = document.createElement("input");
+        brandInput.type = "text";
+        brandInput.placeholder = "Enter Brand Name";
+        brandInput.classList.add("form-control", "brand-input");
+        brandInput.required = true;
+
+        // Append elements to dropdown group
+        dropdownGroup.appendChild(brandInput);
         dropdownGroup.appendChild(searchBox);
         dropdownGroup.appendChild(select);
 
@@ -74,43 +103,78 @@ document.addEventListener("DOMContentLoaded", async () => {
         dropdownContainer.appendChild(dropdownGroup);
     }
 
-    // Fetch HCPCS data and add the first dropdown
+    // Handle form submission
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const brandNameInputs = Array.from(dropdownContainer.querySelectorAll(".brand-input"));
+        const dropdowns = Array.from(dropdownContainer.querySelectorAll("select"));
+
+        const selectedCodes = [];
+        const selectedBrnds = [];
+        const selectedGnrcs = [];
+        const brandNames = [];
+
+        // Collect data based on the dropdowns
+        dropdowns.forEach((dropdown, index) => {
+            const selectedOptions = Array.from(dropdown.selectedOptions);
+
+            selectedOptions.forEach((option) => {
+                if (!isSecondSubmission) {
+                    selectedCodes.push(option.value); // HCPCS Codes for first phase
+                } else {
+                    const [brndName, gnrcName] = option.textContent.split(" - ");
+                    selectedBrnds.push(brndName);
+                    selectedGnrcs.push(gnrcName);
+                }
+            });
+            brandNames.push(brandNameInputs[index].value);
+        });
+
+        // First submission: POST to /cms-b-selected and fetch new data
+        if (!isSecondSubmission) {
+            await fetch("/cms-b-selected", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    selected_codes: selectedCodes,
+                    brand_names: brandNames,
+                }),
+            });
+
+            // Fetch new data from /cms-d
+            await fetchDrugsData();
+
+            // Update heading and dropdowns
+            heading.textContent = "Drugs Selection";
+            dropdownContainer.innerHTML = ""; // Clear old dropdowns
+            createDropdown("dropdown-1", drugsData, "Search Brand Name...", false);
+            isSecondSubmission = true; // Set flag for second submission
+        } 
+        // Second submission: POST to /cms-d-selected
+        else {
+            await fetch("/cms-d-selected", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    selected_brnds: selectedBrnds,
+                    selected_gnrcs: selectedGnrcs,
+                    brand_names: brandNames,
+                }),
+            });
+
+            console.log("Second submission complete!");
+            alert("Data successfully submitted for Drugs Selection!");
+        }
+    });
+
+    // Fetch initial HCPCS data and create the first dropdown
     await fetchHCPCSData();
-    createDropdown("dropdown-1", false); // First dropdown: non-deletable, with search functionality
+    createDropdown("dropdown-1", hcpcsData, "Search HCPCS Code...", false);
 
     // Add new dropdowns dynamically
     addDropdownButton.addEventListener("click", () => {
         const newId = `dropdown-${dropdownContainer.children.length + 1}`;
-        createDropdown(newId);
-    });
-
-    // Handle form submission
-    form.addEventListener("submit", (event) => {
-        const brandName = document.getElementById("brand-name").value;
-
-        const selectedCodes = Array.from(dropdownContainer.querySelectorAll("select")).flatMap((select) =>
-            Array.from(select.selectedOptions).map((option) => option.value)
-        );
-
-        // Log and send data before submitting
-        console.log("Selected Codes:", selectedCodes);
-        console.log("Brand Name:", brandName);
-
-        fetch("/cms-b-selected", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ selected_codes: selectedCodes, brand_names: [brandName] }),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log("POST Response:", data);
-                form.submit(); // Submit GET request to /cms-d
-            })
-            .catch((error) => {
-                console.error("Error submitting data:", error);
-                alert("Failed to submit data.");
-            });
-
-        event.preventDefault(); // Prevent immediate form submission
+        createDropdown(newId, isSecondSubmission ? drugsData : hcpcsData, isSecondSubmission ? "Search Brand Name..." : "Search HCPCS Code...");
     });
 });

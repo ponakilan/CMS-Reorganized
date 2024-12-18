@@ -49,3 +49,15 @@ async def cms_b_selected(request: Request):
     print(selected_codes)
     print(brand_names)
     return {"count": len(selected_codes)}
+
+
+@app.post('/cms-d-selected', response_class=JSONResponse)
+async def cms_d_selected(request: Request):
+    data = await request.json()
+    selected_brnds = data.get("selected_brnds", [])
+    selected_gnrcs = data.get("selected_gnrcs", [])
+    brand_names = data.get("brand_names", [])
+    print(selected_brnds)
+    print(selected_gnrcs)
+    print(brand_names)
+    return {"count": len(selected_gnrcs)}
