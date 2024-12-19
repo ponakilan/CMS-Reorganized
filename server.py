@@ -47,24 +47,20 @@ async def nucc(request: Request):
         data = json.load(f)
     return data
 
-
-@app.post('/cms-b-selected', response_class=JSONResponse)
+@app.post('/cms-all-data', response_class=JSONResponse)
 async def cms_b_selected(request: Request):
     data = await request.json()
     selected_codes = data.get("selected_codes", [])
-    brand_names = data.get("brand_names", [])
-    print(selected_codes)
-    print(brand_names)
-    return {"count": len(selected_codes)}
-
-
-@app.post('/cms-d-selected', response_class=JSONResponse)
-async def cms_d_selected(request: Request):
-    data = await request.json()
+    brand_names_codes = data.get("brand_names_codes", [])
     selected_brnds = data.get("selected_brnds", [])
     selected_gnrcs = data.get("selected_gnrcs", [])
-    brand_names = data.get("brand_names", [])
+    brand_names_drugs = data.get("brand_names_drugs", [])
+    selected_scodes=data.get("selected_scodes",[])
+    print(selected_codes)
+    print(brand_names_codes)
     print(selected_brnds)
     print(selected_gnrcs)
-    print(brand_names)
-    return {"count": len(selected_gnrcs)}
+    print(brand_names_drugs)
+    print(selected_scodes)
+    return {"count": len(selected_codes)}
+
