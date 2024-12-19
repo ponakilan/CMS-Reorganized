@@ -45,6 +45,7 @@ def update_nucc(save_location):
     with open(save_location, "w", encoding='utf-8') as f:
         json.dump(unique_codes, f, ensure_ascii=False, indent=4)
 
+
 def update_openpay(save_location):
     openpay = spark.read.csv(f"{public_dir}/{public_files['openpay']}", header=True, inferSchema=True)
     rename_mapping = {
@@ -65,6 +66,7 @@ def update_openpay(save_location):
     final_json = {"categories": categories}
     with open(save_location, "w", encoding="utf-8") as f:
         json.dump(final_json, f, ensure_ascii=False, indent=4)
+
 
 if __name__ == "__main__":
     update_cms_b("Data/API/cms_b.json")
