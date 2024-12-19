@@ -41,6 +41,13 @@ async def nucc(request: Request):
     return data
 
 
+@app.get('/openpay-cat', response_class=JSONResponse)
+async def nucc(request: Request):
+    with open("Data/API/openpay.json", "r") as f:
+        data = json.load(f)
+    return data
+
+
 @app.post('/cms-b-selected', response_class=JSONResponse)
 async def cms_b_selected(request: Request):
     data = await request.json()
@@ -49,7 +56,6 @@ async def cms_b_selected(request: Request):
     print(selected_codes)
     print(brand_names)
     return {"count": len(selected_codes)}
-
 
 
 @app.post('/cms-d-selected', response_class=JSONResponse)
