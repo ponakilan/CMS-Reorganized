@@ -54,9 +54,17 @@ async def serve_html():
         return HTMLResponse(content=html_path.read_text(), status_code=200)
     return HTMLResponse(content="HTML file not found", status_code=404)
 
+@app.post('/openpay-data', response_class=JSONResponse)
+async def openpay_data(request: Request):
+    data = await request.json()
+    selected_oname = data.get("selected_oname",[])
+    selected_rename = data.get("selected_rename",[])
+    print(selected_oname)
+    print(selected_rename)
+
 
 @app.post('/cms-all-data', response_class=JSONResponse)
-async def cms_b_selected(request: Request):
+async def cms_all_data(request: Request):
     data = await request.json()
     selected_codes = data.get("selected_codes", [])
     brand_names_codes = data.get("brand_names_codes", [])
@@ -64,16 +72,14 @@ async def cms_b_selected(request: Request):
     selected_gnrcs = data.get("selected_gnrcs", [])
     brand_names_drugs = data.get("brand_names_drugs", [])
     selected_scodes=data.get("selected_scodes",[])
-    selected_oname = data.get("selected_oname",[])
-    selected_rename = data.get("selected_rename",[])
+    
     print(selected_codes)
     print(brand_names_codes)
     print(selected_brnds)
     print(selected_gnrcs)
     print(brand_names_drugs)
     print(selected_scodes)
-    print(selected_oname)
-    print(selected_rename)
+
     return {"count": len(selected_codes)}
 
 """ 

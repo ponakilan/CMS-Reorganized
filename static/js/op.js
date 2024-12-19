@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const selectedRenamed = document.getElementById("renamed-dropdown").value;
 
         // Send data to backend
-        await fetch("/cms-all-data", {
+        await fetch("/openpay-data", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
