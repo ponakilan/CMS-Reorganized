@@ -161,12 +161,14 @@ document.addEventListener("DOMContentLoaded", async () => {
             createDropdown("dropdown-1", nuccData, false, "Search NUCC Codes...", false);
             isThirdSubmission = true;
         } else {
+            // Collect selected dropdown values
             dropdowns.forEach((dropdown) => {
                 Array.from(dropdown.selectedOptions).forEach((option) => {
                     selectedScodes.push(option.value);
                 });
             });
-
+        
+            // Send POST request to `/cms-all-data`
             await fetch("/cms-all-data", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -179,9 +181,13 @@ document.addEventListener("DOMContentLoaded", async () => {
                     selected_scodes: selectedScodes,
                 }),
             });
-
-            alert("All data submitted successfully!");
+        
+            // Update form action and method for redirection
+            form.action = "/openpay-cat-page"; // Change form action
+            form.method = "get"; // Change form method
+            form.submit(); // Submit the form
         }
+        
     });
 
     // Initial setup
