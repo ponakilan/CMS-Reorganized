@@ -182,10 +182,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 }),
             });
         
-            // Update form action and method for redirection
-            form.action = "/openpay-cat-page"; // Change form action
-            form.method = "get"; // Change form method
-            form.submit(); // Submit the form
+           
         }
         
     });
