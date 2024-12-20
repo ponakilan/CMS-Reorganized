@@ -17,6 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const originalDropdown = document.getElementById("original-dropdown");
         const renamedDropdown = document.getElementById("renamed-dropdown");
 
+        let hasNullOption = false; // Flag to ensure only one "Unspecified" option is added
+
         categories.forEach(category => {
             // Populate Original dropdown
             const originalOption = document.createElement("option");
@@ -25,12 +27,28 @@ document.addEventListener("DOMContentLoaded", () => {
             originalDropdown.appendChild(originalOption);
 
             // Populate Renamed dropdown
-            const renamedOption = document.createElement("option");
-            renamedOption.value = category.Renamed || "Unspecified";
-            renamedOption.textContent = category.Renamed || "Unspecified";
-            renamedDropdown.appendChild(renamedOption);
+            if (category.Renamed) {
+                const renamedOption = document.createElement("option");
+                renamedOption.value = category.Renamed;
+                renamedOption.textContent = category.Renamed;
+                renamedDropdown.appendChild(renamedOption);
+            } else if (!hasNullOption) {
+                // Add a single "Unspecified" option for all null values
+                const unspecifiedOption = document.createElement("option");
+                unspecifiedOption.value = "Others";
+                unspecifiedOption.textContent = "Others";
+                renamedDropdown.appendChild(unspecifiedOption);
+                hasNullOption = true;
+            }
         });
+
+        // Ensure "Unspecified" is the last option
+        if (hasNullOption) {
+            const unspecifiedOption = renamedDropdown.querySelector("option[value='Others']");
+            renamedDropdown.appendChild(unspecifiedOption);
+        }
     }
+
 
     // Initialize fetch
     fetchOpenPayData();
