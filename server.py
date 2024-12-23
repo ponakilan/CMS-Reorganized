@@ -83,28 +83,3 @@ async def cms_all_data(request: Request):
     print(selected_scodes)
 
     return {"count": len(selected_codes)}
-
-""" 
-@app.post('/cms-all-data', response_class=JSONResponse)
-async def cms_all_data(request: Request):
-    global_data = {
-        "selected_codes": [],
-        "brand_names_codes": [],
-        "selected_brnds": [],
-        "selected_gnrcs": [],
-        "brand_names_drugs": [],
-        "selected_scodes": [],
-        "selected_original": [],
-        "selected_renamed": [],
-    }
-    
-    new_data = await request.json()
-
-    for key in global_data:
-        if key in new_data:
-            global_data[key].extend(new_data[key])
-
-    print(global_data)  # Log combined data for debugging
-    return {"status": "Data received successfully", "combined_count": len(global_data)}
-
-"""
