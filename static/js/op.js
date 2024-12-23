@@ -1,73 +1,98 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Fetch JSON data for dropdowns
-    const form = document.querySelector("form");
+    const form = document.getElementById("categories-form");
+    const container = document.getElementById("categories-container");
+    const heading = document.querySelector("h1");
+
+    let selectedOname = [];
+    let selectedRename = [];
+
     async function fetchOpenPayData() {
         try {
             const response = await fetch("/openpay-cat");
             if (!response.ok) throw new Error("Failed to fetch data");
             const data = await response.json();
 
-            populateDropdowns(data.categories);
+            populateCategories(data.categories);
         } catch (error) {
             console.error("Error fetching OpenPay data:", error);
         }
     }
 
-    function populateDropdowns(categories) {
-        const originalDropdown = document.getElementById("original-dropdown");
-        const renamedDropdown = document.getElementById("renamed-dropdown");
-
-        let hasNullOption = false; // Flag to ensure only one "Unspecified" option is added
-
+    function populateCategories(categories) {
         categories.forEach(category => {
-            // Populate Original dropdown
-            const originalOption = document.createElement("option");
-            originalOption.value = category.Original;
-            originalOption.textContent = category.Original;
-            originalDropdown.appendChild(originalOption);
+            const formGroup = document.createElement("div");
+            formGroup.classList.add("mb-3");
 
-            // Populate Renamed dropdown
-            if (category.Renamed) {
-                const renamedOption = document.createElement("option");
-                renamedOption.value = category.Renamed;
-                renamedOption.textContent = category.Renamed;
-                renamedDropdown.appendChild(renamedOption);
-            } else if (!hasNullOption) {
-                // Add a single "Unspecified" option for all null values
-                const unspecifiedOption = document.createElement("option");
-                unspecifiedOption.value = "Others";
-                unspecifiedOption.textContent = "Others";
-                renamedDropdown.appendChild(unspecifiedOption);
-                hasNullOption = true;
-            }
+            const label = document.createElement("label");
+            label.textContent = category.Original;
+            label.classList.add("form-label");
+            formGroup.appendChild(label);
+
+            const input = document.createElement("input");
+            input.type = "text";
+            input.name = "renamed";
+            input.classList.add("form-control");
+            input.value = category.Renamed || "";
+            input.dataset.original = category.Original;
+            formGroup.appendChild(input);
+
+            container.appendChild(formGroup);
         });
-
-        // Ensure "Unspecified" is the last option
-        if (hasNullOption) {
-            const unspecifiedOption = renamedDropdown.querySelector("option[value='Others']");
-            renamedDropdown.appendChild(unspecifiedOption);
-        }
     }
 
+    function setupDrugInput() {
+        // Clear existing inputs and change the heading
+        container.innerHTML = "";
+        heading.textContent = "Enter Drugs";
 
-    // Initialize fetch
-    fetchOpenPayData();
+        const formGroup = document.createElement("div");
+        formGroup.classList.add("mb-3");
+
+        const label = document.createElement("label");
+        label.textContent = "Enter Drugs (Comma seperated):";
+        label.classList.add("form-label");
+        formGroup.appendChild(label);
+
+        const input = document.createElement("input");
+        input.type = "text";
+        input.name = "drugs";
+        input.classList.add("form-control");
+        formGroup.appendChild(input);
+
+        container.appendChild(formGroup);
+    }
 
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
 
-        // Get selected values from the dropdowns
-        const selectedOriginal = document.getElementById("original-dropdown").value;
-        const selectedRenamed = document.getElementById("renamed-dropdown").value;
+        const inputs = container.querySelectorAll("input[name='renamed']");
 
-        // Send data to backend
-        await fetch("/openpay-data", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                selected_oname: selectedOriginal,
-                selected_rename: selectedRenamed,
-            }),
-        });
+        // If this is the initial form submission
+        if (inputs.length > 0) {
+            inputs.forEach(input => {
+                selectedOname.push(input.dataset.original);
+                selectedRename.push(input.value);
+            });
+
+            // Set up for drug input
+            setupDrugInput();
+        } else {
+            // Handle drug input submission
+            const drugInput = container.querySelector("input[name='drugs']");
+            const drugs = drugInput.value.split(",").map(drug => drug.trim());
+
+            // Send all data to the backend
+            await fetch("/openpay-data", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    selected_oname: selectedOname,
+                    selected_rename: selectedRename,
+                    drugs: drugs,
+                }),
+            });
+        }
     });
+
+    fetchOpenPayData();
 });

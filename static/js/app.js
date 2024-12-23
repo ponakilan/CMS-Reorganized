@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             });
 
             await fetchNuccData();
-            heading.textContent = "NUCC Codes Selection";
+            heading.textContent = "Taxonomy Codes Selection";
             dropdownContainer.innerHTML = "";
             createDropdown("dropdown-1", nuccData, false, "Search NUCC Codes...", false);
             isThirdSubmission = true;
