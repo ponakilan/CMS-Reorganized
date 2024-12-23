@@ -57,11 +57,9 @@ async def serve_html():
 @app.post('/openpay-data', response_class=JSONResponse)
 async def openpay_data(request: Request):
     data = await request.json()
-    selected_oname = data.get("selected_oname",[])
-    selected_rename = data.get("selected_rename",[])
+    categories = data.get("categories",[])
     drugs=data.get("drugs",[])
-    print(selected_oname)
-    print(selected_rename)
+    print(categories)
     print(drugs)
 
 

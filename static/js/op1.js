@@ -3,7 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("categories-container");
     const heading = document.querySelector("h1");
 
-    let categories = [];
+    let selectedOname = [];
+    let selectedRename = [];
 
     async function fetchOpenPayData() {
         try {
@@ -17,8 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    function populateCategories(categoriesData) {
-        categoriesData.forEach(category => {
+    function populateCategories(categories) {
+        categories.forEach(category => {
             const formGroup = document.createElement("div");
             formGroup.classList.add("mb-3");
 
@@ -48,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
         formGroup.classList.add("mb-3");
 
         const label = document.createElement("label");
-        label.textContent = "Enter Drugs (Comma separated):";
+        label.textContent = "Enter Drugs (Comma seperated):";
         label.classList.add("form-label");
         formGroup.appendChild(label);
 
@@ -68,10 +69,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // If this is the initial form submission
         if (inputs.length > 0) {
-            categories = Array.from(inputs).map(input => ({
-                Original: input.dataset.original,
-                Renamed: input.value,
-            }));
+            inputs.forEach(input => {
+                selectedOname.push(input.dataset.original);
+                selectedRename.push(input.value);
+            });
 
             // Set up for drug input
             setupDrugInput();
@@ -85,7 +86,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    categories: categories,
+                    selected_oname: selectedOname,
+                    selected_rename: selectedRename,
                     drugs: drugs,
                 }),
             });
