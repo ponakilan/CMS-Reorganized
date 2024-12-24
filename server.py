@@ -4,6 +4,8 @@ from datetime import datetime
 from uuid import uuid4
 import pickle
 
+from control import initiate_processing
+
 import pandas as pd
 from fastapi import FastAPI, Request, Response
 from fastapi.responses import HTMLResponse, JSONResponse
@@ -99,12 +101,40 @@ async def openpay_data(request: Request):
         "Original": original_category,
         "Renamed": renamed_category
     })
-    with pd.ExcelWriter(f"Data/Private/Input/{username}_{datetime.now()}_{uuid4()}.xlsx") as writer:
-        cms_b_df.to_excel(writer, sheet_name="CMS_B_Unique_HCPCS")
-        cms_d_df.to_excel(writer, sheet_name="CMS_D_Gnrc_Names")
-        openpay_drug_df.to_excel(writer, sheet_name="Openpayments_Drug_Mappings")
-        tax_code_df.to_excel(writer, sheet_name="Taxonomy_Codes")
-        openpay_map_df.to_excel(writer, sheet_name="Opanpay_Mappings")
+    job_id = uuid4()
+    filename = f"Data/Private/Input/{username}_{datetime.now()}_{job_id}.xlsx"
+    with pd.ExcelWriter(filename) as writer:
+        cms_b_df.to_excel(writer, sheet_name="CMS_B_Unique_HCPCS", index=False)
+        cms_d_df.to_excel(writer, sheet_name="CMS_D_Gnrc_Names", index=False)
+        openpay_drug_df.to_excel(writer, sheet_name="Openpayments_Drug_Mappings", index=False)
+        tax_code_df.to_excel(writer, sheet_name="Taxonomy_Codes", index=False)
+        openpay_map_df.to_excel(writer, sheet_name="Opanpay_Mappings", index=False)
+
+    # Trigger the processing
+    public_files = {
+        "cms_b": "Medicare_Physician_Other_Practitioners_by_Provider_and_Service_2022.csv",
+        "cms_d": "MUP_DPR_RY24_P04_V10_DY22_NPIBN.csv",
+        "openpay": "OP_DTL_GNRL_PGYR2023_P06282024_06122024.csv",
+        "nppes": "npidata_pfile_20050523-20241110.csv",
+        "nucc": "nucc_taxonomy_241.csv",
+        "dac": "DAC_NationalDownloadableFile.csv",
+        "phase-1": "phase_1.csv"
+    }
+    private_sheets = {
+        "cms_b": 0,
+        "cms_d": 1,
+        "openpay": 2,
+        "taxonomy": 3,
+        "openpay-map": 4
+    }
+    initiate_processing(
+        public_dir="Data/Public",
+        private_workbook=filename,
+        public_files=public_files,
+        private_sheets=private_sheets,
+        username=username,
+        job_id=str(job_id)
+    )
 
 @app.post('/cms-all-data', response_class=JSONResponse)
 async def cms_all_data(request: Request):
@@ -148,7 +178,7 @@ async def submitted_jobs(request: Request):
         username, time, uuid = file.split('_')
         files_inp['username'].append(username)
         files_inp['in_time'].append(time)
-        files_inp['job_id'].append(uuid)
+        files_inp['job_id'].append(uuid[:-5])
 
     files_out = {
         "username": [],
@@ -159,7 +189,7 @@ async def submitted_jobs(request: Request):
         username, time, uuid = file.split('_')
         files_out['username'].append(username)
         files_out['out_time'].append(time)
-        files_out['job_id'].append(uuid)
+        files_out['job_id'].append(uuid[:-4])
 
     inp_df = spark.createDataFrame(pd.DataFrame(files_inp))
     out_df = spark.createDataFrame(pd.DataFrame(files_out))

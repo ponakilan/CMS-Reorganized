@@ -9,13 +9,21 @@ from filters.cms import CMSBDataProcessor, CMSDDataProcessor, merge_cms
 # Import built-in dependencies
 import sys
 import time
+import datetime
 
 # Import external dependencies
 import pandas as pd
 from pyspark.sql import SparkSession
 
 
-def initiate_processing(public_dir: str, private_workbook: str, public_files: dict, private_sheets: dict, output: str):
+def initiate_processing(
+        public_dir: str,
+        private_workbook: str,
+        public_files: dict,
+        private_sheets: dict,
+        username: str,
+        job_id: str
+):
     # Start timer
     start = time.time()
 
@@ -100,7 +108,7 @@ def initiate_processing(public_dir: str, private_workbook: str, public_files: di
             inferSchema=True
         )
     )
-
+    output = f"Data/Private/Output/{username}_{datetime.datetime.now()}_{job_id}.csv"
     # Export the final file
     final.toPandas().to_csv(output, index=False)
 
@@ -129,14 +137,6 @@ def main(public_dir, private_workbook, output):
         "taxonomy": 3,
         "openpay-map": 4
     }
-
-    initiate_processing(
-        public_dir=public_dir,
-        private_workbook=private_workbook,
-        public_files=public_files,
-        private_sheets=private_sheets,
-        output=output
-    )
 
 
 if __name__ == '__main__':
