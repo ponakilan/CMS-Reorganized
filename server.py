@@ -1,5 +1,8 @@
 import os
 import json
+from datetime import datetime
+from uuid import uuid4
+import pickle
 
 import pandas as pd
 from fastapi import FastAPI, Request, Response
@@ -62,15 +65,52 @@ async def serve_html():
 @app.post('/openpay-data', response_class=JSONResponse)
 async def openpay_data(request: Request):
     data = await request.json()
+
+    username = "ponakilan"
     categories = data.get("categories",[])
     drugs=data.get("drugs",[])
-    print(categories)
-    print(drugs)
 
+    original_category = []
+    renamed_category = []
+    for data in categories:
+        original_category.append(data['Original'])
+        renamed_category.append(data['Renamed'])
+
+    with open(f"Data/API/{username}.pkl", "rb") as f:
+        data_dict = pickle.load(f)
+
+    # Writing CMS-B Data
+    cms_b_df = pd.DataFrame({
+        "HCPCS_Cd": data_dict['cms_b_codes'],
+        "BRAND": data_dict['cms_b_brands']
+    })
+    cms_d_df = pd.DataFrame({
+        "Brnd_Name": data_dict['cms_d_brnds'],
+        "Gnrc_Name": data_dict['cms_d_gnrcs'],
+        "BRAND": data_dict['cms_d_brands']
+    })
+    openpay_drug_df = pd.DataFrame({
+        "Drug_Name": drugs
+    })
+    tax_code_df = pd.DataFrame({
+        "Code": data_dict['taxonomy_codes']
+    })
+    openpay_map_df = pd.DataFrame({
+        "Original": original_category,
+        "Renamed": renamed_category
+    })
+    with pd.ExcelWriter(f"Data/Private/Input/{username}_{datetime.now()}_{uuid4()}.xlsx") as writer:
+        cms_b_df.to_excel(writer, sheet_name="CMS_B_Unique_HCPCS")
+        cms_d_df.to_excel(writer, sheet_name="CMS_D_Gnrc_Names")
+        openpay_drug_df.to_excel(writer, sheet_name="Openpayments_Drug_Mappings")
+        tax_code_df.to_excel(writer, sheet_name="Taxonomy_Codes")
+        openpay_map_df.to_excel(writer, sheet_name="Opanpay_Mappings")
 
 @app.post('/cms-all-data', response_class=JSONResponse)
 async def cms_all_data(request: Request):
     data = await request.json()
+
+    username = "ponakilan"
     selected_codes = data.get("selected_codes", [])
     brand_names_codes = data.get("brand_names_codes", [])
     selected_brnds = data.get("selected_brnds", [])
@@ -78,12 +118,17 @@ async def cms_all_data(request: Request):
     brand_names_drugs = data.get("brand_names_drugs", [])
     selected_scodes=data.get("selected_scodes",[])
     
-    print(selected_codes)
-    print(brand_names_codes)
-    print(selected_brnds)
-    print(selected_gnrcs)
-    print(brand_names_drugs)
-    print(selected_scodes)
+    user_data = {
+        "cms_b_codes": selected_codes,
+        "cms_b_brands": brand_names_codes,
+        "cms_d_brnds": selected_brnds,
+        "cms_d_gnrcs": selected_gnrcs,
+        "cms_d_brands": brand_names_drugs,
+        "taxonomy_codes": selected_scodes
+    }
+
+    with open(f"Data/API/{username}.pkl", "wb") as f:
+        pickle.dump(user_data, f)
 
     return {"count": len(selected_codes)}
 
