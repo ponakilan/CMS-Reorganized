@@ -1,5 +1,4 @@
 filters/__pycache__/
-**.csv
 experiment.ipynb
 .ipynb_checkpoints/
 .idea/
