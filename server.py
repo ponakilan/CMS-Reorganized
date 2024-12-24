@@ -1,10 +1,15 @@
+import os
 import json
 
+import pandas as pd
 from fastapi import FastAPI, Request, Response
 from fastapi.responses import HTMLResponse, JSONResponse
 from pathlib import Path
 from fastapi.staticfiles import StaticFiles
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import *
 
+spark = SparkSession.builder.appName('Jobs-Scheduler').getOrCreate()
 app = FastAPI()
 
 # Mount the static directory
@@ -81,3 +86,44 @@ async def cms_all_data(request: Request):
     print(selected_scodes)
 
     return {"count": len(selected_codes)}
+
+@app.get('/submitted-jobs', response_class=JSONResponse)
+async def submitted_jobs(request: Request):
+    data = await request.json()
+
+    input_dir = "Data/Private/Input"
+    output_dir = "Data/Private/Output"
+
+    files_inp = {
+        "username": [],
+        "job_id": [],
+        "in_time": []
+    }
+    for file in os.listdir(input_dir):
+        username, time, uuid = file.split('_')
+        files_inp['username'].append(username)
+        files_inp['in_time'].append(time)
+        files_inp['job_id'].append(uuid)
+
+    files_out = {
+        "username": [],
+        "job_id": [],
+        "out_time": []
+    }
+    for file in os.listdir(output_dir):
+        username, time, uuid = file.split('_')
+        files_out['username'].append(username)
+        files_out['out_time'].append(time)
+        files_out['job_id'].append(uuid)
+
+    inp_df = spark.createDataFrame(pd.DataFrame(files_inp))
+    out_df = spark.createDataFrame(pd.DataFrame(files_out))
+
+    df = inp_df.join(out_df.drop("username"), "job_id", 'left')
+
+    username = data['username']
+    df = df.filter(col("username") == username)
+
+    return {
+        "jobs": json.loads(df.toPandas().to_json(orient="records"))
+    }

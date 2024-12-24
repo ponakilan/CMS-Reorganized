@@ -1,28 +1,76 @@
 {
-  "categories": [
-    {
-      "Original": "Education",
-      "Renamed": "EDUCATION"
-    },
-    {
-      "Original": "Entertainment",
-      "Renamed": ""
-    },
-    {
-      "Original": "Travel and Lodging",
-      "Renamed": "TRAVEL"
-    },
-    {
-      "Original": "Compensation for serving as faculty or as a speaker for a medical education program",
-      "Renamed": "SPEAKER"
-    },
-    {
-      "Original": "Acquisitions",
-      "Renamed": ""
-    },
-    {
-      "Original": "Debt forgiveness",
-      "Renamed": ""
-    }
-  ]
+    "categories": [
+        {
+            "Original": "Education",
+            "Renamed": "EDUCATION"
+        },
+        {
+            "Original": "Entertainment",
+            "Renamed": ""
+        },
+        {
+            "Original": "Travel and Lodging",
+            "Renamed": "TRAVEL"
+        },
+        {
+            "Original": "Compensation for serving as faculty or as a speaker for a medical education program",
+            "Renamed": "SPEAKER"
+        },
+        {
+            "Original": "Acquisitions",
+            "Renamed": ""
+        },
+        {
+            "Original": "Debt forgiveness",
+            "Renamed": ""
+        },
+        {
+            "Original": "Cash or cash equivalent",
+            "Renamed": ""
+        },
+        {
+            "Original": "Charitable Contribution",
+            "Renamed": ""
+        },
+        {
+            "Original": "Honoraria",
+            "Renamed": ""
+        },
+        {
+            "Original": "Grant",
+            "Renamed": ""
+        },
+        {
+            "Original": "Royalty or License",
+            "Renamed": ""
+        },
+        {
+            "Original": "Food and Beverage",
+            "Renamed": "FOOD&BEVERAGE"
+        },
+        {
+            "Original": "Space rental or facility fees (teaching hospital only)",
+            "Renamed": ""
+        },
+        {
+            "Original": "Compensation for services other than consulting, including serving as faculty or as a speaker at a venue other than a continuing education program",
+            "Renamed": "SPEAKER"
+        },
+        {
+            "Original": "Consulting Fee",
+            "Renamed": "CONSULTING"
+        },
+        {
+            "Original": "Gift",
+            "Renamed": ""
+        },
+        {
+            "Original": "Long term medical supply or device loan",
+            "Renamed": ""
+        },
+        {
+            "Original": "In-kind items and services",
+            "Renamed": ""
+        }
+    ]
 }
