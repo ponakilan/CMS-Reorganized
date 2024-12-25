@@ -79,7 +79,10 @@ document.addEventListener("DOMContentLoaded", () => {
             // Handle drug input submission
             const drugInput = container.querySelector("input[name='drugs']");
             const drugs = drugInput.value.split(",").map(drug => drug.trim());
-
+        
+            // Ask the user for their username
+            const username = prompt("Please enter your username:");
+        
             // Send all data to the backend
             await fetch("/openpay-data", {
                 method: "POST",
@@ -87,9 +90,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 body: JSON.stringify({
                     categories: categories,
                     drugs: drugs,
+                    username: username, // Include the username in the payload
                 }),
             });
+            // Update form action and method for redirection
+            form.action = "/submitted-page"; // Change form action
+            form.method = "get"; // Change form method
+            form.submit(); // Submit the form
         }
+        
     });
 
     fetchOpenPayData();

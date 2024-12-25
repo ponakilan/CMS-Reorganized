@@ -15,6 +15,14 @@ from pyspark.sql import SparkSession
 from pyspark.sql.functions import *
 
 spark = SparkSession.builder.appName('Jobs-Scheduler').getOrCreate()
+# spark = SparkSession.builder \
+#     .appName('Jobs-Scheduler') \
+#     .config("spark.hadoop.fs.defaultFS", "file:///") \
+#     .config("spark.driver.host", "127.0.0.1") \
+#     .config("spark.eventLog.enabled", "true") \
+#     .getOrCreate()
+# spark.sparkContext.setLogLevel("DEBUG")
+
 app = FastAPI()
 
 # Mount the static directory
@@ -24,7 +32,7 @@ data_collection_dir = "Data/API/"
 
 @app.get("/", response_class=HTMLResponse)
 async def serve_html():
-    html_path = Path("templates/index.html")  # Adjust the path if your file is named differently or in another directory
+    html_path = Path("templates/index.html") 
     if html_path.is_file():
         return HTMLResponse(content=html_path.read_text(), status_code=200)
     return HTMLResponse(content="HTML file not found", status_code=404)
@@ -59,7 +67,7 @@ async def render_info(request: Request):
 
 @app.get("/openpay-cat-page", response_class=HTMLResponse)
 async def serve_html():
-    html_path = Path("templates/op.html")  # Adjust the path if your file is named differently or in another directory
+    html_path = Path("templates/op.html")  
     if html_path.is_file():
         return HTMLResponse(content=html_path.read_text(), status_code=200)
     return HTMLResponse(content="HTML file not found", status_code=404)
@@ -68,7 +76,7 @@ async def serve_html():
 async def openpay_data(request: Request):
     data = await request.json()
 
-    username = "ponakilan"
+    username = data.get("username", "")
     categories = data.get("categories",[])
     drugs=data.get("drugs",[])
 
@@ -102,7 +110,13 @@ async def openpay_data(request: Request):
         "Renamed": renamed_category
     })
     job_id = uuid4()
-    filename = f"Data/Private/Input/{username}_{datetime.now()}_{job_id}.xlsx"
+
+    # Sanitize the timestamp to remove invalid characters for filenames
+    sanitized_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    job_id = uuid4()
+    filename = f"Data/Private/Input/{username}_{sanitized_time}_{job_id}.xlsx"
+
+    #filename = f"Data/Private/Input/{username}_{datetime.now()}_{job_id}.xlsx"
     with pd.ExcelWriter(filename) as writer:
         cms_b_df.to_excel(writer, sheet_name="CMS_B_Unique_HCPCS", index=False)
         cms_d_df.to_excel(writer, sheet_name="CMS_D_Gnrc_Names", index=False)
@@ -140,7 +154,7 @@ async def openpay_data(request: Request):
 async def cms_all_data(request: Request):
     data = await request.json()
 
-    username = "ponakilan"
+    username = data.get("username", "")
     selected_codes = data.get("selected_codes", [])
     brand_names_codes = data.get("brand_names_codes", [])
     selected_brnds = data.get("selected_brnds", [])
@@ -162,9 +176,18 @@ async def cms_all_data(request: Request):
 
     return {"count": len(selected_codes)}
 
+#page where the job schedulings will be displayed
+@app.get("/submitted-page", response_class=HTMLResponse)
+async def submitted_html():
+    html_path = Path("templates/submitted.html")  # Adjust the path if your file is named differently or in another directory
+    if html_path.is_file():
+        return HTMLResponse(content=html_path.read_text(), status_code=200)
+    return HTMLResponse(content="HTML file not found", status_code=404)
+
+
 @app.get('/submitted-jobs', response_class=JSONResponse)
-async def submitted_jobs(request: Request):
-    data = await request.json()
+async def submitted_jobs(username: str):
+    #data = await request.json()
 
     input_dir = "Data/Private/Input"
     output_dir = "Data/Private/Output"
@@ -196,9 +219,15 @@ async def submitted_jobs(request: Request):
 
     df = inp_df.join(out_df.drop("username"), "job_id", 'left')
 
-    username = data['username']
+    #username = data['username']
     df = df.filter(col("username") == username)
 
     return {
         "jobs": json.loads(df.toPandas().to_json(orient="records"))
     }
+
+    # print(username)
+
+    # with open("sample.json", "r") as f:
+    #     file = json.load(f)
+    # return file

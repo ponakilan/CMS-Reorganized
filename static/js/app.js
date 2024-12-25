@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 option.style.display = option.textContent.toLowerCase().includes(query) ? "" : "none";
             });
         });
-        
+
         // Add brand input if required
         if (includeBrandName) {
             const brandInput = document.createElement("input");
@@ -167,7 +167,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                     selectedScodes.push(option.value);
                 });
             });
-        
+
+            // Ask the user for their username
+            const username = prompt("Please enter your username:");
+
             // Send POST request to `/cms-all-data`
             await fetch("/cms-all-data", {
                 method: "POST",
@@ -179,15 +182,16 @@ document.addEventListener("DOMContentLoaded", async () => {
                     selected_gnrcs: selectedGnrcs,
                     brand_names_drugs: brandNamesDrugs,
                     selected_scodes: selectedScodes,
+                    username: username,
                 }),
             });
-             // Update form action and method for redirection
-             form.action = "/openpay-cat-page"; // Change form action
-             form.method = "get"; // Change form method
-             form.submit(); // Submit the form
-           
+            // Update form action and method for redirection
+            form.action = "/openpay-cat-page"; // Change form action
+            form.method = "get"; // Change form method
+            form.submit(); // Submit the form
+
         }
-        
+
     });
 
     // Initial setup
