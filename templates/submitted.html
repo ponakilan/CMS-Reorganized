@@ -5,36 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="/static/js/sub.js" defer></script>
     <title>Submitted Jobs</title>
+    <link rel="stylesheet" href="/static/css/common.css">
     <link rel="stylesheet" href="/static/css/sub.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
-    <form id="user-form" class="mt-5">
-        <div class="input">
-            <label for="username">Enter Username: </label>
-            <input type="text" id="username" name="username" required>
-            <div class="mt-3">
-                <button type="submit" class="btn btn-primary">Submit</button>
+    
+    <div class="main">
+        <div class="sidebar">
+            <div class="yaali ">
+                <img src="../static/assets/yaali_animal.png" alt="yaali_animal">
+                <a href="https://drive.google.com/file/d/15T68XeTxSJ68qm0D75wSEj09H7Rdt_tQ/view">About Yaali</a>
+                <h2>KOL Identification Tool</h2>
             </div>
         </div>
-    </form>
-    <div id="table-section">
-        <h2 id="table-heading" style="display: none;">Submitted Jobs</h2>
-        <table id="data-table" style="display: none;">
-            <thead>
-                <tr>
-                    <th>Username</th>
-                    <th>Job ID</th>
-                    <th>In Time</th>
-                    <th>Out Time</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+
+        <div class="main-content">
+            <div class="sticky-nav">
+                <img src="../static/assets/final.png" alt="roche-logo">
+            </div>
+
+            <div class="data-container">
+                <form id="user-form" class="mt-5 container">
+                    <div class="input">
+                        <label for="username" class="form-label">Enter Username: </label>
+                        <input type="text" id="username" name="username" class="form-control" required>
+                        <div class="mt-3">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </form>
+                <div id="table-section">
+                    <h2 id="table-heading" style="display: none;">Submitted Jobs</h2>
+                    <table id="data-table" style="display: none;">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Job ID</th>
+                                <th>In Time</th>
+                                <th>Out Time</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 </body>
 </html>
+
+

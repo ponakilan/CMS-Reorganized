@@ -29,7 +29,10 @@ document.addEventListener("DOMContentLoaded", () => {
             tableBody.innerHTML = "";
 
             if (data.jobs && data.jobs.length > 0) {
+                tableSection.style.display = "block";//make the table visible
+
                 // Populate the table with the jobs data
+
                 data.jobs.forEach(job => {
                     const row = document.createElement("tr");
                     row.innerHTML = `
@@ -46,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 dataTable.style.display = "table";
             } else {
                 // If no jobs found, hide the table and display a message
+                tableSection.style.display = "none";//make the table visible
                 tableHeading.style.display = "block";
                 dataTable.style.display = "none";
                 tableHeading.textContent = `No jobs found for username: ${username}`;
