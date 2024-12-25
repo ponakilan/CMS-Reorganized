@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const heading = document.querySelector("h1");
 
     let categories = [];
+    let csrf_token = document.getElementById("csrf").value;
 
     async function fetchOpenPayData() {
         try {
@@ -80,11 +81,18 @@ document.addEventListener("DOMContentLoaded", () => {
             const drugInput = container.querySelector("input[name='drugs']");
             const drugs = drugInput.value.split(",").map(drug => drug.trim());
 
+            // Ask for file name
+            let file_name = window.prompt("Enter a file name: ");
+
             // Send all data to the backend
-            await fetch("/openpay-data", {
+            await fetch("/openpay-data/", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": csrf_token,
+                },
                 body: JSON.stringify({
+                    file_name: file_name,
                     categories: categories,
                     drugs: drugs,
                 }),

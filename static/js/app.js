@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     let nuccData = [];
     let isSecondSubmission = false;
     let isThirdSubmission = false;
+    let csrf_token = document.getElementById("csrf").value;
 
     const selectedCodes = [];
     const brandNamesCodes = [];
@@ -169,9 +170,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             });
         
             // Send POST request to `/cms-all-data`
-            await fetch("/cms-all-data", {
+            await fetch("/cms-all-data/", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": csrf_token,
+                },
                 body: JSON.stringify({
                     selected_codes: selectedCodes,
                     brand_names_codes: brandNamesCodes,

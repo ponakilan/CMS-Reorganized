@@ -15,9 +15,10 @@
     <!-- styling to be added -->
   <div class="container mt-5">
     <h1 class="text-center mb-4">HCPCS Codes Selection</h1>
+      <div style="display:none">
+            <input id="csrf" type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+        </div>
     <form id="hcpcs-form" action="/cms-d" method="get">
-       
-
         <!-- Dropdown Container -->
         <div id="dropdown-container" class="dropdown-container">
             <!-- Dropdowns will be dynamically added here -->

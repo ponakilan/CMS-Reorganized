@@ -12,6 +12,9 @@
 </head>
 <body>
     <h1 class="text-center my-4">Edit OpenPay Categories</h1>
+    <div style="display:none">
+        <input id="csrf" type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+    </div>
     <form action="/openpay-data" method="post" id="categories-form" class="container">
         <div id="categories-container" class="mb-3">
             <!-- Dynamic content will be added here -->

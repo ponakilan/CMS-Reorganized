@@ -5,6 +5,7 @@ from filters.dac import DACDataProcessor
 from filters.nppes_nucc import NPPESNUCCDataProcessor
 from filters.tax_code import TaxCodeDataProcessor
 from filters.cms import CMSBDataProcessor, CMSDDataProcessor, merge_cms
+from preferences.models import Job
 
 # Import built-in dependencies
 import sys
@@ -14,6 +15,7 @@ import datetime
 # Import external dependencies
 import pandas as pd
 from pyspark.sql import SparkSession
+from django.utils import timezone
 
 
 def initiate_processing(
@@ -21,7 +23,7 @@ def initiate_processing(
         private_workbook: str,
         public_files: dict,
         private_sheets: dict,
-        username: str,
+        file_name: str,
         job_id: str
 ):
     # Start timer
@@ -108,9 +110,16 @@ def initiate_processing(
             inferSchema=True
         )
     )
-    output = f"Data/Private/Output/{username}_{datetime.datetime.now()}_{job_id}.csv"
+    output = f"/static/output/{job_id}_{file_name}.csv"
+
+    # Update the record in database
+    job = Job.objects.get(job_id=job_id)
+    job.out_time = timezone.make_aware(datetime.datetime.now())
+    job.output_file = output
+    job.save()
+
     # Export the final file
-    final.toPandas().to_csv(output, index=False)
+    final.toPandas().to_csv(output[1:], index=False)
 
     # End timer
     end = time.time()
