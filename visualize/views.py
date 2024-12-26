@@ -1,4 +1,10 @@
+import io
+import json
+
+import pandas as pd
+import matplotlib.pyplot as plt
 from django.shortcuts import render
+from django.http import HttpResponse
 
 
 def filter_columns(df, selected_drugs, common_columns):
@@ -41,7 +47,7 @@ def sum_and_sort_columns(df):
     # Filter out rows where the total sum is 0
     df = df[df['Total Sum'] > 0]
 
-    df.loc[:, 'Zip code'] = df['Zip code'].astype(str).apply(lambda x: x.zfill(9) if len(x) in [6, 7, 8] else x.zfill(5) if len(x) == 5 else x)
+    # df.loc[:, 'Zip code'] = df['Zip code'].astype(str).apply(lambda x: x.zfill(9) if len(x) in [6, 7, 8] else x.zfill(5) if len(x) == 5 else x)
 
     
     # Sort the DataFrame by 'Total Sum' in descending order
@@ -138,7 +144,37 @@ def generate_visualizations(df, selected_drugs):
 
     return inner_graph
 
+col_len = 27
 
 def index(request):
     file_path = request.GET.get("file_path", "")
-    return render(request, "visualize.html")
+    df = pd.read_csv(file_path[1:])
+    drug_cols = df.columns[col_len:]
+    drugs = set([col.split("_")[0] for col in drug_cols])
+    return render(request, "visualize.html", {"drugs": drugs, "file_path": file_path})
+
+
+def filter(request):
+    data = json.loads(request.body)
+    file_path = data.get("file_path", "")
+    selected_drugs = data.get("selected_drugs", [])
+    
+    df = pd.read_csv(file_path[1:])
+    drug_cols = df.columns[34:]
+    all_drugs = set([col.split("_")[0] for col in drug_cols])
+    common_columns = list(df.columns[:col_len])
+
+    all_drugs_option = "All"
+    if all_drugs_option in selected_drugs:
+        selected_drugs = all_drugs
+
+    if selected_drugs:
+        filtered_df = filter_columns(df, selected_drugs, common_columns)
+        filtered_df = sum_and_sort_columns(filtered_df)
+        filtered_df = filtered_df.reset_index(drop=True)
+
+    global graph 
+    graph = generate_visualizations(filtered_df, selected_drugs)
+    resp = filtered_df.to_json(orient='records')
+    
+    return resp
