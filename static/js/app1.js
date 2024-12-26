@@ -7,41 +7,10 @@ const tableBody = document.querySelector("#data-table tbody")
 const graphSection = document.getElementById("graph-section");
 const exportBtn = document.getElementById("export-btn");
 
-const API_BASE = "http://127.0.0.1:8000";//Backend API
+const API_BASE = "http://127.0.0.1:8000/visualize";//Backend API
 //data for the second drop down menu
-const drugs = {
-    GASTRO: [
-        "All", "SKYRIZI", "ENTYVIO", "STELARA", "INFLECTRA",
-        "HUMIRA", "ZEPOSIA", "SIMPONI", "RENFLEXIS", "REMICADE", "CIMZIA"
-    ],
-    LUPUS: [
-        "All","SAPHNELO", "LUPKYNIS", "BENLYSTA"
-    ]
-}
 
-marketDropdown.addEventListener("change", function () {
-    const market = LUPUS;
-    //populating drugDropdown
-    drugDropdown.innerHTML = '<option value="" disabled selected>Select drugs</option>';
-    drugDropdown.disabled = true;
-
-    if (drugs[market]) {
-        drugs[market].forEach(element => {
-            const option = document.createElement("option");
-            option.value = element
-            option.textContent = element
-            drugDropdown.appendChild(option);
-
-        });
-        drugDropdown.disabled = false;
-    }
-    else {
-        drugDropdown.disabled = true;
-    }
-
-});
 submitBtn.addEventListener("click", async () => {
-    const market = marketDropdown.value;
     const selectedDrugs = Array.from(drugDropdown.selectedOptions).map(opt => opt.value);
     if (selectedDrugs.length === 0) {
         alert("Please select at least one drug.");
@@ -53,11 +22,20 @@ submitBtn.addEventListener("click", async () => {
     loadingSpinner.style.display = "block";
 
     try {
+
+        const csrf = document.getElementById("csrf").value;
+        const file_name = document.getElementById("file_path").value;
         // Getting data from the backend
-        const response = await fetch(`${API_BASE}/filter`, {
+        const response = await fetch(`${API_BASE}/filter/`, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ market_option: market, selected_drugs: selectedDrugs })
+            headers: { 
+                "Content-Type": "application/json",
+                "X-CSRFToken": csrf, 
+            },
+            body: JSON.stringify({
+                file_path: file_name,
+                selected_drugs: selectedDrugs 
+            })
         });
 
         if (!response.ok) {
@@ -132,7 +110,7 @@ async function fetchAndDisplayGraphs(filterData) {
     loadingSpinner.style.display = "block"; // Show spinner for graphs
 
     try {
-        const response = await fetch(`${API_BASE}/graphs`, {
+        const response = await fetch(`${API_BASE}/graphs/`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(filterData)
