@@ -10,6 +10,7 @@ from preferences.control import initiate_processing
 from preferences.models import Job
 
 import pandas as pd
+import matplotlib.pyplot as plt
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
 from django.utils import timezone
@@ -85,9 +86,11 @@ def openpay_data(request):
         "Original": original_category,
         "Renamed": renamed_category
     })
+
     job_id = uuid4()
     in_time = datetime.now()
     filename = f"static/input/{job_id}_{file_name}.xlsx"
+
     with pd.ExcelWriter(filename) as writer:
         cms_b_df.to_excel(writer, sheet_name="CMS_B_Unique_HCPCS", index=False)
         cms_d_df.to_excel(writer, sheet_name="CMS_D_Gnrc_Names", index=False)
