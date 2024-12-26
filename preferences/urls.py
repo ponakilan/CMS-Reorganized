@@ -11,4 +11,5 @@ urlpatterns = [
     path("openpay-data/", views.openpay_data),
     path("cms-all-data/", views.cms_data),
     path("submitted-page/", views.view_jobs),
+    path("test/", views.test),
 ]

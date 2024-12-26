@@ -149,7 +149,9 @@ def cms_data(request):
     selected_codes = data.get("selected_codes", [])
     brand_names_codes = data.get("brand_names_codes", [])
     selected_brnds = data.get("selected_brnds", [])
+    selected_brnds = [val.lower() for val in selected_brnds]
     selected_gnrcs = data.get("selected_gnrcs", [])
+    selected_gnrcs = [val.lower() for val in selected_gnrcs]
     brand_names_drugs = data.get("brand_names_drugs", [])
     selected_scodes = data.get("selected_scodes", [])
     user_data = {
@@ -172,3 +174,51 @@ def view_jobs(request):
     username = request.user.username
     jobs = Job.objects.filter(username=username).order_by('-in_time')
     return render(request, "submitted.html", {"jobs": jobs})
+
+
+def test(request):
+    # Trigger the processing
+    public_files = {
+        "cms_b": "Medicare_Physician_Other_Practitioners_by_Provider_and_Service_2022.csv",
+        "cms_d": "MUP_DPR_RY24_P04_V10_DY22_NPIBN.csv",
+        "openpay": "OP_DTL_GNRL_PGYR2023_P06282024_06122024.csv",
+        "nppes": "npidata_pfile_20050523-20241110.csv",
+        "nucc": "nucc_taxonomy_241.csv",
+        "dac": "DAC_NationalDownloadableFile.csv",
+        "phase-1": "phase_1.csv"
+    }
+    private_sheets = {
+        "cms_b": 0,
+        "cms_d": 1,
+        "openpay": 2,
+        "taxonomy": 3,
+        "openpay-map": 4
+    }
+
+    job_id = uuid4()
+    in_time = datetime.now()
+
+    # Insert a record in the database
+    job = Job(
+        job_id = job_id,
+        username = "akilan",
+        in_time = timezone.make_aware(in_time),
+        out_time = None,
+        input_link = f"/static/input/test.xlsx"
+    )
+    job.save()
+
+    job_thread = threading.Thread(
+        target=initiate_processing,
+        name=f"job_{job_id}",
+        args=[
+            "Data/Public",
+            "static/input/test.xlsx",
+            public_files,
+            private_sheets,
+            "test",
+            str(job_id)
+        ]
+    )
+    job_thread.start()
+    return HttpResponse("Starting test...")

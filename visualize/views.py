@@ -146,7 +146,7 @@ def generate_visualizations(df, selected_drugs):
 
     return inner_graph
 
-col_len = 27
+col_len = 34
 
 def index(request):
     file_path = request.GET.get("file_path", "")
