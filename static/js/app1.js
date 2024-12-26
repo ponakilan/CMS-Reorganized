@@ -20,7 +20,7 @@ const drugs = {
 }
 
 marketDropdown.addEventListener("change", function () {
-    const market = "LUPUS";
+    const market = LUPUS;
     //populating drugDropdown
     drugDropdown.innerHTML = '<option value="" disabled selected>Select drugs</option>';
     drugDropdown.disabled = true;
