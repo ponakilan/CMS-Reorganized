@@ -81,7 +81,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const drugInput = container.querySelector("input[name='drugs']");
             const drugs = drugInput.value.split(",").map(drug => drug.trim());
 
-            // Ask for file name
             let file_name = window.prompt("Enter a file name: ");
 
             // Send all data to the backend
@@ -92,12 +91,17 @@ document.addEventListener("DOMContentLoaded", () => {
                     "X-CSRFToken": csrf_token,
                 },
                 body: JSON.stringify({
-                    file_name: file_name,
                     categories: categories,
                     drugs: drugs,
+                    file_name: file_name,
                 }),
             });
+            // Update form action and method for redirection
+            form.action = "/submitted-page"; // Change form action
+            form.method = "get"; // Change form method
+            form.submit(); // Submit the form
         }
+
     });
 
     fetchOpenPayData();

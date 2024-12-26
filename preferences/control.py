@@ -8,6 +8,7 @@ from filters.cms import CMSBDataProcessor, CMSDDataProcessor, merge_cms
 from preferences.models import Job
 
 # Import built-in dependencies
+import os
 import sys
 import time
 import datetime
@@ -30,7 +31,7 @@ def initiate_processing(
     start = time.time()
 
     # Create a spark session
-    spark = SparkSession.builder.appName("CMS-Reorganized").getOrCreate()
+    spark = SparkSession.builder.appName(f"CMS-{job_id}").getOrCreate()
     spark.sparkContext.setLogLevel("ERROR")
 
     def csv_2_df(key: str):
@@ -97,26 +98,21 @@ def initiate_processing(
     )
     tax_code_filtered = tax_code_processor.process()
 
+    temp_file = f"{job_id}_{public_files['phase-1']}"
     # Merge with openpay_cms
     openpay_cms_taxcode = tax_code_processor.merge_openpay_cms(tax_code_filtered, openpay_cms)
-    openpay_cms_taxcode.toPandas().to_csv(public_files['phase-1'], index=False)
+    openpay_cms_taxcode.toPandas().to_csv(temp_file, index=False)
 
     # Merge Physician compare data
     dac_processor = DACDataProcessor(dac=csv_2_df("dac"))
     final = dac_processor.merge(
         phase_1=spark.read.csv(
-            public_files['phase-1'],
+            temp_file,
             header=True,
             inferSchema=True
         )
     )
     output = f"/static/output/{job_id}_{file_name}.csv"
-
-    # Update the record in database
-    job = Job.objects.get(job_id=job_id)
-    job.out_time = timezone.make_aware(datetime.datetime.now())
-    job.output_file = output
-    job.save()
 
     # Export the final file
     final.toPandas().to_csv(output[1:], index=False)
@@ -124,8 +120,16 @@ def initiate_processing(
     # End timer
     end = time.time()
 
+    # Update the record in database
+    job = Job.objects.get(job_id=job_id)
+    job.out_time = timezone.make_aware(datetime.datetime.now())
+    job.output_link = output
+    job.save()
+
     print(f"Output of shape {shape(final)} saved to {output}")
     print(f"Processing completed in {end - start} seconds.")
+
+    os.remove(temp_file)
 
 
 def main(public_dir, private_workbook, output):
@@ -146,6 +150,14 @@ def main(public_dir, private_workbook, output):
         "taxonomy": 3,
         "openpay-map": 4
     }
+
+    initiate_processing(
+        public_dir,
+        private_workbook,
+        public_files,
+        private_sheets,
+        output
+    )
 
 
 if __name__ == '__main__':

@@ -1,17 +1,22 @@
 import json
 import pickle
+import threading
 from uuid import uuid4
 from datetime import datetime
+
+from django.contrib.auth import login
 
 from preferences.control import initiate_processing
 from preferences.models import Job
 
 import pandas as pd
-from django.shortcuts import render
-from django.http import JsonResponse
+from django.shortcuts import render, redirect
+from django.http import JsonResponse, HttpResponse
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def index(request):
     return render(request, "index.html")
 
@@ -118,14 +123,21 @@ def openpay_data(request):
     )
     job.save()
 
-    initiate_processing(
-        public_dir="Data/Public",
-        private_workbook=filename,
-        public_files=public_files,
-        private_sheets=private_sheets,
-        file_name=file_name,
-        job_id=str(job_id)
+    job_thread = threading.Thread(
+        target=initiate_processing,
+        name=f"job_{job_id}",
+        args=[
+            "Data/Public",
+            filename,
+            public_files,
+            private_sheets,
+            file_name,
+            str(job_id)
+        ]
     )
+    job_thread.start()
+
+    return HttpResponse("Job Started!")
 
 
 def cms_data(request):
@@ -150,3 +162,10 @@ def cms_data(request):
         pickle.dump(user_data, f)
 
     return JsonResponse({"count": len(selected_codes)})
+
+
+@login_required
+def view_jobs(request):
+    username = request.user.username
+    jobs = Job.objects.filter(username=username).order_by('-in_time')
+    return render(request, "submitted.html", {"jobs": jobs})
