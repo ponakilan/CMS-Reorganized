@@ -1,3 +1,8 @@
+document.addEventListener("DOMContentLoaded", () => {
+    // Initialize multi-select functionality for the drug-select dropdown
+    multiSelectWithoutCtrl('#drug-select');
+});
+
 const marketDropdown = document.getElementById("market-select");
 const drugDropdown = document.getElementById("drug-select");
 const submitBtn = document.getElementById("submit-btn");
@@ -28,13 +33,13 @@ submitBtn.addEventListener("click", async () => {
         // Getting data from the backend
         const response = await fetch(`${API_BASE}/filter/`, {
             method: "POST",
-            headers: { 
+            headers: {
                 "Content-Type": "application/json",
-                "X-CSRFToken": csrf, 
+                "X-CSRFToken": csrf,
             },
             body: JSON.stringify({
                 file_path: file_name,
-                selected_drugs: selectedDrugs 
+                selected_drugs: selectedDrugs
             })
         });
 
@@ -51,7 +56,7 @@ submitBtn.addEventListener("click", async () => {
         } else {
             console.warn("No data to display in the table.");
             tableSection.style.display = 'none'; // Hide the table if no data
-            exportBtn.style.display= "none";
+            exportBtn.style.display = "none";
         }
 
         // Fetch and display graphs
@@ -71,10 +76,10 @@ function renderTable(data) {
 
     if (data.length > 0) {
         //console.log(exportBtn);
-        exportBtn.style.display="block";
+        exportBtn.style.display = "block";
         tableSection.style.display = "block";//make the table visible
         //console.log(exportBtn.style.display);
-        
+
 
         //Generate table headers dynamically
         const headers = Object.keys(data[0]);// Get column names from the first row
@@ -99,7 +104,7 @@ function renderTable(data) {
     }
     else {
         tableSection.style.display = 'none';
-        exportBtn.style.display="none";
+        exportBtn.style.display = "none";
     }
 
 }
@@ -148,7 +153,7 @@ async function fetchAndDisplayGraphs(filterData) {
 
 // Function to export table data to CSV
 
-exportBtn.addEventListener('click',()=> {
+exportBtn.addEventListener('click', () => {
     filename = 'table_data.csv';
     console.log("button click hua export wala");
     const rows = [];
@@ -172,3 +177,19 @@ exportBtn.addEventListener('click',()=> {
     link.download = filename;
     link.click();
 });
+
+const multiSelectWithoutCtrl = (elemSelector) => {
+
+    let options = document.querySelectorAll(`${elemSelector} option`);
+
+    options.forEach(function (element) {
+        element.addEventListener("mousedown",
+            function (e) {
+                e.preventDefault();
+                element.parentElement.focus();
+                this.selected = !this.selected;
+                return false;
+            }, false);
+    });
+
+}
