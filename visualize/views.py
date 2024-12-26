@@ -2,9 +2,13 @@ import io
 import json
 
 import pandas as pd
+import plotly.graph_objects as go
+from plotly.io import to_html
 import matplotlib.pyplot as plt
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
+
+pd.options.plotting.backend = "plotly"
 
 
 def filter_columns(df, selected_drugs, common_columns):
@@ -72,77 +76,76 @@ def generate_visualizations(df, selected_drugs):
             'GENERAL': f"{drug}_GENERAL",
             'SPEAKER': f"{drug}_SPEAKER",
             'TRAVEL': f"{drug}_TRAVEL",
-            "OTHERS":f"{drug}_OTHERS",
-            "OTHERS_GENERAL":f"{drug}_OTHERS_GENERAL"
-
+            "OTHERS": f"{drug}_OTHERS",
+            "OTHERS_GENERAL": f"{drug}_OTHERS_GENERAL"
         }
 
         available_columns = {label: col for label, col in columns.items() if col in df.columns}
         
         if available_columns:
             totals = df[list(available_columns.values())].sum()
-            
-            fig_pie, ax_pie = plt.subplots(figsize=(10, 8))
-            wedges, texts = ax_pie.pie(
-                totals, labels=None, autopct=None, startangle=140,
-                pctdistance=0.85, shadow=True, wedgeprops=dict(width=0.3)
+
+            # Create Pie Chart
+            fig_pie = go.Figure(
+                data=[go.Pie(
+                    labels=totals.index,
+                    values=totals.values,
+                    hole=0.3
+                )]
             )
-            ax_pie.set_title(f"Distribution of Payments for {drug}")
-            ax_pie.legend(wedges, totals.index, title="Payment Types", loc="center left", bbox_to_anchor=(1, 0, 0.5, 1))
-            buf = io.BytesIO()
-            plt.savefig(buf, format='png')
-            plt.close(fig_pie)
-            buf.seek(0)
-            # img = Image.open(buf)
-            inner_graph.append(buf.getvalue())
-            buf.close()
+            fig_pie.update_layout(
+                title=f"Distribution of Payments for {drug}",
+                legend_title="Payment Types"
+            )
+            inner_graph.append(to_html(fig_pie, full_html=False))
 
-            fig_bar, ax_bar = plt.subplots(figsize=(10, 8))
-            ax_bar.bar(totals.index, totals.values, color='skyblue')
-            ax_bar.set_xlabel('Payment Type')
-            ax_bar.set_ylabel('Total Amount')
-            ax_bar.set_title(f"Total Payments for {drug}")
-            ax_bar.tick_params(axis='x', rotation=45)            
-            plt.close(fig_bar)
-            
+            # Create Bar Chart
+            fig_bar = go.Figure(
+                data=[go.Bar(
+                    x=totals.index,
+                    y=totals.values,
+                    marker_color='skyblue'
+                )]
+            )
+            fig_bar.update_layout(
+                title=f"Total Payments for {drug}",
+                xaxis_title="Payment Type",
+                yaxis_title="Total Amount"
+            )
+            inner_graph.append(to_html(fig_bar, full_html=False))
 
-    available_columns = {
-        'CLAIMS': f"{drug}_Claims",
-        'PATIENTS': f"{drug}_Patients"
-    }
     for drug in selected_drugs:
-        if available_columns:
-            if f"{drug}_Patients" in df.columns:
-                patients_totals[drug] = df[f"{drug}_Patients"].fillna(0).sum()
-            if f"{drug}_Claims" in df.columns:
-                claims_totals[drug] = df[f"{drug}_Claims"].fillna(0).sum()
+        if f"{drug}_Patients" in df.columns:
+            patients_totals[drug] = df[f"{drug}_Patients"].fillna(0).sum()
+        if f"{drug}_Claims" in df.columns:
+            claims_totals[drug] = df[f"{drug}_Claims"].fillna(0).sum()
 
     def plot_bar_chart(data, title, ylabel):
-        global graph
         if data.empty or data.sum() == 0:
             return
 
-        fig_bar, ax_bar = plt.subplots(figsize=(12, 8))
-        data.plot(kind='bar', ax=ax_bar, color='skyblue')
-        ax_bar.set_title(title)
-        ax_bar.set_ylabel(ylabel)
-        ax_bar.set_xlabel("Drugs")
-        plt.xticks(rotation=45, ha='right')
-        buf = io.BytesIO()
-        plt.savefig(buf, format='png')
-        plt.close(fig_bar)
-        buf.seek(0)
-        # img = Image.open(buf)
-        inner_graph.append(buf.getvalue())
-        buf.close()
+        fig_bar = go.Figure(
+            data=[go.Bar(
+                x=data.index,
+                y=data.values,
+                marker_color='skyblue'
+            )]
+        )
+        fig_bar.update_layout(
+            title=title,
+            xaxis_title="Drugs",
+            yaxis_title=ylabel
+        )
+        inner_graph.append(to_html(fig_bar, full_html=False))
 
     if not patients_totals.empty:
         plot_bar_chart(patients_totals, "Total Patients by Drug", "Number of Patients")
 
     if not claims_totals.empty:
-        plot_bar_chart(claims_totals, "Total Claims by Drug", "Number of Claims(in Millions)")
+        plot_bar_chart(claims_totals, "Total Claims by Drug", "Number of Claims (in Millions)")
 
     return inner_graph
+
 
 col_len = 27
 
@@ -172,9 +175,12 @@ def filter(request):
         filtered_df = filter_columns(df, selected_drugs, common_columns)
         filtered_df = sum_and_sort_columns(filtered_df)
         filtered_df = filtered_df.reset_index(drop=True)
+        filtered_df = filtered_df.fillna(0)
 
-    global graph 
-    graph = generate_visualizations(filtered_df, selected_drugs)
-    resp = filtered_df.to_json(orient='records')
-    
-    return resp
+    graphs = generate_visualizations(filtered_df, selected_drugs)
+    filtered = filtered_df.to_dict(orient='records')
+    resp = {
+        "filtered": filtered,
+        "graphs": graphs
+    }
+    return JsonResponse(resp, safe=False)

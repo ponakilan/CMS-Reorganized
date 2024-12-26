@@ -5,3 +5,4 @@ experiment.ipynb
 Data/Public
 __pycache__/
 **/outputs/
+**/**.7z
