@@ -123,7 +123,6 @@ body{
     background-color:white;
     border-radius: 1rem;
     box-shadow:0 4px 10px rgba(2,70,143,.9);
-    display: none;
 }
 #table-section{
     color: black;
