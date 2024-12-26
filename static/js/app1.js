@@ -44,18 +44,15 @@ submitBtn.addEventListener("click", async () => {
 
         // Parse the response data
         let data = await response.json();
-        data = JSON.parse(data); // If it's a JSON string
+        console.log(Array.isArray(data.filtered));
 
-        if (Array.isArray(data) && data.length > 0) {
-            renderTable(data); // Render the table
+        if (Array.isArray(data.filtered) && data.filtered.length > 0) {
+            renderTable(data.filtered); // Render the table
         } else {
             console.warn("No data to display in the table.");
             tableSection.style.display = 'none'; // Hide the table if no data
             exportBtn.style.display= "none";
         }
-
-        // Fetch and display graphs
-        await fetchAndDisplayGraphs({ market_option: market, selected_drugs: selectedDrugs });
 
     } catch (error) {
         console.error("Error fetching data:", error);
@@ -102,48 +99,7 @@ function renderTable(data) {
         exportBtn.style.display="none";
     }
 
-}
-
-
-async function fetchAndDisplayGraphs(filterData) {
-    const loadingSpinner = document.getElementById("loading-spinner");
-    loadingSpinner.style.display = "block"; // Show spinner for graphs
-
-    try {
-        const response = await fetch(`${API_BASE}/graphs/`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(filterData)
-        });
-
-        if (!response.ok) {
-            throw new Error(`Graph API Error: ${response.status} ${response.statusText}`);
-        }
-
-        const blobs = await response.json(); // Expected array of base64 strings
-        graphSection.innerHTML = ""; // Clear previous graphs
-
-        if (blobs && Array.isArray(blobs) && blobs.length > 0) {
-            blobs.forEach((blobData, index) => {
-                const img = document.createElement("img");
-                img.src = `data:image/png;base64,${blobData}`;
-                img.alt = `Graph ${index + 1}`;
-                img.style.maxWidth = "100%";
-                img.style.marginBottom = "20px";
-                graphSection.appendChild(img);
-            });
-            graphSection.style.display = 'block'; // Show the graph section
-        } else {
-            graphSection.style.display = 'none'; // Hide if no graphs
-        }
-
-    } catch (error) {
-        console.error("Error fetching graphs:", error);
-        alert("Failed to fetch graphs. Please try again later.");
-    } finally {
-        // Hide the spinner after graph fetching is complete
-        loadingSpinner.style.display = "none";
-    }
+    
 }
 
 // Function to export table data to CSV
