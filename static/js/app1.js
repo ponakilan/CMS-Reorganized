@@ -88,7 +88,16 @@ function renderTable(data) {
             const tr = document.createElement("tr");
             Object.values(row).forEach(value => {
                 const td = document.createElement("td");
-                td.textContent = value;
+                value = String(value);
+                let tooltip = document.createElement("span");
+                tooltip.className = "tooltip";
+                tooltip.textContent = value;
+                if (value.length > 15) {
+                    td.textContent = value.slice(0, 16) + "...";
+                } else {
+                    td.textContent = value.slice(0, 16);
+                }
+                td.appendChild(tooltip);
                 tr.appendChild(td);
             });
             tableBody.appendChild(tr);

@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const input = document.createElement("input");
             input.type = "text";
             input.name = "renamed";
+            input.placeholder = "New name"
             input.classList.add("form-control");
             input.value = category.Renamed || "";
             input.dataset.original = category.Original;

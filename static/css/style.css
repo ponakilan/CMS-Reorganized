@@ -15,3 +15,7 @@
 .search-box {
   margin-bottom: 0.5rem;
 }
+
+input[type="text"] {
+  margin-bottom: 5px;
+}
