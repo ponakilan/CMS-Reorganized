@@ -89,15 +89,11 @@ function renderTable(data) {
             Object.values(row).forEach(value => {
                 const td = document.createElement("td");
                 value = String(value);
-                let tooltip = document.createElement("span");
-                tooltip.className = "tooltip";
-                tooltip.textContent = value;
                 if (value.length > 15) {
                     td.textContent = value.slice(0, 16) + "...";
                 } else {
                     td.textContent = value.slice(0, 16);
                 }
-                td.appendChild(tooltip);
                 tr.appendChild(td);
             });
             tableBody.appendChild(tr);

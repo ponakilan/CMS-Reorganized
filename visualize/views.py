@@ -85,7 +85,7 @@ def generate_visualizations(df, selected_drugs):
         if available_columns:
             totals = df[list(available_columns.values())].sum()
             
-            fig_pie, ax_pie = plt.subplots(figsize=(10, 8))
+            fig_pie, ax_pie = plt.subplots(figsize=(16, 9))
             wedges, texts = ax_pie.pie(
                 totals, labels=None, autopct=None, startangle=140,
                 pctdistance=0.85, shadow=True, wedgeprops=dict(width=0.3)
@@ -100,7 +100,7 @@ def generate_visualizations(df, selected_drugs):
             inner_graph.append(buf.getvalue())
             buf.close()
 
-            fig_bar, ax_bar = plt.subplots(figsize=(10, 8))
+            fig_bar, ax_bar = plt.subplots(figsize=(16, 9))
             ax_bar.bar(totals.index, totals.values, color='skyblue')
             ax_bar.set_xlabel('Payment Type')
             ax_bar.set_ylabel('Total Amount')
