@@ -4,14 +4,11 @@ import threading
 from uuid import uuid4
 from datetime import datetime
 
-from django.contrib.auth import login
-
 from preferences.control import initiate_processing
 from preferences.models import Job
 
 import pandas as pd
-import matplotlib.pyplot as plt
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
