@@ -52,11 +52,11 @@ class DACDataProcessor:
             "inner"
         )
 
-        columns = phase_1.columns[:26]
+        columns = phase_1.columns[:14]
         g_cols = grouped_df.columns
         g_cols.remove('NPI')
         columns.extend(g_cols)
-        columns.extend(phase_1.columns[26:])
+        columns.extend(phase_1.columns[14:])
 
         merged_inner = merged_inner.select(columns)
 
