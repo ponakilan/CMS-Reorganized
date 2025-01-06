@@ -47,7 +47,7 @@ class NPPESNUCCDataProcessor:
                 self.nppes_selected["Healthcare Provider Taxonomy Code_1"] == self.nucc.Code,
                 'left'
             )
-            nppes_nucc = nppes_nucc.drop('Code', 'grouping', 'display_name')
+            nppes_nucc = nppes_nucc.drop('Definition', 'Notes', 'Display Name', 'Section', 'Code', 'grouping', 'display_name')
             nppes_nucc = nppes_nucc.withColumnRenamed("classification", "Primary_Classification")
             nppes_nucc = nppes_nucc.withColumnRenamed("specialization", "Primary_Specialization")
 
@@ -56,7 +56,7 @@ class NPPESNUCCDataProcessor:
                 nppes_nucc["Healthcare Provider Taxonomy Code_2"] == self.nucc.Code,
                 'left'
             )
-            nppes_nucc = nppes_nucc.drop('Code', 'grouping', 'display_name')
+            nppes_nucc = nppes_nucc.drop('Definition', 'Notes', 'Display Name', 'Section', 'Code', 'grouping', 'display_name')
             nppes_nucc = nppes_nucc.withColumnRenamed("classification", "Secondary_Classification")
             nppes_nucc = nppes_nucc.withColumnRenamed("specialization", "Secondary_Specialization")
 
@@ -65,7 +65,7 @@ class NPPESNUCCDataProcessor:
                 nppes_nucc["Healthcare Provider Taxonomy Code_3"] == self.nucc.Code,
                 'left'
             )
-            nppes_nucc = nppes_nucc.drop('Code', 'grouping', 'display_name')
+            nppes_nucc = nppes_nucc.drop('Definition', 'Notes', 'Display Name', 'Section', 'Code', 'grouping', 'display_name')
             nppes_nucc = nppes_nucc.withColumnRenamed("classification", "Tertiary_Classification")
             self.nppes_nucc = nppes_nucc.withColumnRenamed("specialization", "Tertiary_Specialization")
 
