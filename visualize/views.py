@@ -146,7 +146,7 @@ def generate_visualizations(df, selected_drugs):
 
     return inner_graph
 
-col_len = 34
+col_len = 22
 
 def index(request):
     file_path = request.GET.get("file_path", "")
@@ -162,13 +162,15 @@ def filter(request):
     selected_drugs = data.get("selected_drugs", [])
     
     df = pd.read_csv(file_path[1:])
-    drug_cols = df.columns[34:]
+    drug_cols = df.columns[col_len:]
+    print(drug_cols)
     all_drugs = set([col.split("_")[0] for col in drug_cols])
     common_columns = list(df.columns[:col_len])
 
     all_drugs_option = "All"
     if all_drugs_option in selected_drugs:
         selected_drugs = all_drugs
+    print(selected_drugs)
 
     if selected_drugs:
         filtered_df = filter_columns(df, selected_drugs, common_columns)

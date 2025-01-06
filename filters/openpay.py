@@ -90,13 +90,22 @@ class OpenPayDataProcessor:
                 .fillna(value=0)
             )
 
-            # Pivot 'Name_of_Drug_or_Biological_or_Device_or_Medical_Supply_1'
-            self.open_payments_processed = (
-                open_payments_pivot_1
-                .groupBy("Covered_Recipient_NPI")
-                .pivot("Name_of_Drug_or_Biological_or_Device_or_Medical_Supply_1")
-                .sum(*mapped_values)
-            )
+            try:
+                # Pivot 'Name_of_Drug_or_Biological_or_Device_or_Medical_Supply_1'
+                self.open_payments_processed = (
+                    open_payments_pivot_1
+                    .groupBy("Covered_Recipient_NPI")
+                    .pivot("Name_of_Drug_or_Biological_or_Device_or_Medical_Supply_1")
+                    .sum(*mapped_values)
+                )
+            except:
+                mapped_values -= {"OTHERS_GENERAL"}
+                self.open_payments_processed = (
+                    open_payments_pivot_1
+                    .groupBy("Covered_Recipient_NPI")
+                    .pivot("Name_of_Drug_or_Biological_or_Device_or_Medical_Supply_1")
+                    .sum(*mapped_values)
+                )
 
         return self.open_payments_processed
 

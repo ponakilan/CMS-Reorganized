@@ -10,13 +10,15 @@ class TaxCodeDataProcessor:
         self.nppes_nucc_filtered = None
 
     def get_required_codes(self):
-        required_codes = list(
-            map(
-                lambda obj: obj.Code,
-                self.tax_codes.select('Code').collect()
+        if self.tax_codes:
+            required_codes = list(
+                map(
+                    lambda obj: obj.Code,
+                    self.tax_codes.select('Code').collect()
+                )
             )
-        )
-        return required_codes
+            return required_codes
+        return []
 
     def process(self, enforce=False):
         if not self.nppes_nucc_filtered or enforce:

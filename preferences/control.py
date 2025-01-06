@@ -92,10 +92,16 @@ def initiate_processing(
     nppes_nucc = nppes_nucc_processor.merge_nppes_nucc()
 
     # Filter based on taxonomy codes
-    tax_code_processor = TaxCodeDataProcessor(
-        tax_codes=excel_2_df("taxonomy"),
-        nppes_nucc=nppes_nucc
-    )
+    try:
+        tax_code_processor = TaxCodeDataProcessor(
+            tax_codes=excel_2_df("taxonomy"),
+            nppes_nucc=nppes_nucc
+        )
+    except:
+        tax_code_processor = TaxCodeDataProcessor(
+            tax_codes=None,
+            nppes_nucc=nppes_nucc
+        )
     tax_code_filtered = tax_code_processor.process()
 
     temp_file = f"{job_id}_{public_files['phase-1']}"
@@ -137,7 +143,7 @@ def main(public_dir, private_workbook, output):
         "cms_b": "Medicare_Physician_Other_Practitioners_by_Provider_and_Service_2022.csv",
         "cms_d": "MUP_DPR_RY24_P04_V10_DY22_NPIBN.csv",
         "openpay": "OP_DTL_GNRL_PGYR2023_P06282024_06122024.csv",
-        "nppes": "npidata_pfile_20050523-20241110.csv",
+        "nppes": "npidata_pfile_20050523-20241208.csv",
         "nucc": "nucc_taxonomy_241.csv",
         "dac": "DAC_NationalDownloadableFile.csv",
         "phase-1": "phase_1.csv"
