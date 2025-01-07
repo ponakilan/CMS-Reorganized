@@ -47,8 +47,13 @@
                                     <td>{{ job.in_time }}</td>
                                     <td>{{ job.out_time }}</td>
                                     <td><a href="{{ job.input_link }}">{{ job.input_link }}</a></td>
-                                    <td><a href="{{ job.output_link }}">{{ job.output_link }}</a></td>
-                                    <td><a href="/visualize/?file_path={{ job.output_link }}">Visualize</a></td>
+                                    {% if job.output_link != None %}
+                                        <td><a href="{{ job.output_link }}">{{ job.output_link }}</a></td>
+                                        <td><a href="/visualize/?file_path={{ job.output_link }}">Visualize</a></td>
+                                    {% else %}
+                                        <td>Processing...</td>
+                                        <td>Processing...</td>
+                                    {% endif %}
                                 </tr>
                             {% endfor %}
                         </tbody>
