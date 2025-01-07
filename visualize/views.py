@@ -9,15 +9,14 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 
 plt.switch_backend('agg')
+col_len = 22
 
 def filter_columns(df, selected_drugs, common_columns):
+    categories = set([col.split("_")[1] for col in df.columns[col_len:]]) - {"Claims", "Patients"}
     drug_columns = []
     for drug in selected_drugs:
-        drug_columns.extend([
-            f"{drug}_CONSULTING", f"{drug}_EDUCATION", f"{drug}_FOOD&BEVERAGE",
-            f"{drug}_GENERAL", f"{drug}_SPEAKER", f"{drug}_TRAVEL",
-            f"{drug}_Claims", f"{drug}_Patients",f"{drug}_OTHERS",f"{drug}_OTHERS_GENERAL"
-        ])
+        drug_columns.extend([f"{drug}_{category}" for category in categories])
+        drug_columns.extend([f"{drug}_Patients", f"{drug}_Claims"])
     available_columns = [col for col in common_columns + drug_columns if col in df.columns]
     
     # Filter the DataFrame to include only the selected columns
@@ -40,9 +39,9 @@ def filter_columns(df, selected_drugs, common_columns):
     return filtered_df
 
 
-def sum_and_sort_columns(df):
+def sum_and_sort_columns(df, keywords):
     # Keywords to filter columns
-    keywords = ['CONSULTING', 'EDUCATION', 'FOOD&BEVERAGE', 'GENERAL', 'SPEAKER', 'TRAVEL', "OTHERS", "OTHERS_GENERAL",'Claims','Patients']
+    # keywords = ['CONSULTING', 'EDUCATION', 'FOOD&BEVERAGE', 'GENERAL', 'SPEAKER', 'TRAVEL', "OTHERS", "OTHERS_GENERAL",'Claims','Patients']
     
     # Calculate the total sum of columns containing the keywords
     df.loc[:, 'Total Sum'] = df.filter(regex='|'.join(keywords)).sum(axis=1)
@@ -68,17 +67,20 @@ def generate_visualizations(df, selected_drugs):
     inner_graph = []
 
     for drug in selected_drugs:
-        columns = {
-            'CONSULTING': f"{drug}_CONSULTING",
-            'EDUCATION': f"{drug}_EDUCATION",
-            'FOOD&BEVERAGE': f"{drug}_FOOD&BEVERAGE",
-            'GENERAL': f"{drug}_GENERAL",
-            'SPEAKER': f"{drug}_SPEAKER",
-            'TRAVEL': f"{drug}_TRAVEL",
-            "OTHERS":f"{drug}_OTHERS",
-            "OTHERS_GENERAL":f"{drug}_OTHERS_GENERAL"
+        # columns = {
+        #     'CONSULTING': f"{drug}_CONSULTING",
+        #     'EDUCATION': f"{drug}_EDUCATION",
+        #     'FOOD&BEVERAGE': f"{drug}_FOOD&BEVERAGE",
+        #     'GENERAL': f"{drug}_GENERAL",
+        #     'SPEAKER': f"{drug}_SPEAKER",
+        #     'TRAVEL': f"{drug}_TRAVEL",
+        #     "OTHERS":f"{drug}_OTHERS",
+        #     "OTHERS_GENERAL":f"{drug}_OTHERS_GENERAL"
 
-        }
+        # }
+        columns = {}
+        for col in df.columns[col_len:]:
+            columns[col.split("_")[1]] = f"{drug}_{col.split('_')[0]}"
 
         available_columns = {label: col for label, col in columns.items() if col in df.columns}
         
@@ -146,7 +148,6 @@ def generate_visualizations(df, selected_drugs):
 
     return inner_graph
 
-col_len = 22
 
 def index(request):
     file_path = request.GET.get("file_path", "")
@@ -163,18 +164,17 @@ def filter(request):
     
     df = pd.read_csv(file_path[1:])
     drug_cols = df.columns[col_len:]
-    print(drug_cols)
+    keywords = set([col.split("_")[1] for col in drug_cols])
     all_drugs = set([col.split("_")[0] for col in drug_cols])
     common_columns = list(df.columns[:col_len])
 
     all_drugs_option = "All"
     if all_drugs_option in selected_drugs:
         selected_drugs = all_drugs
-    print(selected_drugs)
 
     if selected_drugs:
         filtered_df = filter_columns(df, selected_drugs, common_columns)
-        filtered_df = sum_and_sort_columns(filtered_df)
+        filtered_df = sum_and_sort_columns(filtered_df, keywords)
         filtered_df = filtered_df.reset_index(drop=True)
         filtered_df = filtered_df.fillna(0)
 

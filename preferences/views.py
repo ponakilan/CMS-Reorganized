@@ -145,11 +145,13 @@ def cms_data(request):
     data = json.loads(request.body)
     selected_codes = data.get("selected_codes", [])
     brand_names_codes = data.get("brand_names_codes", [])
+    brand_names_codes = [val.upper() for val in brand_names_codes]
     selected_brnds = data.get("selected_brnds", [])
     selected_brnds = [val.lower() for val in selected_brnds]
     selected_gnrcs = data.get("selected_gnrcs", [])
     selected_gnrcs = [val.lower() for val in selected_gnrcs]
     brand_names_drugs = data.get("brand_names_drugs", [])
+    brand_names_drugs = [val.upper() for val in brand_names_drugs]
     selected_scodes = data.get("selected_scodes", [])
     user_data = {
         "cms_b_codes": selected_codes,
