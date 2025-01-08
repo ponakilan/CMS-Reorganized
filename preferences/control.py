@@ -122,8 +122,9 @@ def initiate_processing(
 
     # Export the final file
     split = 22
+    final = final.toPandas()
     cleaned = final[final.iloc[:, split:].sum(axis=1) > 0]
-    cleaned.toPandas().to_csv(output[1:], index=False)
+    cleaned.to_csv(output[1:], index=False)
 
     # End timer
     end = time.time()
