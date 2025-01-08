@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const addDropdownButton = document.getElementById("add-dropdown");
     const form = document.getElementById("hcpcs-form");
     const heading = document.querySelector("h1"); // Heading to be dynamically updated
+    const skipBtn = document.getElementById("skip");
 
     let hcpcsData = [];
     let drugsData = [];
@@ -158,6 +159,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             await fetchNuccData();
             heading.textContent = "Speciality Taxonomy Code Selection";
+            skipBtn.style.display= 'none' ;
             //add btn text modified
             addDropdownButton.textContent = 'Add Another Code';
             dropdownContainer.innerHTML = "";
@@ -204,4 +206,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         const newId = `dropdown-${dropdownContainer.children.length + 1}`;
         createDropdown(newId, isThirdSubmission ? nuccData : isSecondSubmission ? drugsData : hcpcsData, isThirdSubmission ? false : true);
     });
+
+    
 });
