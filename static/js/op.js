@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function setupDrugInput() {
         // Clear existing inputs and change the heading
         container.innerHTML = "";
-        heading.textContent = "Enter Interested Drugs (Open Payments)";
+        heading.textContent = "Drugs of Interest for Open Payments";
 
         const formGroup = document.createElement("div");
         formGroup.classList.add("mb-3");

@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             });
 
             await fetchDrugsData();
-            heading.textContent = "Drugs Selection";
+            heading.textContent = "Part-D Drugs Selection";
             dropdownContainer.innerHTML = "";
             createDropdown("dropdown-1", drugsData, true, "Search Brand Name...", false);
             isSecondSubmission = true;
@@ -157,7 +157,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             });
 
             await fetchNuccData();
-            heading.textContent = "Taxonomy Codes Selection";
+            heading.textContent = "Speciality Taxonomy Code Selection";
+            //add btn text modified
+            addDropdownButton.textContent = 'Add Another Code';
             dropdownContainer.innerHTML = "";
             createDropdown("dropdown-1", nuccData, false, "Search NUCC Codes...", false);
             isThirdSubmission = true;
