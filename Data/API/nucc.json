@@ -2,2538 +2,3197 @@
     "codes": [
         {
             "Code": "207KA0200X",
+            "Classification": "Allergy & Immunology",
             "Specialization": "Allergy"
         },
         {
             "Code": "207KI0005X",
+            "Classification": "Allergy & Immunology",
             "Specialization": "Clinical & Laboratory Immunology"
         },
         {
             "Code": "207LA0401X",
+            "Classification": "Anesthesiology",
             "Specialization": "Addiction Medicine"
         },
         {
             "Code": "207LC0200X",
+            "Classification": "Anesthesiology",
             "Specialization": "Critical Care Medicine"
         },
         {
             "Code": "207LH0002X",
+            "Classification": "Anesthesiology",
             "Specialization": "Hospice and Palliative Medicine"
         },
         {
             "Code": "207LP2900X",
+            "Classification": "Anesthesiology",
             "Specialization": "Pain Medicine"
         },
         {
             "Code": "207LP3000X",
+            "Classification": "Anesthesiology",
             "Specialization": "Pediatric Anesthesiology"
         },
         {
+            "Code": "207LP4000X",
+            "Classification": "Anesthesiology",
+            "Specialization": "Physician Nutrition Specialist "
+        },
+        {
             "Code": "207NI0002X",
+            "Classification": "Dermatology",
             "Specialization": "Clinical & Laboratory Dermatological Immunology"
         },
         {
             "Code": "207ND0900X",
+            "Classification": "Dermatology",
             "Specialization": "Dermatopathology"
         },
         {
             "Code": "207ND0101X",
+            "Classification": "Dermatology",
             "Specialization": "MOHS-Micrographic Surgery"
         },
         {
             "Code": "207NP0225X",
+            "Classification": "Dermatology",
             "Specialization": "Pediatric Dermatology"
         },
         {
             "Code": "207NS0135X",
+            "Classification": "Dermatology",
             "Specialization": "Procedural Dermatology"
         },
         {
             "Code": "207PE0004X",
+            "Classification": "Emergency Medicine",
             "Specialization": "Emergency Medical Services"
         },
         {
             "Code": "207PH0002X",
+            "Classification": "Emergency Medicine",
             "Specialization": "Hospice and Palliative Medicine"
         },
         {
             "Code": "207PT0002X",
+            "Classification": "Emergency Medicine",
             "Specialization": "Medical Toxicology"
         },
         {
             "Code": "207PP0204X",
+            "Classification": "Emergency Medicine",
             "Specialization": "Pediatric Emergency Medicine"
         },
         {
             "Code": "207PS0010X",
+            "Classification": "Emergency Medicine",
             "Specialization": "Sports Medicine"
         },
         {
             "Code": "207PE0005X",
+            "Classification": "Emergency Medicine",
             "Specialization": "Undersea and Hyperbaric Medicine"
         },
         {
             "Code": "207QA0401X",
+            "Classification": "Family Medicine",
             "Specialization": "Addiction Medicine"
         },
         {
             "Code": "207QA0000X",
+            "Classification": "Family Medicine",
             "Specialization": "Adolescent Medicine"
         },
         {
             "Code": "207QA0505X",
+            "Classification": "Family Medicine",
             "Specialization": "Adult Medicine"
         },
         {
             "Code": "207QG0300X",
+            "Classification": "Family Medicine",
             "Specialization": "Geriatric Medicine"
         },
         {
             "Code": "207QH0002X",
+            "Classification": "Family Medicine",
             "Specialization": "Hospice and Palliative Medicine"
         },
         {
             "Code": "207QB0002X",
+            "Classification": "Family Medicine",
             "Specialization": "Obesity Medicine"
         },
         {
+            "Code": "207QP0002X",
+            "Classification": "Family Medicine",
+            "Specialization": "Physician Nutrition Specialist "
+        },
+        {
             "Code": "207QS1201X",
+            "Classification": "Family Medicine",
             "Specialization": "Sleep Medicine"
         },
         {
             "Code": "207QS0010X",
+            "Classification": "Family Medicine",
             "Specialization": "Sports Medicine"
         },
         {
             "Code": "207RA0401X",
+            "Classification": "Internal Medicine",
             "Specialization": "Addiction Medicine"
         },
         {
             "Code": "207RA0000X",
+            "Classification": "Internal Medicine",
             "Specialization": "Adolescent Medicine"
         },
         {
             "Code": "207RA0002X",
+            "Classification": "Internal Medicine",
             "Specialization": "Adult Congenital Heart Disease"
         },
         {
             "Code": "207RA0001X",
+            "Classification": "Internal Medicine",
             "Specialization": "Advanced Heart Failure and Transplant Cardiology"
         },
         {
             "Code": "207RA0201X",
+            "Classification": "Internal Medicine",
             "Specialization": "Allergy & Immunology"
         },
         {
             "Code": "207RC0000X",
+            "Classification": "Internal Medicine",
             "Specialization": "Cardiovascular Disease"
         },
         {
             "Code": "207RI0001X",
+            "Classification": "Internal Medicine",
             "Specialization": "Clinical & Laboratory Immunology"
         },
         {
             "Code": "207RC0001X",
+            "Classification": "Internal Medicine",
             "Specialization": "Clinical Cardiac Electrophysiology"
         },
         {
             "Code": "207RC0200X",
+            "Classification": "Internal Medicine",
             "Specialization": "Critical Care Medicine"
         },
         {
             "Code": "207RE0101X",
+            "Classification": "Internal Medicine",
             "Specialization": "Endocrinology, Diabetes & Metabolism"
         },
         {
             "Code": "207RG0100X",
+            "Classification": "Internal Medicine",
             "Specialization": "Gastroenterology"
         },
         {
             "Code": "207RG0300X",
+            "Classification": "Internal Medicine",
             "Specialization": "Geriatric Medicine"
         },
         {
             "Code": "207RH0000X",
+            "Classification": "Internal Medicine",
             "Specialization": "Hematology"
         },
         {
             "Code": "207RH0003X",
+            "Classification": "Internal Medicine",
             "Specialization": "Hematology & Oncology"
         },
         {
             "Code": "207RI0008X",
+            "Classification": "Internal Medicine",
             "Specialization": "Hepatology"
         },
         {
             "Code": "207RH0002X",
+            "Classification": "Internal Medicine",
             "Specialization": "Hospice and Palliative Medicine"
         },
         {
             "Code": "207RH0005X",
+            "Classification": "Internal Medicine",
             "Specialization": "Hypertension Specialist"
         },
         {
             "Code": "207RI0200X",
+            "Classification": "Internal Medicine",
             "Specialization": "Infectious Disease"
         },
         {
             "Code": "207RI0011X",
+            "Classification": "Internal Medicine",
             "Specialization": "Interventional Cardiology"
         },
         {
             "Code": "207RM1200X",
+            "Classification": "Internal Medicine",
             "Specialization": "Magnetic Resonance Imaging (MRI)"
         },
         {
             "Code": "207RX0202X",
+            "Classification": "Internal Medicine",
             "Specialization": "Medical Oncology"
         },
         {
             "Code": "207RN0300X",
+            "Classification": "Internal Medicine",
             "Specialization": "Nephrology"
         },
         {
             "Code": "207RB0002X",
+            "Classification": "Internal Medicine",
             "Specialization": "Obesity Medicine"
         },
         {
+            "Code": "207RP1002X",
+            "Classification": "Internal Medicine",
+            "Specialization": "Physician Nutrition Specialist "
+        },
+        {
             "Code": "207RP1001X",
+            "Classification": "Internal Medicine",
             "Specialization": "Pulmonary Disease"
         },
         {
             "Code": "207RR0500X",
+            "Classification": "Internal Medicine",
             "Specialization": "Rheumatology"
         },
         {
             "Code": "207RS0012X",
+            "Classification": "Internal Medicine",
             "Specialization": "Sleep Medicine"
         },
         {
             "Code": "207RS0010X",
+            "Classification": "Internal Medicine",
             "Specialization": "Sports Medicine"
         },
         {
             "Code": "207RT0003X",
+            "Classification": "Internal Medicine",
             "Specialization": "Transplant Hepatology"
         },
         {
             "Code": "207SG0202X",
+            "Classification": "Medical Genetics",
             "Specialization": "Clinical Biochemical Genetics"
         },
         {
             "Code": "207SC0300X",
+            "Classification": "Medical Genetics",
             "Specialization": "Clinical Cytogenetics"
         },
         {
             "Code": "207SG0201X",
+            "Classification": "Medical Genetics",
             "Specialization": "Clinical Genetics (M.D.)"
         },
         {
             "Code": "207SG0203X",
+            "Classification": "Medical Genetics",
             "Specialization": "Clinical Molecular Genetics"
         },
         {
             "Code": "207SG0207X",
+            "Classification": "Medical Genetics",
             "Specialization": "Medical Biochemical Genetics"
         },
         {
             "Code": "207SM0001X",
+            "Classification": "Medical Genetics",
             "Specialization": "Molecular Genetic Pathology"
         },
         {
             "Code": "207SG0205X",
+            "Classification": "Medical Genetics",
             "Specialization": "Ph.D. Medical Genetics"
         },
         {
             "Code": "207UN0903X",
+            "Classification": "Nuclear Medicine",
             "Specialization": "In Vivo & In Vitro Nuclear Medicine"
         },
         {
             "Code": "207UN0901X",
+            "Classification": "Nuclear Medicine",
             "Specialization": "Nuclear Cardiology"
         },
         {
             "Code": "207UN0902X",
+            "Classification": "Nuclear Medicine",
             "Specialization": "Nuclear Imaging & Therapy"
         },
         {
             "Code": "207VC0300X",
+            "Classification": "Obstetrics & Gynecology",
             "Specialization": "Complex Family Planning"
         },
         {
             "Code": "207VC0200X",
+            "Classification": "Obstetrics & Gynecology",
             "Specialization": "Critical Care Medicine"
         },
         {
             "Code": "207VF0040X",
+            "Classification": "Obstetrics & Gynecology",
             "Specialization": "Urogynecology and Reconstructive Pelvic Surgery"
         },
         {
             "Code": "207VX0201X",
+            "Classification": "Obstetrics & Gynecology",
             "Specialization": "Gynecologic Oncology"
         },
         {
             "Code": "207VG0400X",
+            "Classification": "Obstetrics & Gynecology",
             "Specialization": "Gynecology"
         },
         {
             "Code": "207VH0002X",
+            "Classification": "Obstetrics & Gynecology",
             "Specialization": "Hospice and Palliative Medicine"
         },
         {
             "Code": "207VM0101X",
+            "Classification": "Obstetrics & Gynecology",
             "Specialization": "Maternal & Fetal Medicine"
         },
         {
             "Code": "207VB0002X",
+            "Classification": "Obstetrics & Gynecology",
             "Specialization": "Obesity Medicine"
         },
         {
             "Code": "207VX0000X",
+            "Classification": "Obstetrics & Gynecology",
             "Specialization": "Obstetrics"
         },
         {
             "Code": "207VE0102X",
+            "Classification": "Obstetrics & Gynecology",
             "Specialization": "Reproductive Endocrinology"
         },
         {
             "Code": "207WX0120X",
+            "Classification": "Ophthalmology",
             "Specialization": "Cornea and External Diseases Specialist"
         },
         {
             "Code": "207WX0009X",
+            "Classification": "Ophthalmology",
             "Specialization": "Glaucoma Specialist"
         },
         {
             "Code": "207WX0109X",
+            "Classification": "Ophthalmology",
             "Specialization": "Neuro-ophthalmology"
         },
         {
             "Code": "207WX0200X",
+            "Classification": "Ophthalmology",
             "Specialization": "Ophthalmic Plastic and Reconstructive Surgery"
         },
         {
             "Code": "207WX0110X",
+            "Classification": "Ophthalmology",
             "Specialization": "Pediatric Ophthalmology and Strabismus Specialist"
         },
         {
             "Code": "207WX0107X",
+            "Classification": "Ophthalmology",
             "Specialization": "Retina Specialist"
         },
         {
             "Code": "207WX0108X",
+            "Classification": "Ophthalmology",
             "Specialization": "Uveitis and Ocular Inflammatory Disease"
         },
         {
             "Code": "207XS0114X",
+            "Classification": "Orthopaedic Surgery",
             "Specialization": "Adult Reconstructive Orthopaedic Surgery"
         },
         {
             "Code": "207XX0004X",
+            "Classification": "Orthopaedic Surgery",
             "Specialization": "Foot and Ankle Surgery"
         },
         {
             "Code": "207XS0106X",
+            "Classification": "Orthopaedic Surgery",
             "Specialization": "Hand Surgery"
         },
         {
             "Code": "207XS0117X",
+            "Classification": "Orthopaedic Surgery",
             "Specialization": "Orthopaedic Surgery of the Spine"
         },
         {
             "Code": "207XX0801X",
+            "Classification": "Orthopaedic Surgery",
             "Specialization": "Orthopaedic Trauma"
         },
         {
             "Code": "207XP3100X",
+            "Classification": "Orthopaedic Surgery",
             "Specialization": "Pediatric Orthopaedic Surgery"
         },
         {
             "Code": "207XX0005X",
+            "Classification": "Orthopaedic Surgery",
             "Specialization": "Sports Medicine"
         },
         {
             "Code": "207YS0123X",
+            "Classification": "Otolaryngology",
             "Specialization": "Facial Plastic Surgery"
         },
         {
             "Code": "207YX0602X",
+            "Classification": "Otolaryngology",
             "Specialization": "Otolaryngic Allergy"
         },
         {
             "Code": "207YX0905X",
+            "Classification": "Otolaryngology",
             "Specialization": "Otolaryngology/Facial Plastic Surgery"
         },
         {
             "Code": "207YX0901X",
+            "Classification": "Otolaryngology",
             "Specialization": "Otology & Neurotology"
         },
         {
             "Code": "207YP0228X",
+            "Classification": "Otolaryngology",
             "Specialization": "Pediatric Otolaryngology"
         },
         {
             "Code": "207YX0007X",
+            "Classification": "Otolaryngology",
             "Specialization": "Plastic Surgery within the Head & Neck"
         },
         {
             "Code": "207YS0012X",
+            "Classification": "Otolaryngology",
             "Specialization": "Sleep Medicine"
         },
         {
             "Code": "208VP0014X",
+            "Classification": "Pain Medicine",
             "Specialization": "Interventional Pain Medicine"
         },
         {
             "Code": "208VP0000X",
+            "Classification": "Pain Medicine",
             "Specialization": "Pain Medicine"
         },
         {
             "Code": "207ZP0101X",
+            "Classification": "Pathology",
             "Specialization": "Anatomic Pathology"
         },
         {
             "Code": "207ZP0102X",
+            "Classification": "Pathology",
             "Specialization": "Anatomic Pathology & Clinical Pathology"
         },
         {
             "Code": "207ZB0001X",
+            "Classification": "Pathology",
             "Specialization": "Blood Banking & Transfusion Medicine"
         },
         {
             "Code": "207ZP0104X",
+            "Classification": "Pathology",
             "Specialization": "Chemical Pathology"
         },
         {
             "Code": "207ZC0008X",
+            "Classification": "Pathology",
             "Specialization": "Clinical Informatics"
         },
         {
             "Code": "207ZC0006X",
+            "Classification": "Pathology",
             "Specialization": "Clinical Pathology"
         },
         {
             "Code": "207ZP0105X",
+            "Classification": "Pathology",
             "Specialization": "Clinical Pathology/Laboratory Medicine"
         },
         {
             "Code": "207ZC0500X",
+            "Classification": "Pathology",
             "Specialization": "Cytopathology"
         },
         {
             "Code": "207ZD0900X",
+            "Classification": "Pathology",
             "Specialization": "Dermatopathology"
         },
         {
             "Code": "207ZF0201X",
+            "Classification": "Pathology",
             "Specialization": "Forensic Pathology"
         },
         {
             "Code": "207ZH0000X",
+            "Classification": "Pathology",
             "Specialization": "Hematology"
         },
         {
             "Code": "207ZI0100X",
+            "Classification": "Pathology",
             "Specialization": "Immunopathology"
         },
         {
             "Code": "207ZM0300X",
+            "Classification": "Pathology",
             "Specialization": "Medical Microbiology"
         },
         {
             "Code": "207ZP0007X",
+            "Classification": "Pathology",
             "Specialization": "Molecular Genetic Pathology"
         },
         {
             "Code": "207ZN0500X",
+            "Classification": "Pathology",
             "Specialization": "Neuropathology"
         },
         {
             "Code": "207ZP0213X",
+            "Classification": "Pathology",
             "Specialization": "Pediatric Pathology"
         },
         {
             "Code": "2080A0000X",
+            "Classification": "Pediatrics",
             "Specialization": "Adolescent Medicine"
         },
         {
             "Code": "2080C0008X",
+            "Classification": "Pediatrics",
             "Specialization": "Child Abuse Pediatrics"
         },
         {
             "Code": "2080I0007X",
+            "Classification": "Pediatrics",
             "Specialization": "Clinical & Laboratory Immunology"
         },
         {
             "Code": "2080P0006X",
+            "Classification": "Pediatrics",
             "Specialization": "Developmental - Behavioral Pediatrics"
         },
         {
             "Code": "2080H0002X",
+            "Classification": "Pediatrics",
             "Specialization": "Hospice and Palliative Medicine"
         },
         {
             "Code": "2080T0002X",
+            "Classification": "Pediatrics",
             "Specialization": "Medical Toxicology"
         },
         {
             "Code": "2080N0001X",
+            "Classification": "Pediatrics",
             "Specialization": "Neonatal-Perinatal Medicine"
         },
         {
             "Code": "2080P0008X",
+            "Classification": "Pediatrics",
             "Specialization": "Neurodevelopmental Disabilities"
         },
         {
             "Code": "2080B0002X",
+            "Classification": "Pediatrics",
             "Specialization": "Obesity Medicine"
         },
         {
             "Code": "2080P0201X",
+            "Classification": "Pediatrics",
             "Specialization": "Pediatric Allergy/Immunology"
         },
         {
             "Code": "2080P0202X",
+            "Classification": "Pediatrics",
             "Specialization": "Pediatric Cardiology"
         },
         {
             "Code": "2080P0203X",
+            "Classification": "Pediatrics",
             "Specialization": "Pediatric Critical Care Medicine"
         },
         {
             "Code": "2080P0204X",
+            "Classification": "Pediatrics",
             "Specialization": "Pediatric Emergency Medicine"
         },
         {
             "Code": "2080P0205X",
+            "Classification": "Pediatrics",
             "Specialization": "Pediatric Endocrinology"
         },
         {
             "Code": "2080P0206X",
+            "Classification": "Pediatrics",
             "Specialization": "Pediatric Gastroenterology"
         },
         {
             "Code": "2080P0207X",
+            "Classification": "Pediatrics",
             "Specialization": "Pediatric Hematology-Oncology"
         },
         {
             "Code": "2080P0208X",
+            "Classification": "Pediatrics",
             "Specialization": "Pediatric Infectious Diseases"
         },
         {
             "Code": "2080P0210X",
+            "Classification": "Pediatrics",
             "Specialization": "Pediatric Nephrology"
         },
         {
             "Code": "2080P0214X",
+            "Classification": "Pediatrics",
             "Specialization": "Pediatric Pulmonology"
         },
         {
             "Code": "2080P0216X",
+            "Classification": "Pediatrics",
             "Specialization": "Pediatric Rheumatology"
         },
         {
             "Code": "2080T0004X",
+            "Classification": "Pediatrics",
             "Specialization": "Pediatric Transplant Hepatology"
         },
         {
+            "Code": "2080P1004X",
+            "Classification": "Pediatrics",
+            "Specialization": "Physician Nutrition Specialist "
+        },
+        {
             "Code": "2080S0012X",
+            "Classification": "Pediatrics",
             "Specialization": "Sleep Medicine"
         },
         {
             "Code": "2080S0010X",
+            "Classification": "Pediatrics",
             "Specialization": "Sports Medicine"
         },
         {
             "Code": "2081P0301X",
+            "Classification": "Physical Medicine & Rehabilitation",
             "Specialization": "Brain Injury Medicine"
         },
         {
             "Code": "2081H0002X",
+            "Classification": "Physical Medicine & Rehabilitation",
             "Specialization": "Hospice and Palliative Medicine"
         },
         {
             "Code": "2081N0008X",
+            "Classification": "Physical Medicine & Rehabilitation",
             "Specialization": "Neuromuscular Medicine"
         },
         {
             "Code": "2081P2900X",
+            "Classification": "Physical Medicine & Rehabilitation",
             "Specialization": "Pain Medicine"
         },
         {
             "Code": "2081P0010X",
+            "Classification": "Physical Medicine & Rehabilitation",
             "Specialization": "Pediatric Rehabilitation Medicine"
         },
         {
             "Code": "2081P0004X",
+            "Classification": "Physical Medicine & Rehabilitation",
             "Specialization": "Spinal Cord Injury Medicine"
         },
         {
             "Code": "2081S0010X",
+            "Classification": "Physical Medicine & Rehabilitation",
             "Specialization": "Sports Medicine"
         },
         {
             "Code": "2082S0099X",
+            "Classification": "Plastic Surgery",
             "Specialization": "Plastic Surgery Within the Head and Neck"
         },
         {
             "Code": "2082S0105X",
+            "Classification": "Plastic Surgery",
             "Specialization": "Surgery of the Hand"
         },
         {
             "Code": "2083A0300X",
+            "Classification": "Preventive Medicine",
             "Specialization": "Addiction Medicine"
         },
         {
             "Code": "2083A0100X",
+            "Classification": "Preventive Medicine",
             "Specialization": "Aerospace Medicine"
         },
         {
             "Code": "2083C0008X",
+            "Classification": "Preventive Medicine",
             "Specialization": "Clinical Informatics"
         },
         {
             "Code": "2083T0002X",
+            "Classification": "Preventive Medicine",
             "Specialization": "Medical Toxicology"
         },
         {
             "Code": "2083B0002X",
+            "Classification": "Preventive Medicine",
             "Specialization": "Obesity Medicine"
         },
         {
             "Code": "2083X0100X",
+            "Classification": "Preventive Medicine",
             "Specialization": "Occupational Medicine"
         },
         {
             "Code": "2083P0500X",
+            "Classification": "Preventive Medicine",
             "Specialization": "Preventive Medicine/Occupational Environmental Medicine"
         },
         {
             "Code": "2083P0901X",
+            "Classification": "Preventive Medicine",
             "Specialization": "Public Health & General Preventive Medicine"
         },
         {
             "Code": "2083S0010X",
+            "Classification": "Preventive Medicine",
             "Specialization": "Sports Medicine"
         },
         {
             "Code": "2083P0011X",
+            "Classification": "Preventive Medicine",
             "Specialization": "Undersea and Hyperbaric Medicine"
         },
         {
             "Code": "2084A0401X",
+            "Classification": "Psychiatry & Neurology",
             "Specialization": "Addiction Medicine"
         },
         {
             "Code": "2084P0802X",
+            "Classification": "Psychiatry & Neurology",
             "Specialization": "Addiction Psychiatry"
         },
         {
             "Code": "2084B0040X",
+            "Classification": "Psychiatry & Neurology",
             "Specialization": "Behavioral Neurology & Neuropsychiatry"
         },
         {
             "Code": "2084P0301X",
+            "Classification": "Psychiatry & Neurology",
             "Specialization": "Brain Injury Medicine"
         },
         {
             "Code": "2084P0804X",
+            "Classification": "Psychiatry & Neurology",
             "Specialization": "Child & Adolescent Psychiatry"
         },
         {
             "Code": "2084N0600X",
+            "Classification": "Psychiatry & Neurology",
             "Specialization": "Clinical Neurophysiology"
         },
         {
             "Code": "2084D0003X",
+            "Classification": "Psychiatry & Neurology",
             "Specialization": "Diagnostic Neuroimaging"
         },
         {
             "Code": "2084E0001X",
+            "Classification": "Psychiatry & Neurology",
             "Specialization": "Epilepsy"
         },
         {
             "Code": "2084F0202X",
+            "Classification": "Psychiatry & Neurology",
             "Specialization": "Forensic Psychiatry"
         },
         {
             "Code": "2084P0805X",
+            "Classification": "Psychiatry & Neurology",
             "Specialization": "Geriatric Psychiatry"
         },
         {
             "Code": "2084H0002X",
+            "Classification": "Psychiatry & Neurology",
             "Specialization": "Hospice and Palliative Medicine"
         },
         {
             "Code": "2084A2900X",
+            "Classification": "Psychiatry & Neurology",
             "Specialization": "Neurocritical Care"
         },
         {
             "Code": "2084P0005X",
+            "Classification": "Psychiatry & Neurology",
             "Specialization": "Neurodevelopmental Disabilities"
         },
         {
             "Code": "2084N0400X",
+            "Classification": "Psychiatry & Neurology",
             "Specialization": "Neurology"
         },
         {
             "Code": "2084N0402X",
+            "Classification": "Psychiatry & Neurology",
             "Specialization": "Neurology with Special Qualifications in Child Neurology"
         },
         {
             "Code": "2084N0008X",
+            "Classification": "Psychiatry & Neurology",
             "Specialization": "Neuromuscular Medicine"
         },
         {
             "Code": "2084B0002X",
+            "Classification": "Psychiatry & Neurology",
             "Specialization": "Obesity Medicine"
         },
         {
             "Code": "2084P2900X",
+            "Classification": "Psychiatry & Neurology",
             "Specialization": "Pain Medicine"
         },
         {
             "Code": "2084P0800X",
+            "Classification": "Psychiatry & Neurology",
             "Specialization": "Psychiatry"
         },
         {
             "Code": "2084P0015X",
+            "Classification": "Psychiatry & Neurology",
             "Specialization": "Psychosomatic Medicine"
         },
         {
             "Code": "2084S0012X",
+            "Classification": "Psychiatry & Neurology",
             "Specialization": "Sleep Medicine"
         },
         {
             "Code": "2084S0010X",
+            "Classification": "Psychiatry & Neurology",
             "Specialization": "Sports Medicine"
         },
         {
             "Code": "2084V0102X",
+            "Classification": "Psychiatry & Neurology",
             "Specialization": "Vascular Neurology"
         },
         {
             "Code": "2085B0100X",
+            "Classification": "Radiology",
             "Specialization": "Body Imaging"
         },
         {
             "Code": "2085D0003X",
+            "Classification": "Radiology",
             "Specialization": "Diagnostic Neuroimaging"
         },
         {
             "Code": "2085R0202X",
+            "Classification": "Radiology",
             "Specialization": "Diagnostic Radiology"
         },
         {
             "Code": "2085U0001X",
+            "Classification": "Radiology",
             "Specialization": "Diagnostic Ultrasound"
         },
         {
             "Code": "2085H0002X",
+            "Classification": "Radiology",
             "Specialization": "Hospice and Palliative Medicine"
         },
         {
             "Code": "2085N0700X",
+            "Classification": "Radiology",
             "Specialization": "Neuroradiology"
         },
         {
             "Code": "2085N0904X",
+            "Classification": "Radiology",
             "Specialization": "Nuclear Radiology"
         },
         {
             "Code": "2085P0229X",
+            "Classification": "Radiology",
             "Specialization": "Pediatric Radiology"
         },
         {
             "Code": "2085R0001X",
+            "Classification": "Radiology",
             "Specialization": "Radiation Oncology"
         },
         {
             "Code": "2085R0205X",
+            "Classification": "Radiology",
             "Specialization": "Radiological Physics"
         },
         {
             "Code": "2085R0203X",
+            "Classification": "Radiology",
             "Specialization": "Therapeutic Radiology"
         },
         {
             "Code": "2085R0204X",
+            "Classification": "Radiology",
             "Specialization": "Vascular & Interventional Radiology"
         },
         {
             "Code": "2086H0002X",
+            "Classification": "Surgery",
             "Specialization": "Hospice and Palliative Medicine"
         },
         {
             "Code": "2086S0120X",
+            "Classification": "Surgery",
             "Specialization": "Pediatric Surgery"
         },
         {
+            "Code": "2086P0122X",
+            "Classification": "Surgery",
+            "Specialization": "Physician Nutrition Specialist"
+        },
+        {
             "Code": "2086S0122X",
+            "Classification": "Surgery",
             "Specialization": "Plastic and Reconstructive Surgery"
         },
         {
             "Code": "2086S0105X",
+            "Classification": "Surgery",
             "Specialization": "Surgery of the Hand"
         },
         {
             "Code": "2086S0102X",
+            "Classification": "Surgery",
             "Specialization": "Surgical Critical Care"
         },
         {
             "Code": "2086X0206X",
+            "Classification": "Surgery",
             "Specialization": "Surgical Oncology"
         },
         {
             "Code": "2086S0127X",
+            "Classification": "Surgery",
             "Specialization": "Trauma Surgery"
         },
         {
             "Code": "2086S0129X",
+            "Classification": "Surgery",
             "Specialization": "Vascular Surgery"
         },
         {
             "Code": "2088F0040X",
+            "Classification": "Urology",
             "Specialization": "Urogynecology and Reconstructive Pelvic Surgery"
         },
         {
             "Code": "2088P0231X",
+            "Classification": "Urology",
             "Specialization": "Pediatric Urology"
         },
         {
             "Code": "103GC0700X",
+            "Classification": "Clinical Neuropsychologist",
             "Specialization": "Clinical"
         },
         {
             "Code": "101YA0400X",
+            "Classification": "Counselor",
             "Specialization": "Addiction (Substance Use Disorder)"
         },
         {
             "Code": "101YM0800X",
+            "Classification": "Counselor",
             "Specialization": "Mental Health"
         },
         {
             "Code": "101YP1600X",
+            "Classification": "Counselor",
             "Specialization": "Pastoral"
         },
         {
             "Code": "101YP2500X",
+            "Classification": "Counselor",
             "Specialization": "Professional"
         },
         {
             "Code": "101YS0200X",
+            "Classification": "Counselor",
             "Specialization": "School"
         },
         {
             "Code": "103TA0400X",
+            "Classification": "Psychologist",
             "Specialization": "Addiction (Substance Use Disorder)"
         },
         {
             "Code": "103TA0700X",
+            "Classification": "Psychologist",
             "Specialization": "Adult Development & Aging"
         },
         {
             "Code": "103TC0700X",
+            "Classification": "Psychologist",
             "Specialization": "Clinical"
         },
         {
             "Code": "103TC2200X",
+            "Classification": "Psychologist",
             "Specialization": "Clinical Child & Adolescent"
         },
         {
             "Code": "103TB0200X",
+            "Classification": "Psychologist",
             "Specialization": "Cognitive & Behavioral"
         },
         {
             "Code": "103TC1900X",
+            "Classification": "Psychologist",
             "Specialization": "Counseling"
         },
         {
             "Code": "103TE1000X",
+            "Classification": "Psychologist",
             "Specialization": "Educational"
         },
         {
             "Code": "103TE1100X",
+            "Classification": "Psychologist",
             "Specialization": "Exercise & Sports"
         },
         {
             "Code": "103TF0000X",
+            "Classification": "Psychologist",
             "Specialization": "Family"
         },
         {
             "Code": "103TF0200X",
+            "Classification": "Psychologist",
             "Specialization": "Forensic"
         },
         {
             "Code": "103TP2701X",
+            "Classification": "Psychologist",
             "Specialization": "Group Psychotherapy"
         },
         {
             "Code": "103TH0004X",
+            "Classification": "Psychologist",
             "Specialization": "Health"
         },
         {
             "Code": "103TH0100X",
+            "Classification": "Psychologist",
             "Specialization": "Health Service"
         },
         {
             "Code": "103TM1700X",
+            "Classification": "Psychologist",
             "Specialization": "Men & Masculinity"
         },
         {
             "Code": "103TM1800X",
+            "Classification": "Psychologist",
             "Specialization": "Intellectual & Developmental Disabilities"
         },
         {
             "Code": "103TP0016X",
+            "Classification": "Psychologist",
             "Specialization": "Prescribing (Medical)"
         },
         {
             "Code": "103TP0814X",
+            "Classification": "Psychologist",
             "Specialization": "Psychoanalysis"
         },
         {
             "Code": "103TP2700X",
+            "Classification": "Psychologist",
             "Specialization": "Psychotherapy"
         },
         {
             "Code": "103TR0400X",
+            "Classification": "Psychologist",
             "Specialization": "Rehabilitation"
         },
         {
             "Code": "103TS0200X",
+            "Classification": "Psychologist",
             "Specialization": "School"
         },
         {
             "Code": "103TW0100X",
+            "Classification": "Psychologist",
             "Specialization": "Women"
         },
         {
             "Code": "1041C0700X",
+            "Classification": "Social Worker",
             "Specialization": "Clinical"
         },
         {
             "Code": "1041S0200X",
+            "Classification": "Social Worker",
             "Specialization": "School"
         },
         {
             "Code": "111NI0013X",
+            "Classification": "Chiropractor",
             "Specialization": "Independent Medical Examiner"
         },
         {
             "Code": "111NI0900X",
+            "Classification": "Chiropractor",
             "Specialization": "Internist"
         },
         {
             "Code": "111NN0400X",
+            "Classification": "Chiropractor",
             "Specialization": "Neurology"
         },
         {
             "Code": "111NN1001X",
+            "Classification": "Chiropractor",
             "Specialization": "Nutrition"
         },
         {
             "Code": "111NX0100X",
+            "Classification": "Chiropractor",
             "Specialization": "Occupational Health"
         },
         {
             "Code": "111NX0800X",
+            "Classification": "Chiropractor",
             "Specialization": "Orthopedic"
         },
         {
             "Code": "111NP0017X",
+            "Classification": "Chiropractor",
             "Specialization": "Pediatric Chiropractor"
         },
         {
             "Code": "111NR0200X",
+            "Classification": "Chiropractor",
             "Specialization": "Radiology"
         },
         {
             "Code": "111NR0400X",
+            "Classification": "Chiropractor",
             "Specialization": "Rehabilitation"
         },
         {
             "Code": "111NS0005X",
+            "Classification": "Chiropractor",
             "Specialization": "Sports Physician"
         },
         {
             "Code": "111NT0100X",
+            "Classification": "Chiropractor",
             "Specialization": "Thermography"
         },
         {
+            "Code": "1223D0004X",
+            "Classification": "Dentist",
+            "Specialization": "Dental Anesthesiology"
+        },
+        {
             "Code": "1223D0001X",
+            "Classification": "Dentist",
             "Specialization": "Dental Public Health"
         },
         {
-            "Code": "1223D0004X",
-            "Specialization": "Dentist Anesthesiologist"
-        },
-        {
             "Code": "1223E0200X",
+            "Classification": "Dentist",
             "Specialization": "Endodontics"
         },
         {
             "Code": "1223G0001X",
+            "Classification": "Dentist",
             "Specialization": "General Practice"
         },
         {
             "Code": "1223P0106X",
+            "Classification": "Dentist",
             "Specialization": "Oral and Maxillofacial Pathology"
         },
         {
             "Code": "1223X0008X",
+            "Classification": "Dentist",
             "Specialization": "Oral and Maxillofacial Radiology"
         },
         {
             "Code": "1223S0112X",
+            "Classification": "Dentist",
             "Specialization": "Oral and Maxillofacial Surgery"
         },
         {
             "Code": "125Q00000X",
+            "Classification": "Dentist",
             "Specialization": "Oral Medicine"
         },
         {
             "Code": "1223X2210X",
+            "Classification": "Dentist",
             "Specialization": "Orofacial Pain"
         },
         {
             "Code": "1223X0400X",
+            "Classification": "Dentist",
             "Specialization": "Orthodontics and Dentofacial Orthopedics"
         },
         {
             "Code": "1223P0221X",
+            "Classification": "Dentist",
             "Specialization": "Pediatric Dentistry"
         },
         {
             "Code": "1223P0300X",
+            "Classification": "Dentist",
             "Specialization": "Periodontics"
         },
         {
             "Code": "1223P0700X",
+            "Classification": "Dentist",
             "Specialization": "Prosthodontics"
         },
         {
             "Code": "133VN1101X",
+            "Classification": "Dietitian, Registered",
             "Specialization": "Nutrition, Gerontological"
         },
         {
             "Code": "133VN1006X",
+            "Classification": "Dietitian, Registered",
             "Specialization": "Nutrition, Metabolic"
         },
         {
             "Code": "133VN1201X",
+            "Classification": "Dietitian, Registered",
             "Specialization": "Nutrition, Obesity and Weight Management"
         },
         {
             "Code": "133VN1301X",
+            "Classification": "Dietitian, Registered",
             "Specialization": "Nutrition, Oncology"
         },
         {
             "Code": "133VN1004X",
+            "Classification": "Dietitian, Registered",
             "Specialization": "Nutrition, Pediatric"
         },
         {
             "Code": "133VN1401X",
+            "Classification": "Dietitian, Registered",
             "Specialization": "Nutrition, Pediatric Critical Care"
         },
         {
             "Code": "133VN1005X",
+            "Classification": "Dietitian, Registered",
             "Specialization": "Nutrition, Renal"
         },
         {
             "Code": "133VN1501X",
+            "Classification": "Dietitian, Registered",
             "Specialization": "Nutrition, Sports Dietetics"
         },
         {
             "Code": "133NN1002X",
+            "Classification": "Nutritionist",
             "Specialization": "Nutrition, Education"
         },
         {
             "Code": "152WC0802X",
+            "Classification": "Optometrist",
             "Specialization": "Corneal and Contact Management"
         },
         {
             "Code": "152WL0500X",
+            "Classification": "Optometrist",
             "Specialization": "Low Vision Rehabilitation"
         },
         {
             "Code": "152WX0102X",
+            "Classification": "Optometrist",
             "Specialization": "Occupational Vision"
         },
         {
             "Code": "152WP0200X",
+            "Classification": "Optometrist",
             "Specialization": "Pediatrics"
         },
         {
             "Code": "152WS0006X",
+            "Classification": "Optometrist",
             "Specialization": "Sports Vision"
         },
         {
             "Code": "152WV0400X",
+            "Classification": "Optometrist",
             "Specialization": "Vision Therapy"
         },
         {
             "Code": "156FC0800X",
+            "Classification": "Technician/Technologist",
             "Specialization": "Contact Lens"
         },
         {
             "Code": "156FC0801X",
+            "Classification": "Technician/Technologist",
             "Specialization": "Contact Lens Fitter"
         },
         {
             "Code": "156FX1700X",
+            "Classification": "Technician/Technologist",
             "Specialization": "Ocularist"
         },
         {
             "Code": "156FX1100X",
+            "Classification": "Technician/Technologist",
             "Specialization": "Ophthalmic"
         },
         {
             "Code": "156FX1101X",
+            "Classification": "Technician/Technologist",
             "Specialization": "Ophthalmic Assistant"
         },
         {
             "Code": "156FX1800X",
+            "Classification": "Technician/Technologist",
             "Specialization": "Optician"
         },
         {
             "Code": "156FX1201X",
+            "Classification": "Technician/Technologist",
             "Specialization": "Optometric Assistant"
         },
         {
             "Code": "156FX1202X",
+            "Classification": "Technician/Technologist",
             "Specialization": "Optometric Technician"
         },
         {
             "Code": "156FX1900X",
+            "Classification": "Technician/Technologist",
             "Specialization": "Orthoptist"
         },
         {
             "Code": "163WA0400X",
+            "Classification": "Registered Nurse",
             "Specialization": "Addiction (Substance Use Disorder)"
         },
         {
             "Code": "163WA2000X",
+            "Classification": "Registered Nurse",
             "Specialization": "Administrator"
         },
         {
             "Code": "163WP2201X",
+            "Classification": "Registered Nurse",
             "Specialization": "Ambulatory Care"
         },
         {
             "Code": "163WC3500X",
+            "Classification": "Registered Nurse",
             "Specialization": "Cardiac Rehabilitation"
         },
         {
             "Code": "163WC0400X",
+            "Classification": "Registered Nurse",
             "Specialization": "Case Management"
         },
         {
             "Code": "163WC1400X",
+            "Classification": "Registered Nurse",
             "Specialization": "College Health"
         },
         {
             "Code": "163WC1500X",
+            "Classification": "Registered Nurse",
             "Specialization": "Community Health"
         },
         {
             "Code": "163WC2100X",
+            "Classification": "Registered Nurse",
             "Specialization": "Continence Care"
         },
         {
             "Code": "163WC1600X",
+            "Classification": "Registered Nurse",
             "Specialization": "Continuing Education/Staff Development"
         },
         {
             "Code": "163WC0200X",
+            "Classification": "Registered Nurse",
             "Specialization": "Critical Care Medicine"
         },
         {
             "Code": "163WD0400X",
+            "Classification": "Registered Nurse",
             "Specialization": "Diabetes Educator"
         },
         {
             "Code": "163WD1100X",
+            "Classification": "Registered Nurse",
             "Specialization": "Dialysis, Peritoneal"
         },
         {
             "Code": "163WE0003X",
+            "Classification": "Registered Nurse",
             "Specialization": "Emergency"
         },
         {
             "Code": "163WE0900X",
+            "Classification": "Registered Nurse",
             "Specialization": "Enterostomal Therapy"
         },
         {
             "Code": "163WF0300X",
+            "Classification": "Registered Nurse",
             "Specialization": "Flight"
         },
         {
             "Code": "163WG0100X",
+            "Classification": "Registered Nurse",
             "Specialization": "Gastroenterology"
         },
         {
             "Code": "163WG0000X",
+            "Classification": "Registered Nurse",
             "Specialization": "General Practice"
         },
         {
             "Code": "163WG0600X",
+            "Classification": "Registered Nurse",
             "Specialization": "Gerontology"
         },
         {
             "Code": "163WH0500X",
+            "Classification": "Registered Nurse",
             "Specialization": "Hemodialysis"
         },
         {
             "Code": "163WH0200X",
+            "Classification": "Registered Nurse",
             "Specialization": "Home Health"
         },
         {
             "Code": "163WH1000X",
+            "Classification": "Registered Nurse",
             "Specialization": "Hospice"
         },
         {
             "Code": "163WI0600X",
+            "Classification": "Registered Nurse",
             "Specialization": "Infection Control"
         },
         {
             "Code": "163WI0500X",
+            "Classification": "Registered Nurse",
             "Specialization": "Infusion Therapy"
         },
         {
             "Code": "163WL0100X",
+            "Classification": "Registered Nurse",
             "Specialization": "Lactation Consultant"
         },
         {
             "Code": "163WM0102X",
+            "Classification": "Registered Nurse",
             "Specialization": "Maternal Newborn"
         },
         {
             "Code": "163WM0705X",
+            "Classification": "Registered Nurse",
             "Specialization": "Medical-Surgical"
         },
         {
             "Code": "163WN0002X",
+            "Classification": "Registered Nurse",
             "Specialization": "Neonatal Intensive Care"
         },
         {
             "Code": "163WN0003X",
+            "Classification": "Registered Nurse",
             "Specialization": "Neonatal, Low-Risk"
         },
         {
             "Code": "163WN0300X",
+            "Classification": "Registered Nurse",
             "Specialization": "Nephrology"
         },
         {
             "Code": "163WN0800X",
+            "Classification": "Registered Nurse",
             "Specialization": "Neuroscience"
         },
         {
             "Code": "163WM1400X",
+            "Classification": "Registered Nurse",
             "Specialization": "Nurse Massage Therapist (NMT)"
         },
         {
             "Code": "163WN1003X",
+            "Classification": "Registered Nurse",
             "Specialization": "Nutrition Support"
         },
         {
             "Code": "163WX0002X",
+            "Classification": "Registered Nurse",
             "Specialization": "Obstetric, High-Risk"
         },
         {
             "Code": "163WX0003X",
+            "Classification": "Registered Nurse",
             "Specialization": "Obstetric, Inpatient"
         },
         {
             "Code": "163WX0106X",
+            "Classification": "Registered Nurse",
             "Specialization": "Occupational Health"
         },
         {
             "Code": "163WX0200X",
+            "Classification": "Registered Nurse",
             "Specialization": "Oncology"
         },
         {
             "Code": "163WX1100X",
+            "Classification": "Registered Nurse",
             "Specialization": "Ophthalmic"
         },
         {
             "Code": "163WX0800X",
+            "Classification": "Registered Nurse",
             "Specialization": "Orthopedic"
         },
         {
             "Code": "163WX1500X",
+            "Classification": "Registered Nurse",
             "Specialization": "Ostomy Care"
         },
         {
             "Code": "163WX0601X",
+            "Classification": "Registered Nurse",
             "Specialization": "Otorhinolaryngology & Head-Neck"
         },
         {
             "Code": "163WP0000X",
+            "Classification": "Registered Nurse",
             "Specialization": "Pain Management"
         },
         {
             "Code": "163WP0218X",
+            "Classification": "Registered Nurse",
             "Specialization": "Pediatric Oncology"
         },
         {
             "Code": "163WP0200X",
+            "Classification": "Registered Nurse",
             "Specialization": "Pediatrics"
         },
         {
             "Code": "163WP1700X",
+            "Classification": "Registered Nurse",
             "Specialization": "Perinatal"
         },
         {
             "Code": "163WS0121X",
+            "Classification": "Registered Nurse",
             "Specialization": "Plastic Surgery"
         },
         {
             "Code": "163WP0808X",
+            "Classification": "Registered Nurse",
             "Specialization": "Psychiatric/Mental Health"
         },
         {
             "Code": "163WP0809X",
+            "Classification": "Registered Nurse",
             "Specialization": "Psychiatric/Mental Health, Adult"
         },
         {
             "Code": "163WP0807X",
+            "Classification": "Registered Nurse",
             "Specialization": "Psychiatric/Mental Health, Child & Adolescent"
         },
         {
             "Code": "163WR0006X",
+            "Classification": "Registered Nurse",
             "Specialization": "Registered Nurse First Assistant"
         },
         {
             "Code": "163WR0400X",
+            "Classification": "Registered Nurse",
             "Specialization": "Rehabilitation"
         },
         {
             "Code": "163WR1000X",
+            "Classification": "Registered Nurse",
             "Specialization": "Reproductive Endocrinology/Infertility"
         },
         {
             "Code": "163WS0200X",
+            "Classification": "Registered Nurse",
             "Specialization": "School"
         },
         {
             "Code": "163WU0100X",
+            "Classification": "Registered Nurse",
             "Specialization": "Urology"
         },
         {
             "Code": "163WW0101X",
+            "Classification": "Registered Nurse",
             "Specialization": "Women's Health Care, Ambulatory"
         },
         {
             "Code": "163WW0000X",
+            "Classification": "Registered Nurse",
             "Specialization": "Wound Care"
         },
         {
             "Code": "3747A0650X",
+            "Classification": "Technician",
             "Specialization": "Attendant Care Provider"
         },
         {
             "Code": "3747P1801X",
+            "Classification": "Technician",
             "Specialization": "Personal Care Attendant"
         },
         {
             "Code": "171WH0202X",
+            "Classification": "Contractor",
             "Specialization": "Home Modifications"
         },
         {
             "Code": "171WV0202X",
+            "Classification": "Contractor",
             "Specialization": "Vehicle Modifications"
         },
         {
             "Code": "1710I1002X",
+            "Classification": "Military Health Care Provider",
             "Specialization": "Independent Duty Corpsman"
         },
         {
             "Code": "1710I1003X",
+            "Classification": "Military Health Care Provider",
             "Specialization": "Independent Duty Medical Technicians"
         },
         {
             "Code": "1744G0900X",
+            "Classification": "Specialist",
             "Specialization": "Graphics Designer"
         },
         {
             "Code": "1744P3200X",
+            "Classification": "Specialist",
             "Specialization": "Prosthetics Case Management"
         },
         {
             "Code": "1744R1103X",
+            "Classification": "Specialist",
             "Specialization": "Research Data Abstracter/Coder"
         },
         {
             "Code": "1744R1102X",
+            "Classification": "Specialist",
             "Specialization": "Research Study"
         },
         {
             "Code": "174MM1900X",
+            "Classification": "Veterinarian",
             "Specialization": "Medical Research"
         },
         {
             "Code": "1835P2201X",
+            "Classification": "Pharmacist",
             "Specialization": "Ambulatory Care"
         },
         {
             "Code": "1835C0206X",
+            "Classification": "Pharmacist",
             "Specialization": "Cardiology"
         },
         {
             "Code": "1835C0207X",
+            "Classification": "Pharmacist",
             "Specialization": "Compounded Sterile Preparations"
         },
         {
             "Code": "1835C0205X",
+            "Classification": "Pharmacist",
             "Specialization": "Critical Care"
         },
         {
             "Code": "1835E0208X",
+            "Classification": "Pharmacist",
             "Specialization": "Emergency Medicine"
         },
         {
             "Code": "1835G0000X",
+            "Classification": "Pharmacist",
             "Specialization": "General Practice"
         },
         {
             "Code": "1835G0303X",
+            "Classification": "Pharmacist",
             "Specialization": "Geriatric"
         },
         {
             "Code": "1835I0206X",
+            "Classification": "Pharmacist",
             "Specialization": "Infectious Diseases"
         },
         {
             "Code": "1835N0905X",
+            "Classification": "Pharmacist",
             "Specialization": "Nuclear"
         },
         {
             "Code": "1835N1003X",
+            "Classification": "Pharmacist",
             "Specialization": "Nutrition Support"
         },
         {
             "Code": "1835X0200X",
+            "Classification": "Pharmacist",
             "Specialization": "Oncology"
         },
         {
             "Code": "1835P0200X",
+            "Classification": "Pharmacist",
             "Specialization": "Pediatrics"
         },
         {
             "Code": "1835P0018X",
+            "Classification": "Pharmacist",
             "Specialization": "Pharmacist Clinician (PhC)/ Clinical Pharmacy Specialist"
         },
         {
             "Code": "1835P1200X",
+            "Classification": "Pharmacist",
             "Specialization": "Pharmacotherapy"
         },
         {
             "Code": "1835P1300X",
+            "Classification": "Pharmacist",
             "Specialization": "Psychiatric"
         },
         {
             "Code": "1835S0206X",
+            "Classification": "Pharmacist",
             "Specialization": "Solid Organ Transplant"
         },
         {
             "Code": "364SA2100X",
+            "Classification": "Clinical Nurse Specialist",
             "Specialization": "Acute Care"
         },
         {
             "Code": "364SA2200X",
+            "Classification": "Clinical Nurse Specialist",
             "Specialization": "Adult Health"
         },
         {
             "Code": "364SC2300X",
+            "Classification": "Clinical Nurse Specialist",
             "Specialization": "Chronic Care"
         },
         {
             "Code": "364SC1501X",
+            "Classification": "Clinical Nurse Specialist",
             "Specialization": "Community Health/Public Health"
         },
         {
             "Code": "364SC0200X",
+            "Classification": "Clinical Nurse Specialist",
             "Specialization": "Critical Care Medicine"
         },
         {
             "Code": "364SE0003X",
+            "Classification": "Clinical Nurse Specialist",
             "Specialization": "Emergency"
         },
         {
             "Code": "364SE1400X",
+            "Classification": "Clinical Nurse Specialist",
             "Specialization": "Ethics"
         },
         {
             "Code": "364SF0001X",
+            "Classification": "Clinical Nurse Specialist",
             "Specialization": "Family Health"
         },
         {
             "Code": "364SG0600X",
+            "Classification": "Clinical Nurse Specialist",
             "Specialization": "Gerontology"
         },
         {
             "Code": "364SH1100X",
+            "Classification": "Clinical Nurse Specialist",
             "Specialization": "Holistic"
         },
         {
             "Code": "364SH0200X",
+            "Classification": "Clinical Nurse Specialist",
             "Specialization": "Home Health"
         },
         {
             "Code": "364SI0800X",
+            "Classification": "Clinical Nurse Specialist",
             "Specialization": "Informatics"
         },
         {
             "Code": "364SL0600X",
+            "Classification": "Clinical Nurse Specialist",
             "Specialization": "Long-Term Care"
         },
         {
             "Code": "364SM0705X",
+            "Classification": "Clinical Nurse Specialist",
             "Specialization": "Medical-Surgical"
         },
         {
             "Code": "364SN0000X",
+            "Classification": "Clinical Nurse Specialist",
             "Specialization": "Neonatal"
         },
         {
             "Code": "364SN0800X",
+            "Classification": "Clinical Nurse Specialist",
             "Specialization": "Neuroscience"
         },
         {
             "Code": "364SX0106X",
+            "Classification": "Clinical Nurse Specialist",
             "Specialization": "Occupational Health"
         },
         {
             "Code": "364SX0200X",
+            "Classification": "Clinical Nurse Specialist",
             "Specialization": "Oncology"
         },
         {
             "Code": "364SX0204X",
+            "Classification": "Clinical Nurse Specialist",
             "Specialization": "Oncology, Pediatrics"
         },
         {
             "Code": "364SP0200X",
+            "Classification": "Clinical Nurse Specialist",
             "Specialization": "Pediatrics"
         },
         {
             "Code": "364SP1700X",
+            "Classification": "Clinical Nurse Specialist",
             "Specialization": "Perinatal"
         },
         {
             "Code": "364SP2800X",
+            "Classification": "Clinical Nurse Specialist",
             "Specialization": "Perioperative"
         },
         {
             "Code": "364SP0808X",
+            "Classification": "Clinical Nurse Specialist",
             "Specialization": "Psychiatric/Mental Health"
         },
         {
             "Code": "364SP0809X",
+            "Classification": "Clinical Nurse Specialist",
             "Specialization": "Psychiatric/Mental Health, Adult"
         },
         {
             "Code": "364SP0807X",
+            "Classification": "Clinical Nurse Specialist",
             "Specialization": "Psychiatric/Mental Health, Child & Adolescent"
         },
         {
             "Code": "364SP0810X",
+            "Classification": "Clinical Nurse Specialist",
             "Specialization": "Psychiatric/Mental Health, Child & Family"
         },
         {
             "Code": "364SP0811X",
+            "Classification": "Clinical Nurse Specialist",
             "Specialization": "Psychiatric/Mental Health, Chronically Ill"
         },
         {
             "Code": "364SP0812X",
+            "Classification": "Clinical Nurse Specialist",
             "Specialization": "Psychiatric/Mental Health, Community"
         },
         {
             "Code": "364SP0813X",
+            "Classification": "Clinical Nurse Specialist",
             "Specialization": "Psychiatric/Mental Health, Geropsychiatric"
         },
         {
             "Code": "364SR0400X",
+            "Classification": "Clinical Nurse Specialist",
             "Specialization": "Rehabilitation"
         },
         {
             "Code": "364SS0200X",
+            "Classification": "Clinical Nurse Specialist",
             "Specialization": "School"
         },
         {
             "Code": "364ST0500X",
+            "Classification": "Clinical Nurse Specialist",
             "Specialization": "Transplantation"
         },
         {
             "Code": "364SW0102X",
+            "Classification": "Clinical Nurse Specialist",
             "Specialization": "Women's Health"
         },
         {
             "Code": "363LA2100X",
+            "Classification": "Nurse Practitioner",
             "Specialization": "Acute Care"
         },
         {
             "Code": "363LA2200X",
+            "Classification": "Nurse Practitioner",
             "Specialization": "Adult Health"
         },
         {
             "Code": "363LC1500X",
+            "Classification": "Nurse Practitioner",
             "Specialization": "Community Health"
         },
         {
             "Code": "363LC0200X",
+            "Classification": "Nurse Practitioner",
             "Specialization": "Critical Care Medicine"
         },
         {
             "Code": "363LF0000X",
+            "Classification": "Nurse Practitioner",
             "Specialization": "Family"
         },
         {
             "Code": "363LG0600X",
+            "Classification": "Nurse Practitioner",
             "Specialization": "Gerontology"
         },
         {
             "Code": "363LN0000X",
+            "Classification": "Nurse Practitioner",
             "Specialization": "Neonatal"
         },
         {
             "Code": "363LN0005X",
+            "Classification": "Nurse Practitioner",
             "Specialization": "Neonatal, Critical Care"
         },
         {
             "Code": "363LX0001X",
+            "Classification": "Nurse Practitioner",
             "Specialization": "Obstetrics & Gynecology"
         },
         {
             "Code": "363LX0106X",
+            "Classification": "Nurse Practitioner",
             "Specialization": "Occupational Health"
         },
         {
             "Code": "363LP0200X",
+            "Classification": "Nurse Practitioner",
             "Specialization": "Pediatrics"
         },
         {
             "Code": "363LP0222X",
+            "Classification": "Nurse Practitioner",
             "Specialization": "Pediatrics, Critical Care"
         },
         {
             "Code": "363LP1700X",
+            "Classification": "Nurse Practitioner",
             "Specialization": "Perinatal"
         },
         {
             "Code": "363LP2300X",
+            "Classification": "Nurse Practitioner",
             "Specialization": "Primary Care"
         },
         {
             "Code": "363LP0808X",
+            "Classification": "Nurse Practitioner",
             "Specialization": "Psychiatric/Mental Health"
         },
         {
             "Code": "363LS0200X",
+            "Classification": "Nurse Practitioner",
             "Specialization": "School"
         },
         {
             "Code": "363LW0102X",
+            "Classification": "Nurse Practitioner",
             "Specialization": "Women's Health"
         },
         {
             "Code": "363AM0700X",
+            "Classification": "Physician Assistant",
             "Specialization": "Medical"
         },
         {
             "Code": "363AS0400X",
+            "Classification": "Physician Assistant",
             "Specialization": "Surgical"
         },
         {
             "Code": "213ES0103X",
+            "Classification": "Podiatrist",
             "Specialization": "Foot & Ankle Surgery"
         },
         {
             "Code": "213ES0131X",
+            "Classification": "Podiatrist",
             "Specialization": "Foot Surgery"
         },
         {
             "Code": "213EG0000X",
+            "Classification": "Podiatrist",
             "Specialization": "General Practice"
         },
         {
             "Code": "213EP1101X",
+            "Classification": "Podiatrist",
             "Specialization": "Primary Podiatric Medicine"
         },
         {
             "Code": "213EP0504X",
+            "Classification": "Podiatrist",
             "Specialization": "Public Medicine"
         },
         {
             "Code": "213ER0200X",
+            "Classification": "Podiatrist",
             "Specialization": "Radiology"
         },
         {
             "Code": "213ES0000X",
+            "Classification": "Podiatrist",
             "Specialization": "Sports Medicine"
         },
         {
             "Code": "225XR0403X",
+            "Classification": "Occupational Therapist",
             "Specialization": "Driving and Community Mobility"
         },
         {
             "Code": "225XE0001X",
+            "Classification": "Occupational Therapist",
             "Specialization": "Environmental Modification"
         },
         {
             "Code": "225XE1200X",
+            "Classification": "Occupational Therapist",
             "Specialization": "Ergonomics"
         },
         {
             "Code": "225XF0002X",
+            "Classification": "Occupational Therapist",
             "Specialization": "Feeding, Eating & Swallowing"
         },
         {
             "Code": "225XG0600X",
+            "Classification": "Occupational Therapist",
             "Specialization": "Gerontology"
         },
         {
             "Code": "225XH1200X",
+            "Classification": "Occupational Therapist",
             "Specialization": "Hand"
         },
         {
             "Code": "225XH1300X",
+            "Classification": "Occupational Therapist",
             "Specialization": "Human Factors"
         },
         {
             "Code": "225XL0004X",
+            "Classification": "Occupational Therapist",
             "Specialization": "Low Vision"
         },
         {
             "Code": "225XM0800X",
+            "Classification": "Occupational Therapist",
             "Specialization": "Mental Health"
         },
         {
             "Code": "225XN1300X",
+            "Classification": "Occupational Therapist",
             "Specialization": "Neurorehabilitation"
         },
         {
             "Code": "225XP0200X",
+            "Classification": "Occupational Therapist",
             "Specialization": "Pediatrics"
         },
         {
             "Code": "225XP0019X",
+            "Classification": "Occupational Therapist",
             "Specialization": "Physical Rehabilitation"
         },
         {
             "Code": "224ZR0403X",
+            "Classification": "Occupational Therapy Assistant",
             "Specialization": "Driving and Community Mobility"
         },
         {
             "Code": "224ZE0001X",
+            "Classification": "Occupational Therapy Assistant",
             "Specialization": "Environmental Modification"
         },
         {
             "Code": "224ZF0002X",
+            "Classification": "Occupational Therapy Assistant",
             "Specialization": "Feeding, Eating & Swallowing"
         },
         {
             "Code": "224ZL0004X",
+            "Classification": "Occupational Therapy Assistant",
             "Specialization": "Low Vision"
         },
         {
             "Code": "2251C2600X",
+            "Classification": "Physical Therapist",
             "Specialization": "Cardiopulmonary"
         },
         {
             "Code": "2251E1300X",
+            "Classification": "Physical Therapist",
             "Specialization": "Electrophysiology, Clinical"
         },
         {
             "Code": "2251E1200X",
+            "Classification": "Physical Therapist",
             "Specialization": "Ergonomics"
         },
         {
             "Code": "2251G0304X",
+            "Classification": "Physical Therapist",
             "Specialization": "Geriatrics"
         },
         {
             "Code": "2251H1200X",
+            "Classification": "Physical Therapist",
             "Specialization": "Hand"
         },
         {
             "Code": "2251H1300X",
+            "Classification": "Physical Therapist",
             "Specialization": "Human Factors"
         },
         {
             "Code": "2251N0400X",
+            "Classification": "Physical Therapist",
             "Specialization": "Neurology"
         },
         {
             "Code": "2251X0800X",
+            "Classification": "Physical Therapist",
             "Specialization": "Orthopedic"
         },
         {
             "Code": "2251P0200X",
+            "Classification": "Physical Therapist",
             "Specialization": "Pediatrics"
         },
         {
             "Code": "2251S0007X",
+            "Classification": "Physical Therapist",
             "Specialization": "Sports"
         },
         {
             "Code": "225CA2400X",
+            "Classification": "Rehabilitation Counselor",
             "Specialization": "Assistive Technology Practitioner"
         },
         {
             "Code": "225CA2500X",
+            "Classification": "Rehabilitation Counselor",
             "Specialization": "Assistive Technology Supplier"
         },
         {
             "Code": "225CX0006X",
+            "Classification": "Rehabilitation Counselor",
             "Specialization": "Orientation and Mobility Training Provider"
         },
         {
             "Code": "2278C0205X",
+            "Classification": "Respiratory Therapist, Certified",
             "Specialization": "Critical Care"
         },
         {
             "Code": "2278E1000X",
+            "Classification": "Respiratory Therapist, Certified",
             "Specialization": "Educational"
         },
         {
             "Code": "2278E0002X",
+            "Classification": "Respiratory Therapist, Certified",
             "Specialization": "Emergency Care"
         },
         {
             "Code": "2278G1100X",
+            "Classification": "Respiratory Therapist, Certified",
             "Specialization": "General Care"
         },
         {
             "Code": "2278G0305X",
+            "Classification": "Respiratory Therapist, Certified",
             "Specialization": "Geriatric Care"
         },
         {
             "Code": "2278H0200X",
+            "Classification": "Respiratory Therapist, Certified",
             "Specialization": "Home Health"
         },
         {
             "Code": "2278P3900X",
+            "Classification": "Respiratory Therapist, Certified",
             "Specialization": "Neonatal/Pediatrics"
         },
         {
             "Code": "2278P3800X",
+            "Classification": "Respiratory Therapist, Certified",
             "Specialization": "Palliative/Hospice"
         },
         {
             "Code": "2278P4000X",
+            "Classification": "Respiratory Therapist, Certified",
             "Specialization": "Patient Transport"
         },
         {
             "Code": "2278P1004X",
+            "Classification": "Respiratory Therapist, Certified",
             "Specialization": "Pulmonary Diagnostics"
         },
         {
             "Code": "2278P1006X",
+            "Classification": "Respiratory Therapist, Certified",
             "Specialization": "Pulmonary Function Technologist"
         },
         {
             "Code": "2278P1005X",
+            "Classification": "Respiratory Therapist, Certified",
             "Specialization": "Pulmonary Rehabilitation"
         },
         {
             "Code": "2278S1500X",
+            "Classification": "Respiratory Therapist, Certified",
             "Specialization": "SNF/Subacute Care"
         },
         {
             "Code": "2279C0205X",
+            "Classification": "Respiratory Therapist, Registered",
             "Specialization": "Critical Care"
         },
         {
             "Code": "2279E1000X",
+            "Classification": "Respiratory Therapist, Registered",
             "Specialization": "Educational"
         },
         {
             "Code": "2279E0002X",
+            "Classification": "Respiratory Therapist, Registered",
             "Specialization": "Emergency Care"
         },
         {
             "Code": "2279G1100X",
+            "Classification": "Respiratory Therapist, Registered",
             "Specialization": "General Care"
         },
         {
             "Code": "2279G0305X",
+            "Classification": "Respiratory Therapist, Registered",
             "Specialization": "Geriatric Care"
         },
         {
             "Code": "2279H0200X",
+            "Classification": "Respiratory Therapist, Registered",
             "Specialization": "Home Health"
         },
         {
             "Code": "2279P3900X",
+            "Classification": "Respiratory Therapist, Registered",
             "Specialization": "Neonatal/Pediatrics"
         },
         {
             "Code": "2279P3800X",
+            "Classification": "Respiratory Therapist, Registered",
             "Specialization": "Palliative/Hospice"
         },
         {
             "Code": "2279P4000X",
+            "Classification": "Respiratory Therapist, Registered",
             "Specialization": "Patient Transport"
         },
         {
             "Code": "2279P1004X",
+            "Classification": "Respiratory Therapist, Registered",
             "Specialization": "Pulmonary Diagnostics"
         },
         {
             "Code": "2279P1006X",
+            "Classification": "Respiratory Therapist, Registered",
             "Specialization": "Pulmonary Function Technologist"
         },
         {
             "Code": "2279P1005X",
+            "Classification": "Respiratory Therapist, Registered",
             "Specialization": "Pulmonary Rehabilitation"
         },
         {
             "Code": "2279S1500X",
+            "Classification": "Respiratory Therapist, Registered",
             "Specialization": "SNF/Subacute Care"
         },
         {
             "Code": "2255A2300X",
+            "Classification": "Specialist/Technologist",
             "Specialization": "Athletic Trainer"
         },
         {
             "Code": "2255R0406X",
+            "Classification": "Specialist/Technologist",
             "Specialization": "Rehabilitation, Blind"
         },
         {
             "Code": "231HA2400X",
+            "Classification": "Audiologist",
             "Specialization": "Assistive Technology Practitioner"
         },
         {
             "Code": "231HA2500X",
+            "Classification": "Audiologist",
             "Specialization": "Assistive Technology Supplier"
         },
         {
             "Code": "2355A2700X",
+            "Classification": "Specialist/Technologist",
             "Specialization": "Audiology Assistant"
         },
         {
             "Code": "2355S0801X",
+            "Classification": "Specialist/Technologist",
             "Specialization": "Speech-Language Assistant"
         },
         {
             "Code": "2471B0102X",
+            "Classification": "Radiologic Technologist",
             "Specialization": "Bone Densitometry"
         },
         {
             "Code": "2471C1106X",
+            "Classification": "Radiologic Technologist",
             "Specialization": "Cardiac-Interventional Technology"
         },
         {
             "Code": "2471C1101X",
+            "Classification": "Radiologic Technologist",
             "Specialization": "Cardiovascular-Interventional Technology"
         },
         {
             "Code": "2471C3401X",
+            "Classification": "Radiologic Technologist",
             "Specialization": "Computed Tomography"
         },
         {
             "Code": "2471M1202X",
+            "Classification": "Radiologic Technologist",
             "Specialization": "Magnetic Resonance Imaging"
         },
         {
             "Code": "2471M2300X",
+            "Classification": "Radiologic Technologist",
             "Specialization": "Mammography"
         },
         {
             "Code": "2471N0900X",
+            "Classification": "Radiologic Technologist",
             "Specialization": "Nuclear Medicine Technology"
         },
         {
             "Code": "2471Q0001X",
+            "Classification": "Radiologic Technologist",
             "Specialization": "Quality Management"
         },
         {
             "Code": "2471R0002X",
+            "Classification": "Radiologic Technologist",
             "Specialization": "Radiation Therapy"
         },
         {
             "Code": "2471C3402X",
+            "Classification": "Radiologic Technologist",
             "Specialization": "Radiography"
         },
         {
             "Code": "2471S1302X",
+            "Classification": "Radiologic Technologist",
             "Specialization": "Sonography"
         },
         {
             "Code": "2471V0105X",
+            "Classification": "Radiologic Technologist",
             "Specialization": "Vascular Sonography"
         },
         {
             "Code": "2471V0106X",
+            "Classification": "Radiologic Technologist",
             "Specialization": "Vascular-Interventional Technology"
         },
         {
             "Code": "246XC2901X",
+            "Classification": "Specialist/Technologist Cardiovascular",
             "Specialization": "Cardiovascular Invasive Specialist"
         },
         {
             "Code": "246XS1301X",
+            "Classification": "Specialist/Technologist Cardiovascular",
             "Specialization": "Sonography"
         },
         {
             "Code": "246XC2903X",
+            "Classification": "Specialist/Technologist Cardiovascular",
             "Specialization": "Vascular Specialist"
         },
         {
             "Code": "246YC3301X",
+            "Classification": "Specialist/Technologist, Health Information",
             "Specialization": "Coding Specialist, Hospital Based"
         },
         {
             "Code": "246YC3302X",
+            "Classification": "Specialist/Technologist, Health Information",
             "Specialization": "Coding Specialist, Physician Office Based"
         },
         {
             "Code": "246YR1600X",
+            "Classification": "Specialist/Technologist, Health Information",
             "Specialization": "Registered Record Administrator"
         },
         {
             "Code": "246ZA2600X",
+            "Classification": "Specialist/Technologist, Other",
             "Specialization": "Art, Medical"
         },
         {
             "Code": "246ZB0500X",
+            "Classification": "Specialist/Technologist, Other",
             "Specialization": "Biochemist"
         },
         {
             "Code": "246ZB0301X",
+            "Classification": "Specialist/Technologist, Other",
             "Specialization": "Biomedical Engineering"
         },
         {
             "Code": "246ZB0302X",
+            "Classification": "Specialist/Technologist, Other",
             "Specialization": "Biomedical Photographer"
         },
         {
             "Code": "246ZB0600X",
+            "Classification": "Specialist/Technologist, Other",
             "Specialization": "Biostatistician"
         },
         {
             "Code": "246ZE0500X",
+            "Classification": "Specialist/Technologist, Other",
             "Specialization": "EEG"
         },
         {
             "Code": "246ZE0600X",
+            "Classification": "Specialist/Technologist, Other",
             "Specialization": "Electroneurodiagnostic"
         },
         {
             "Code": "246ZG1000X",
+            "Classification": "Specialist/Technologist, Other",
             "Specialization": "Geneticist, Medical (PhD)"
         },
         {
             "Code": "246ZG0701X",
+            "Classification": "Specialist/Technologist, Other",
             "Specialization": "Graphics Methods"
         },
         {
             "Code": "246ZI1000X",
+            "Classification": "Specialist/Technologist, Other",
             "Specialization": "Illustration, Medical"
         },
         {
             "Code": "246ZN0300X",
+            "Classification": "Specialist/Technologist, Other",
             "Specialization": "Nephrology"
         },
         {
             "Code": "246ZX2200X",
+            "Classification": "Specialist/Technologist, Other",
             "Specialization": "Orthopedic Assistant"
         },
         {
             "Code": "246ZC0007X",
+            "Classification": "Specialist/Technologist, Other",
             "Specialization": "Surgical Assistant"
         },
         {
             "Code": "246ZS0410X",
+            "Classification": "Specialist/Technologist, Other",
             "Specialization": "Surgical Technologist"
         },
         {
             "Code": "246QB0000X",
+            "Classification": "Specialist/Technologist, Pathology",
             "Specialization": "Blood Banking"
         },
         {
             "Code": "246QC1000X",
+            "Classification": "Specialist/Technologist, Pathology",
             "Specialization": "Chemistry"
         },
         {
             "Code": "246QC2700X",
+            "Classification": "Specialist/Technologist, Pathology",
             "Specialization": "Cytotechnology"
         },
         {
             "Code": "246QH0401X",
+            "Classification": "Specialist/Technologist, Pathology",
             "Specialization": "Hemapheresis Practitioner"
         },
         {
             "Code": "246QH0000X",
+            "Classification": "Specialist/Technologist, Pathology",
             "Specialization": "Hematology"
         },
         {
             "Code": "246QH0600X",
+            "Classification": "Specialist/Technologist, Pathology",
             "Specialization": "Histology"
         },
         {
             "Code": "246QI0000X",
+            "Classification": "Specialist/Technologist, Pathology",
             "Specialization": "Immunology"
         },
         {
             "Code": "246QL0900X",
+            "Classification": "Specialist/Technologist, Pathology",
             "Specialization": "Laboratory Management"
         },
         {
             "Code": "246QL0901X",
+            "Classification": "Specialist/Technologist, Pathology",
             "Specialization": "Laboratory Management, Diplomate"
         },
         {
             "Code": "246QM0706X",
+            "Classification": "Specialist/Technologist, Pathology",
             "Specialization": "Medical Technologist"
         },
         {
             "Code": "246QM0900X",
+            "Classification": "Specialist/Technologist, Pathology",
             "Specialization": "Microbiology"
         },
         {
             "Code": "2470A2800X",
+            "Classification": "Technician, Health Information",
             "Specialization": "Assistant Record Technician"
         },
         {
             "Code": "2472B0301X",
+            "Classification": "Technician, Other",
             "Specialization": "Biomedical Engineering"
         },
         {
             "Code": "2472D0500X",
+            "Classification": "Technician, Other",
             "Specialization": "Darkroom"
         },
         {
             "Code": "2472E0500X",
+            "Classification": "Technician, Other",
             "Specialization": "EEG"
         },
         {
             "Code": "2472R0900X",
+            "Classification": "Technician, Other",
             "Specialization": "Renal Dialysis"
         },
         {
             "Code": "2472V0600X",
+            "Classification": "Technician, Other",
             "Specialization": "Veterinary"
         },
         {
             "Code": "247ZC0005X",
+            "Classification": "Technician, Pathology",
             "Specialization": "Clinical Laboratory Director, Non-physician"
         },
         {
             "Code": "246RH0600X",
+            "Classification": "Technician, Pathology",
             "Specialization": "Histology"
         },
         {
             "Code": "246RM2200X",
+            "Classification": "Technician, Pathology",
             "Specialization": "Medical Laboratory"
         },
         {
             "Code": "246RP1900X",
+            "Classification": "Technician, Pathology",
             "Specialization": "Phlebotomy"
         },
         {
             "Code": "261QM0855X",
+            "Classification": "Clinic/Center",
             "Specialization": "Adolescent and Children Mental Health"
         },
         {
             "Code": "261QA0600X",
+            "Classification": "Clinic/Center",
             "Specialization": "Adult Day Care"
         },
         {
             "Code": "261QM0850X",
+            "Classification": "Clinic/Center",
             "Specialization": "Adult Mental Health"
         },
         {
             "Code": "261QA0005X",
+            "Classification": "Clinic/Center",
             "Specialization": "Ambulatory Family Planning Facility"
         },
         {
             "Code": "261QA0006X",
+            "Classification": "Clinic/Center",
             "Specialization": "Ambulatory Fertility Facility"
         },
         {
             "Code": "261QA1903X",
+            "Classification": "Clinic/Center",
             "Specialization": "Ambulatory Surgical"
         },
         {
             "Code": "261QA0900X",
+            "Classification": "Clinic/Center",
             "Specialization": "Amputee"
         },
         {
             "Code": "261QA3000X",
+            "Classification": "Clinic/Center",
             "Specialization": "Augmentative Communication"
         },
         {
             "Code": "261QB0400X",
+            "Classification": "Clinic/Center",
             "Specialization": "Birthing"
         },
         {
             "Code": "261QC1500X",
+            "Classification": "Clinic/Center",
             "Specialization": "Community Health"
         },
         {
             "Code": "261QC1800X",
+            "Classification": "Clinic/Center",
             "Specialization": "Corporate Health"
         },
         {
             "Code": "261QC0050X",
+            "Classification": "Clinic/Center",
             "Specialization": "Critical Access Hospital"
         },
         {
             "Code": "261QD0000X",
+            "Classification": "Clinic/Center",
             "Specialization": "Dental"
         },
         {
             "Code": "261QD1600X",
+            "Classification": "Clinic/Center",
             "Specialization": "Developmental Disabilities"
         },
         {
             "Code": "261QE0002X",
+            "Classification": "Clinic/Center",
             "Specialization": "Emergency Care"
         },
         {
             "Code": "261QE0700X",
+            "Classification": "Clinic/Center",
             "Specialization": "End-Stage Renal Disease (ESRD) Treatment"
         },
         {
             "Code": "261QE0800X",
+            "Classification": "Clinic/Center",
             "Specialization": "Endoscopy"
         },
         {
             "Code": "261QF0050X",
+            "Classification": "Clinic/Center",
             "Specialization": "Family Planning, Non-Surgical"
         },
         {
             "Code": "261QF0400X",
+            "Classification": "Clinic/Center",
             "Specialization": "Federally Qualified Health Center (FQHC)"
         },
         {
             "Code": "261QG0250X",
+            "Classification": "Clinic/Center",
             "Specialization": "Genetics"
         },
         {
             "Code": "261QH0100X",
+            "Classification": "Clinic/Center",
             "Specialization": "Health Service"
         },
         {
             "Code": "261QH0700X",
+            "Classification": "Clinic/Center",
             "Specialization": "Hearing and Speech"
         },
         {
             "Code": "261QI0500X",
+            "Classification": "Clinic/Center",
             "Specialization": "Infusion Therapy"
         },
         {
             "Code": "261QL0400X",
+            "Classification": "Clinic/Center",
             "Specialization": "Lithotripsy"
         },
         {
             "Code": "261QM1200X",
+            "Classification": "Clinic/Center",
             "Specialization": "Magnetic Resonance Imaging (MRI)"
         },
         {
             "Code": "261QM2500X",
+            "Classification": "Clinic/Center",
             "Specialization": "Medical Specialty"
         },
         {
             "Code": "261QM3000X",
+            "Classification": "Clinic/Center",
             "Specialization": "Medically Fragile Infants and Children Day Care"
         },
         {
             "Code": "261QM0801X",
+            "Classification": "Clinic/Center",
             "Specialization": "Mental Health (Including Community Mental Health Center)"
         },
         {
             "Code": "261QM2800X",
+            "Classification": "Clinic/Center",
             "Specialization": "Methadone"
         },
         {
             "Code": "261QM1000X",
+            "Classification": "Clinic/Center",
             "Specialization": "Migrant Health"
         },
         {
             "Code": "261QM1103X",
+            "Classification": "Clinic/Center",
             "Specialization": "Military Ambulatory Procedure Visits Operational (Transportable)"
         },
         {
             "Code": "261QM1101X",
+            "Classification": "Clinic/Center",
             "Specialization": "Military and U.S. Coast Guard Ambulatory Procedure"
         },
         {
             "Code": "261QM1102X",
+            "Classification": "Clinic/Center",
             "Specialization": "Military Outpatient Operational (Transportable) Component"
         },
         {
             "Code": "261QM1100X",
+            "Classification": "Clinic/Center",
             "Specialization": "Military/U.S. Coast Guard Outpatient"
         },
         {
             "Code": "261QM1300X",
+            "Classification": "Clinic/Center",
             "Specialization": "Multi-Specialty"
         },
         {
             "Code": "261QX0100X",
+            "Classification": "Clinic/Center",
             "Specialization": "Occupational Medicine"
         },
         {
             "Code": "261QX0200X",
+            "Classification": "Clinic/Center",
             "Specialization": "Oncology"
         },
         {
             "Code": "261QX0203X",
+            "Classification": "Clinic/Center",
             "Specialization": "Oncology, Radiation"
         },
         {
             "Code": "261QS0132X",
+            "Classification": "Clinic/Center",
             "Specialization": "Ophthalmologic Surgery"
         },
         {
             "Code": "261QS0112X",
+            "Classification": "Clinic/Center",
             "Specialization": "Oral and Maxillofacial Surgery"
         },
         {
             "Code": "261QP3300X",
+            "Classification": "Clinic/Center",
             "Specialization": "Pain"
         },
         {
             "Code": "261QP2000X",
+            "Classification": "Clinic/Center",
             "Specialization": "Physical Therapy"
         },
         {
             "Code": "261QP1100X",
+            "Classification": "Clinic/Center",
             "Specialization": "Podiatric"
         },
         {
             "Code": "261QP2300X",
+            "Classification": "Clinic/Center",
             "Specialization": "Primary Care"
         },
         {
             "Code": "261QP2400X",
+            "Classification": "Clinic/Center",
             "Specialization": "Prison Health"
         },
         {
             "Code": "261QP0904X",
+            "Classification": "Clinic/Center",
             "Specialization": "Public Health, Federal"
         },
         {
             "Code": "261QP0905X",
+            "Classification": "Clinic/Center",
             "Specialization": "Public Health, State or Local"
         },
         {
             "Code": "261QR0200X",
+            "Classification": "Clinic/Center",
             "Specialization": "Radiology"
         },
         {
             "Code": "261QR0206X",
+            "Classification": "Clinic/Center",
             "Specialization": "Radiology, Mammography"
         },
         {
             "Code": "261QR0208X",
+            "Classification": "Clinic/Center",
             "Specialization": "Radiology, Mobile"
         },
         {
             "Code": "261QR0207X",
+            "Classification": "Clinic/Center",
             "Specialization": "Radiology, Mobile Mammography"
         },
         {
             "Code": "261QR0800X",
+            "Classification": "Clinic/Center",
             "Specialization": "Recovery Care"
         },
         {
             "Code": "261QR0400X",
+            "Classification": "Clinic/Center",
             "Specialization": "Rehabilitation"
         },
         {
             "Code": "261QR0404X",
+            "Classification": "Clinic/Center",
             "Specialization": "Rehabilitation, Cardiac Facilities"
         },
         {
             "Code": "261QR0401X",
+            "Classification": "Clinic/Center",
             "Specialization": "Rehabilitation, Comprehensive Outpatient Rehabilitation Facility (CORF)"
         },
         {
             "Code": "261QR0405X",
+            "Classification": "Clinic/Center",
             "Specialization": "Rehabilitation, Substance Use Disorder"
         },
         {
             "Code": "261QR1100X",
+            "Classification": "Clinic/Center",
             "Specialization": "Research"
         },
         {
             "Code": "261QR1300X",
+            "Classification": "Clinic/Center",
             "Specialization": "Rural Health"
         },
         {
             "Code": "261QS1200X",
+            "Classification": "Clinic/Center",
             "Specialization": "Sleep Disorder Diagnostic"
         },
         {
             "Code": "261QS1000X",
+            "Classification": "Clinic/Center",
             "Specialization": "Student Health"
         },
         {
             "Code": "261QU0200X",
+            "Classification": "Clinic/Center",
             "Specialization": "Urgent Care"
         },
         {
             "Code": "261QV0200X",
+            "Classification": "Clinic/Center",
             "Specialization": "VA"
         },
         {
             "Code": "281PC2000X",
+            "Classification": "Chronic Disease Hospital",
             "Specialization": "Children"
         },
         {
             "Code": "282NC2000X",
+            "Classification": "General Acute Care Hospital",
             "Specialization": "Children"
         },
         {
             "Code": "282NC0060X",
+            "Classification": "General Acute Care Hospital",
             "Specialization": "Critical Access"
         },
         {
             "Code": "282NR1301X",
+            "Classification": "General Acute Care Hospital",
             "Specialization": "Rural"
         },
         {
             "Code": "282NW0100X",
+            "Classification": "General Acute Care Hospital",
             "Specialization": "Women"
         },
         {
             "Code": "2865C1500X",
+            "Classification": "Military Hospital",
             "Specialization": "Community Health"
         },
         {
             "Code": "2865M2000X",
+            "Classification": "Military Hospital",
             "Specialization": "Military General Acute Care Hospital"
         },
         {
             "Code": "2865X1600X",
+            "Classification": "Military Hospital",
             "Specialization": "Military General Acute Care Hospital. Operational (Transportable)"
         },
         {
             "Code": "283XC2000X",
+            "Classification": "Rehabilitation Hospital",
             "Specialization": "Children"
         },
         {
             "Code": "3104A0630X",
+            "Classification": "Assisted Living Facility",
             "Specialization": "Assisted Living, Behavioral Disturbances"
         },
         {
             "Code": "3104A0625X",
+            "Classification": "Assisted Living Facility",
             "Specialization": "Assisted Living, Mental Illness"
         },
         {
             "Code": "311ZA0620X",
+            "Classification": "Custodial Care Facility",
             "Specialization": "Adult Care Home"
         },
         {
             "Code": "3140N1450X",
+            "Classification": "Skilled Nursing Facility",
             "Specialization": "Nursing Care, Pediatric"
         },
         {
             "Code": "3245S0500X",
+            "Classification": "Substance Abuse Rehabilitation Facility",
             "Specialization": "Substance Abuse Treatment, Children"
         },
         {
             "Code": "385HR2050X",
+            "Classification": "Respite Care",
             "Specialization": "Respite Care Camp"
         },
         {
             "Code": "385HR2055X",
+            "Classification": "Respite Care",
             "Specialization": "Respite Care, Mental Illness, Child"
         },
         {
             "Code": "385HR2060X",
+            "Classification": "Respite Care",
             "Specialization": "Respite Care, Intellectual and/or Developmental Disabilities, Child"
         },
         {
             "Code": "385HR2065X",
+            "Classification": "Respite Care",
             "Specialization": "Respite Care, Physical Disabilities, Child"
         },
         {
             "Code": "332BC3200X",
+            "Classification": "Durable Medical Equipment & Medical Supplies",
             "Specialization": "Customized Equipment"
         },
         {
             "Code": "332BD1200X",
+            "Classification": "Durable Medical Equipment & Medical Supplies",
             "Specialization": "Dialysis Equipment & Supplies"
         },
         {
             "Code": "332BN1400X",
+            "Classification": "Durable Medical Equipment & Medical Supplies",
             "Specialization": "Nursing Facility Supplies"
         },
         {
             "Code": "332BX2000X",
+            "Classification": "Durable Medical Equipment & Medical Supplies",
             "Specialization": "Oxygen Equipment & Supplies"
         },
         {
             "Code": "332BP3500X",
+            "Classification": "Durable Medical Equipment & Medical Supplies",
             "Specialization": "Parenteral & Enteral Nutrition"
         },
         {
             "Code": "3336C0002X",
+            "Classification": "Pharmacy",
             "Specialization": "Clinic Pharmacy"
         },
         {
             "Code": "3336C0003X",
+            "Classification": "Pharmacy",
             "Specialization": "Community/Retail Pharmacy"
         },
         {
             "Code": "3336C0004X",
+            "Classification": "Pharmacy",
             "Specialization": "Compounding Pharmacy"
         },
         {
             "Code": "3336H0001X",
+            "Classification": "Pharmacy",
             "Specialization": "Home Infusion Therapy Pharmacy"
         },
         {
             "Code": "3336I0012X",
+            "Classification": "Pharmacy",
             "Specialization": "Institutional Pharmacy"
         },
         {
             "Code": "3336L0003X",
+            "Classification": "Pharmacy",
             "Specialization": "Long Term Care Pharmacy"
         },
         {
             "Code": "3336M0002X",
+            "Classification": "Pharmacy",
             "Specialization": "Mail Order Pharmacy"
         },
         {
             "Code": "3336M0003X",
+            "Classification": "Pharmacy",
             "Specialization": "Managed Care Organization Pharmacy"
         },
         {
             "Code": "3336N0007X",
+            "Classification": "Pharmacy",
             "Specialization": "Nuclear Pharmacy"
         },
         {
             "Code": "3336S0011X",
+            "Classification": "Pharmacy",
             "Specialization": "Specialty Pharmacy"
         },
         {
             "Code": "3416A0800X",
+            "Classification": "Ambulance",
             "Specialization": "Air Transport"
         },
         {
             "Code": "3416L0300X",
+            "Classification": "Ambulance",
             "Specialization": "Land Transport"
         },
         {
             "Code": "3416S0300X",
+            "Classification": "Ambulance",
             "Specialization": "Water Transport"
         },
         {
             "Code": "3418M1120X",
+            "Classification": "Military/U.S. Coast Guard Transport",
             "Specialization": "Military or U.S. Coast Guard Ambulance, Air Transport"
         },
         {
             "Code": "3418M1110X",
+            "Classification": "Military/U.S. Coast Guard Transport",
             "Specialization": "Military or U.S. Coast Guard Ambulance, Ground Transport"
         },
         {
             "Code": "3418M1130X",
+            "Classification": "Military/U.S. Coast Guard Transport",
             "Specialization": "Military or U.S. Coast Guard Ambulance, Water Transport"
         }
     ]
