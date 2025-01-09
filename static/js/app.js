@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const selectedGnrcs = [];
     const brandNamesDrugs = [];
     const selectedScodes = [];
-
+    
     // Fetch HCPCS data
     async function fetchHCPCSData() {
         try {
