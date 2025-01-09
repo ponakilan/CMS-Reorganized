@@ -121,7 +121,10 @@ def initiate_processing(
     output = f"/static/output/{job_id}_{file_name}.csv"
 
     # Export the final file
-    final.toPandas().to_csv(output[1:], index=False)
+    split = 22
+    final = final.toPandas()
+    cleaned = final[final.iloc[:, split:].sum(axis=1) > 0]
+    cleaned.to_csv(output[1:], index=False)
 
     # End timer
     end = time.time()

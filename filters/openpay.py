@@ -30,7 +30,7 @@ class OpenPayDataProcessor:
             # Filter based on interested drugs
             open_payments_filtered = open_payments_dropped.join(
                 self.interested_drugs,
-                open_payments_dropped.Name_of_Drug_or_Biological_or_Device_or_Medical_Supply_1 == self.interested_drugs.Drug_Name,
+                upper(open_payments_dropped.Name_of_Drug_or_Biological_or_Device_or_Medical_Supply_1) == self.interested_drugs.Drug_Name,
                 "inner"
             )
             self.open_payments_filtered = open_payments_filtered.drop("Drug_Name")

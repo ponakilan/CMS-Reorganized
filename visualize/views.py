@@ -172,6 +172,8 @@ def filter(request):
     if all_drugs_option in selected_drugs:
         selected_drugs = all_drugs
 
+    split = 22
+    
     if selected_drugs:
         filtered_df = filter_columns(df, selected_drugs, common_columns)
         filtered_df = sum_and_sort_columns(filtered_df, keywords)
@@ -179,6 +181,8 @@ def filter(request):
         filtered_df = filtered_df.fillna(0)
 
     graphs = generate_visualizations(filtered_df, selected_drugs)
+    filtered_df["Provider Business Mailing Address Postal Code"] = filtered_df["Provider Business Mailing Address Postal Code"].apply(lambda x: x[:-2])
+    filtered_df.loc[:, "Provider Middle Name":"Org_pac_id_4"] = filtered_df.loc[:, "Provider Middle Name":"Org_pac_id_4"].replace(0, '')
     resp = filtered_df.to_dict(orient='records')
     with open(f"plots/{request.user.username}.pkl", "wb") as f:
         pickle.dump(graphs, f)
