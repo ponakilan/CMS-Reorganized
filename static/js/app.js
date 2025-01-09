@@ -143,6 +143,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                 brandNamesCodes.push(brandNameInputs[index]?.value || "");
             });
 
+            if (selectedCodes.length === 0) { // Check if the array is empty
+                alert("Please select at least one Code before proceeding.");
+                return;
+            }
             await fetchDrugsData();
             heading.textContent = "Part-D Drugs Selection";
             dropdownContainer.innerHTML = "";
@@ -158,7 +162,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                 });
                 brandNamesDrugs.push(brandNameInputs[index]?.value || "");
             });
-
+            if (selectedBrnds.length === 0) { // Check if the array is empty
+                alert("Please select at least one Drug before proceeding.");
+                return;
+            }
             await fetchNuccData();
             heading.textContent = "Speciality Taxonomy Code Selection";
             skipBtn.style.display= 'none' ;
@@ -175,6 +182,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                 });
             });
         
+            if (selectedScodes.length === 0) { // Check if the array is empty
+                alert("Please select at least one Code before proceeding.");
+                return;
+            }
             // Send POST request to `/cms-all-data`
             await fetch("/cms-all-data/", {
                 method: "POST",
