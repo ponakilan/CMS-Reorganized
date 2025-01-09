@@ -8,10 +8,11 @@ from preferences.control import initiate_processing
 from preferences.models import Job
 
 import pandas as pd
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 
 
 @login_required
@@ -221,3 +222,8 @@ def test(request):
     )
     job_thread.start()
     return HttpResponse("Starting test...")
+
+
+def logout_view(request):
+    logout(request)
+    return redirect("/")

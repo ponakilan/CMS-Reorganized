@@ -12,4 +12,5 @@ urlpatterns = [
     path("cms-all-data/", views.cms_data),
     path("submitted-page/", views.view_jobs),
     path("test/", views.test),
+    path("logout/", views.logout_view),
 ]

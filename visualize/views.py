@@ -182,7 +182,7 @@ def filter(request):
 
     graphs = generate_visualizations(filtered_df, selected_drugs)
     filtered_df["Provider Business Mailing Address Postal Code"] = filtered_df["Provider Business Mailing Address Postal Code"].apply(lambda x: x[:-2])
-    filtered_df.loc[:, "Primary_Classification":"Org_pac_id_4"] = filtered_df.loc[:, "Primary_Classification":"Org_pac_id_4"].replace(0, '')
+    filtered_df.loc[:, "Provider Middle Name":"Org_pac_id_4"] = filtered_df.loc[:, "Provider Middle Name":"Org_pac_id_4"].replace(0, '')
     resp = filtered_df.to_dict(orient='records')
     with open(f"plots/{request.user.username}.pkl", "wb") as f:
         pickle.dump(graphs, f)

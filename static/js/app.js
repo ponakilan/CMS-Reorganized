@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             const data = await response.json();
             nuccData = data.codes.map((item) => ({
                 value: item.Code,
-                label: `${item.Code} - ${item.Specialization}`,
+                label: `${item.Code} - ${item.Classification} - ${item.Specialization}`,
             }));
         } catch (error) {
             console.error("Error fetching NUCC data:", error);
