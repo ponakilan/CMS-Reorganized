@@ -50,25 +50,45 @@ def initiate_processing(
         return spark.createDataFrame(pd_df)
 
     # Processing CMS-B data
-    cms_b_processor = CMSBDataProcessor(
-        cms_b=csv_2_df("cms_b"),
-        interested_drugs=excel_2_df("cms_b")
-    )
-    cms_b_full = cms_b_processor.process()
+    if private_sheets["cms_b"]:
+        cms_b_processor = CMSBDataProcessor(
+            cms_b=csv_2_df("cms_b"),
+            interested_drugs=excel_2_df("cms_b")
+        )
+        cms_b_full = cms_b_processor.process()
+    else:
+        cms_b_full = None
 
     # Processing CMS-D data
-    cms_d_processor = CMSDDataProcessor(
-        cms_d=csv_2_df("cms_d"),
-        interested_drugs=excel_2_df("cms_d")
-    )
-    cms_d_full = cms_d_processor.process()
+    if private_sheets["cms_d"]:
+        cms_d_processor = CMSDDataProcessor(
+            cms_d=csv_2_df("cms_d"),
+            interested_drugs=excel_2_df("cms_d")
+        )
+        cms_d_full = cms_d_processor.process()
+    else:
+        cms_d_full = None
 
     # Testing
-    print(f"Shape of CMS-B after processing: {shape(cms_b_full)}")
-    print(f"Shape of CMS-D after processing: {shape(cms_d_full)}")
+    if private_sheets["cms_b"]:
+        print(f"Shape of CMS-B after processing: {shape(cms_b_full)}")
+    else:
+        print("Skipped CMS Part-B.")
+    
+    if private_sheets["cms_d"]:
+        print(f"Shape of CMS-D after processing: {shape(cms_d_full)}")
+    else:
+        print("Skipped CMS Part-D.")
 
     # Merge CMS-B and CMS-D
-    cms_merged = merge_cms(cms_b_full, cms_d_full)
+    if cms_b_full and cms_d_full:
+        cms_merged = merge_cms(cms_b_full, cms_d_full)
+    elif cms_b_full:
+        cms_merged = cms_b_full
+    elif cms_d_full:
+        cms_merged = cms_d_full
+    else:
+        cms_merged = None
 
     # Process Open Payments data
     openpay_processor = OpenPayDataProcessor(
@@ -82,7 +102,10 @@ def initiate_processing(
     print(f"Shape of Open Payments after processing: {shape(openpay_processed)}")
 
     # Merge Openpay and CMS
-    openpay_cms = openpay_processor.merge_cms(cms_merged, openpay_processed)
+    if cms_merged:
+        openpay_cms = openpay_processor.merge_cms(cms_merged, openpay_processed)
+    else:
+        openpay_cms = openpay_processor.open_payments_processed
 
     # Merge NPPES and NUCC
     nppes_nucc_processor = NPPESNUCCDataProcessor(

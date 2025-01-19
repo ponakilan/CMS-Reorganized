@@ -85,13 +85,21 @@ def openpay_data(request):
         "Renamed": renamed_category
     })
 
+    print(data_dict['cms_b_codes'])
+    print(data_dict['cms_d_brnds'])
+
+    cms_b = len(data_dict['cms_b_codes']) > 0
+    cms_d = len(data_dict['cms_d_brnds']) > 0
+
     job_id = uuid4()
     in_time = datetime.now()
     filename = f"static/input/{job_id}_{file_name}.xlsx"
 
     with pd.ExcelWriter(filename) as writer:
-        cms_b_df.to_excel(writer, sheet_name="CMS_B_Unique_HCPCS", index=False)
-        cms_d_df.to_excel(writer, sheet_name="CMS_D_Gnrc_Names", index=False)
+        if cms_b:
+            cms_b_df.to_excel(writer, sheet_name="CMS_B_Unique_HCPCS", index=False)
+        if cms_d:
+            cms_d_df.to_excel(writer, sheet_name="CMS_D_Gnrc_Names", index=False)
         openpay_drug_df.to_excel(writer, sheet_name="Openpayments_Drug_Mappings", index=False)
         tax_code_df.to_excel(writer, sheet_name="Taxonomy_Codes", index=False)
         openpay_map_df.to_excel(writer, sheet_name="Opanpay_Mappings", index=False)
@@ -107,8 +115,8 @@ def openpay_data(request):
         "phase-1": "phase_1.csv"
     }
     private_sheets = {
-        "cms_b": "CMS_B_Unique_HCPCS",
-        "cms_d": "CMS_D_Gnrc_Names",
+        "cms_b": "CMS_B_Unique_HCPCS" if cms_b else None,
+        "cms_d": "CMS_D_Gnrc_Names" if cms_d else None,
         "openpay": "Openpayments_Drug_Mappings",
         "taxonomy": "Taxonomy_Codes",
         "openpay-map": "Opanpay_Mappings"
