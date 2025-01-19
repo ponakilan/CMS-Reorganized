@@ -2,3 +2,4 @@ django~=4.2.17
 pyspark~=3.5.4
 pandas~=2.0.3
 matplotlib
+openpyxl
