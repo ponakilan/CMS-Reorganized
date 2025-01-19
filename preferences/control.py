@@ -153,11 +153,11 @@ def main(public_dir, private_workbook, output):
     }
 
     private_sheets = {
-        "cms_b": 0,
-        "cms_d": 1,
-        "openpay": 2,
-        "taxonomy": 3,
-        "openpay-map": 4
+        "cms_b": "CMS_B_Unique_HCPCS",
+        "cms_d": "CMS_D_Gnrc_Names",
+        "openpay": "Openpayments_Drug_Mappings",
+        "taxonomy": "Taxonomy_Codes",
+        "openpay-map": "Opanpay_Mappings"
     }
 
     initiate_processing(
