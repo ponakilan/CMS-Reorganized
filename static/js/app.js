@@ -182,10 +182,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                 });
             });
         
-            if (selectedScodes.length === 0) { // Check if the array is empty
-                alert("Please select at least one Code before proceeding.");
-                return;
-            }
+            // if (selectedScodes.length === 0) { // Check if the array is empty
+            //     alert("Please select at least one Code before proceeding.");
+            //     return;
+            // }
             // Send POST request to `/cms-all-data`
             await fetch("/cms-all-data/", {
                 method: "POST",
