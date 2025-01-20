@@ -30,6 +30,15 @@ def initiate_processing(
     # Start timer
     start = time.time()
 
+    # Check for datasets and download if not available
+    if not os.path.exists(f"{public_dir}/{public_files['cms_b']}"):
+        print("Public datasets not found.\nDownloading the public dataset files...")
+        url = 'https://drive.google.com/uc?id=12hG0YQHx8j5bF8Ot-NzkSD3Sr4OMV0Dx'
+        output = 'Public.7z'
+        gdown.download(url, output, quiet=False)
+        print("Extracting the public dataset files...")
+        os.system("7z x Public.7z -oData/Public/")
+
     # Create a spark session
     spark = SparkSession.builder.appName(f"CMS-{job_id}").getOrCreate()
     spark.sparkContext.setLogLevel("ERROR")
