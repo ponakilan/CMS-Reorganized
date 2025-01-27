@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
     const dropdownContainer = document.getElementById("dropdown-container");
-    const addDropdownButton = document.getElementById("add-dropdown");
     const form = document.getElementById("hcpcs-form");
     const heading = document.querySelector("h1"); // Heading to be dynamically updated
     const skipBtn = document.getElementById("skip");
@@ -10,6 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     let nuccData = [];
     let isSecondSubmission = false;
     let isThirdSubmission = false;
+    let isFourthSubmission = false;
     let count = 0;
     let csrf_token = document.getElementById("csrf").value;
 
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const selectedGnrcs = [];
     const brandNamesDrugs = [];
     const selectedScodes = [];
-    
+
     // Fetch HCPCS data
     async function fetchHCPCSData() {
         try {
@@ -68,240 +68,282 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     }
 
-// Create dropdown
-function createDropdown(id, dataSource, includeBrandName = true, placeholder = "Search...", isDeletable = true) {
-    const dropdownGroup = document.createElement("div");
-    dropdownGroup.classList.add("mb-3", "dropdown-group");
-    dropdownGroup.id = id;
+    // Create dropdown
+    function createDropdown(id, dataSource, placeholder = "Search...") {
+        const dropdownGroup = document.createElement("div");
+        dropdownGroup.classList.add("mb-3", "dropdown-group");
+        dropdownGroup.id = id;
 
-    // Search box
-    const searchBox = document.createElement("input");
-    searchBox.type = "text";
-    searchBox.placeholder = placeholder;
-    searchBox.classList.add("form-control", "search-box");
+        // Search box
+        const searchBox = document.createElement("input");
+        searchBox.type = "text";
+        searchBox.placeholder = placeholder;
+        searchBox.classList.add("form-control", "search-box");
 
-    // Custom dropdown container
-    const dropdownList = document.createElement("div");
-    dropdownList.classList.add("dropdown-list", "form-select");
+        // Custom dropdown container
+        const dropdownList = document.createElement("div");
+        dropdownList.classList.add("dropdown-list", "form-select");
 
-    // Keep track of the selected option
-    let selectedOption = null;
+        // Track selected options
+        const selectedOptions = [];
 
-    dataSource.forEach((item) => {
-        const option = document.createElement("div");
-        option.classList.add("dropdown-item");
+        dataSource.forEach((item) => {
+            const option = document.createElement("div");
+            option.classList.add("dropdown-item");
 
-        // Add checkbox image
-        const checkboxIcon = document.createElement("img");
-        checkboxIcon.src = "/static/assets/empty.png";
-        checkboxIcon.alt = "empty checkbox";
-        checkboxIcon.classList.add("checkbox-icon");
+            // Add checkbox image
+            const checkboxIcon = document.createElement("img");
+            checkboxIcon.src = "/static/assets/empty.png";
+            checkboxIcon.alt = "empty checkbox";
+            checkboxIcon.classList.add("checkbox-icon");
 
-        // Add text content
-        const optionText = document.createElement("span");
-        optionText.textContent = item.label;
+            // Add text content
+            const optionText = document.createElement("span");
+            optionText.textContent = item.label;
 
-        // Append image and text to the option
-        option.appendChild(checkboxIcon);
-        option.appendChild(optionText);
+            // Append image and text to the option
+            option.appendChild(checkboxIcon);
+            option.appendChild(optionText);
 
-        // Add click event to toggle the checkbox icon (Allow only one selection at a time)
-        option.addEventListener("click", () => {
-            // If an option is already selected, move it back to its original position
-            if (selectedOption) {
-                selectedOption.classList.remove("selected");
-                const img = selectedOption.querySelector(".checkbox-icon");
-                img.src = "/static/assets/empty.png";
-            }
+            // Add click event to toggle the checkbox icon and manage multi-selection
+            option.addEventListener("click", () => {
+                const isSelected = selectedOptions.includes(option);
 
-            // Set the clicked option as selected
-            selectedOption = option;
-            option.classList.add("selected");
-            const img = option.querySelector(".checkbox-icon");
-            img.src = "/static/assets/filled.png";
+                if (isSelected) {
+                    // Deselect
+                    selectedOptions.splice(selectedOptions.indexOf(option), 1);
+                    option.classList.remove("selected");
+                    const img = option.querySelector(".checkbox-icon");
+                    img.src = "/static/assets/empty.png";
+                } else {
+                    // Select
+                    selectedOptions.push(option);
+                    option.classList.add("selected");
+                    const img = option.querySelector(".checkbox-icon");
+                    img.src = "/static/assets/filled.png";
+                }
 
-            // Move the selected option to the top of the dropdown
-            dropdownList.prepend(option);
-        });
-
-        dropdownList.appendChild(option);
-    });
-
-    searchBox.addEventListener("input", () => {
-        const query = searchBox.value.toLowerCase();
-        Array.from(dropdownList.children).forEach((option) => {
-            const text = option.textContent.toLowerCase();
-            option.style.display = text.includes(query) ? "" : "none";
-        });
-    });
-
-    if (includeBrandName) {
-        const brandInput = document.createElement("input");
-        brandInput.type = "text";
-        brandInput.placeholder = "Enter Brand Name";
-        brandInput.classList.add("form-control", "brand-input");
-        brandInput.required = true;
-        dropdownGroup.appendChild(brandInput);
-    }
-
-    dropdownGroup.appendChild(searchBox);
-    dropdownGroup.appendChild(dropdownList);
-
-    if (isDeletable) {
-        const deleteButton = document.createElement("button");
-        deleteButton.type = "button";
-        deleteButton.textContent = "Delete";
-        deleteButton.classList.add("btn", "btn-danger", "mt-2");
-        deleteButton.addEventListener("click", () => {
-            dropdownGroup.remove();
-        });
-        dropdownGroup.appendChild(deleteButton);
-    }
-
-    dropdownContainer.appendChild(dropdownGroup);
-}
-
-
- // Form submission
-form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-
-    // Get all dropdowns and brand name inputs
-    const dropdownGroups = Array.from(dropdownContainer.querySelectorAll(".dropdown-group"));
-    const brandNameInputs = Array.from(dropdownContainer.querySelectorAll(".brand-input"));
-
-    // Arrays to hold selected values
-    let selectedCodes = [];
-    let selectedBrnds = [];
-    let selectedGnrcs = [];
-    let brandNamesCodes = [];
-    let brandNamesDrugs = [];
-
-    // Helper function to get selected values from the dropdown list
-    const getSelectedItems = (dropdownList) => {
-        const selectedItems = [];
-        const items = dropdownList.querySelectorAll(".dropdown-item");
-
-        items.forEach(item => {
-            const checkboxIcon = item.querySelector(".checkbox-icon");
-            if (checkboxIcon.src.includes("filled.png")) {
-                const label = item.querySelector("span").textContent;
-                selectedItems.push(label);
-            }
-        });
-
-        return selectedItems;
-    };
-
-    if (!isSecondSubmission) {
-        // Process the first phase (Codes Selection)
-        dropdownGroups.forEach((dropdownGroup, index) => {
-            const dropdownList = dropdownGroup.querySelector(".dropdown-list");
-            const selectedItems = getSelectedItems(dropdownList);
-
-            selectedCodes.push(...selectedItems);
-            brandNamesCodes.push(brandNameInputs[index]?.value || "");
-        });
-
-        if (selectedCodes.length === 0) {
-            alert("Please select at least one Code before proceeding.");
-            return;
-        }
-
-        await fetchDrugsData();
-        heading.textContent = "Part-D Drugs Selection";
-        dropdownContainer.innerHTML = "";
-        createDropdown("dropdown-1", drugsData, true, "Search Brand Name...", false);
-        isSecondSubmission = true;
-        count = 1;
-    } else if (!isThirdSubmission) {
-        // Process the second phase (Drugs Selection)
-        dropdownGroups.forEach((dropdownGroup, index) => {
-            const dropdownList = dropdownGroup.querySelector(".dropdown-list");
-            const selectedItems = getSelectedItems(dropdownList);
-
-            selectedItems.forEach(item => {
-                const [brndName, gnrcName] = item.split(" - ");
-                selectedBrnds.push(brndName);
-                selectedGnrcs.push(gnrcName);
+                // Move selected option to the top
+                dropdownList.prepend(option);
             });
 
-            brandNamesDrugs.push(brandNameInputs[index]?.value || "");
+            dropdownList.appendChild(option);
         });
 
-        if (selectedBrnds.length === 0) {
-            alert("Please select at least one Drug before proceeding.");
-            return;
-        }
-
-        await fetchNuccData();
-        heading.textContent = "Speciality Taxonomy Code Selection";
-        skipBtn.style.display = 'none';
-        addDropdownButton.textContent = 'Add Another Code';
-        dropdownContainer.innerHTML = "";
-        createDropdown("dropdown-1", nuccData, false, "Search NUCC Codes...", false);
-        isThirdSubmission = true;
-    } else {
-        // Process the final phase (Speciality Codes Selection)
-        dropdownGroups.forEach((dropdownGroup) => {
-            const dropdownList = dropdownGroup.querySelector(".dropdown-list");
-            const selectedItems = getSelectedItems(dropdownList);
-
-            selectedScodes.push(...selectedItems);
+        searchBox.addEventListener("input", () => {
+            const query = searchBox.value.toLowerCase();
+            Array.from(dropdownList.children).forEach((option) => {
+                const text = option.textContent.toLowerCase();
+                option.style.display = text.includes(query) ? "" : "none";
+            });
         });
 
-        // Send POST request to `/cms-all-data`
-        await fetch("/cms-all-data/", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRFToken": csrf_token,
-            },
-            body: JSON.stringify({
-                selected_codes: selectedCodes,
-                brand_names_codes: brandNamesCodes,
-                selected_brnds: selectedBrnds,
-                selected_gnrcs: selectedGnrcs,
-                brand_names_drugs: brandNamesDrugs,
-                selected_scodes: selectedScodes,
-            }),
-        });
+        dropdownGroup.appendChild(searchBox);
+        dropdownGroup.appendChild(dropdownList);
 
-        // Update form action and method for redirection
-        form.action = "/openpay-cat-page";
-        form.method = "get";
-        form.submit(); // Submit the form
+        dropdownContainer.appendChild(dropdownGroup);
     }
-});
+
+
+    // Form submission
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        // Get all dropdowns and brand name inputs
+        const dropdownGroups = Array.from(dropdownContainer.querySelectorAll(".dropdown-group"));
+        //const brandNameInputs = Array.from(dropdownContainer.querySelectorAll(".brand-input"));
+
+        // Arrays to hold selected values
+        let selectedCodes = [];
+        let selectedBrnds = [];
+        let selectedGnrcs = [];
+        let brandNamesCodes = [];
+        let brandNamesDrugs = [];
+
+        // Helper function to get selected values from the dropdown list
+        const getSelectedItems = (dropdownList) => {
+            const selectedItems = [];
+            const items = dropdownList.querySelectorAll(".dropdown-item");
+
+            items.forEach(item => {
+                const checkboxIcon = item.querySelector(".checkbox-icon");
+                if (checkboxIcon.src.includes("filled.png")) {
+                    const label = item.querySelector("span").textContent;
+                    selectedItems.push(label);
+                }
+            });
+
+            return selectedItems;
+        };
+
+        if (!isSecondSubmission) {
+            // Process the first phase (Codes Selection)
+            dropdownGroups.forEach((dropdownGroup, index) => {
+                const dropdownList = dropdownGroup.querySelector(".dropdown-list");
+                const selectedItems = getSelectedItems(dropdownList);
+
+                selectedItems.forEach(item => {
+                    //const code = item.split(" - ")[0];
+                    selectedCodes.push(item);
+                });
+                //brandNamesCodes.push(brandNameInputs[index]?.value || "");
+            });
+            localStorage.setItem("selectedCodes", JSON.stringify(selectedCodes));
+            console.log(selectedCodes);
+            await fetchDrugsData();
+            heading.textContent = "Part-D Drugs Selection";
+            dropdownContainer.innerHTML = "";
+            createDropdown("dropdown-1", drugsData, "Search Brand Name...");
+            isSecondSubmission = true;
+            count = 1;
+        } else if (!isThirdSubmission) {
+            // Process the second phase (Drugs Selection)
+            dropdownGroups.forEach((dropdownGroup, index) => {
+                const dropdownList = dropdownGroup.querySelector(".dropdown-list");
+                const selectedItems = getSelectedItems(dropdownList);
+
+                selectedItems.forEach(item => {
+                    const [brndName, gnrcName] = item.split(" - ");
+                    selectedBrnds.push(brndName);
+                    selectedGnrcs.push(gnrcName);
+                });
+
+                //brandNamesDrugs.push(brandNameInputs[index]?.value || "");
+            });
+            console.log(selectedCodes);
+            console.log(selectedBrnds);
+            localStorage.setItem("selectedBrnds", JSON.stringify(selectedBrnds));
+            localStorage.setItem("selectedGnrcs", JSON.stringify(selectedGnrcs));
+
+            await fetchNuccData();
+            heading.textContent = "Speciality Taxonomy Code Selection";
+            skipBtn.style.display = 'none';
+            dropdownContainer.innerHTML = "";
+            createDropdown("dropdown-1", nuccData, "Search NUCC Codes...");
+            isThirdSubmission = true;
+        } else if (!isFourthSubmission) {
+            dropdownGroups.forEach((dropdownGroup) => {
+                const dropdownList = dropdownGroup.querySelector(".dropdown-list");
+                const selectedItems = getSelectedItems(dropdownList);
+
+                selectedItems.forEach(item => {
+                    const code = item.split(" - ")[0];
+                    selectedScodes.push(code);
+                });
+            });
+
+            localStorage.setItem("selectedScodes", JSON.stringify(selectedScodes));
+
+            selectedCodes = JSON.parse(localStorage.getItem("selectedCodes")) || [];
+            selectedBrnds = JSON.parse(localStorage.getItem("selectedBrnds")) || [];
+
+            console.log(selectedBrnds);
+            console.log(selectedCodes);
+            heading.textContent = "CMS part-b and part-d Brand name input";
+            dropdownContainer.innerHTML = "";
+
+            // Create input fields for selectedCodes
+            selectedCodes.forEach((code) => {
+                const codeGroup = document.createElement("div");
+                codeGroup.classList.add("mb-3");
+
+                const codeLabel = document.createElement("label");
+                codeLabel.textContent = code;
+                codeLabel.classList.add("form-label");
+
+                const codeInput = document.createElement("input");
+                codeInput.type = "text";
+                codeInput.classList.add("form-control", "brand-input-codes");
+
+                codeGroup.appendChild(codeLabel);
+                codeGroup.appendChild(codeInput);
+                dropdownContainer.appendChild(codeGroup);
+            });
+
+            // Create input fields for selectedBrnds
+            selectedBrnds.forEach((brand) => {
+                const brandGroup = document.createElement("div");
+                brandGroup.classList.add("mb-3");
+
+                const brandLabel = document.createElement("label");
+                brandLabel.textContent = brand;
+                brandLabel.classList.add("form-label");
+
+                const brandInput = document.createElement("input");
+                brandInput.type = "text";
+                brandInput.classList.add("form-control", "brand-input-drugs");
+
+                brandGroup.appendChild(brandLabel);
+                brandGroup.appendChild(brandInput);
+                dropdownContainer.appendChild(brandGroup);
+            });
+
+
+
+            isFourthSubmission = true;
+        }
+        else {
+            // Retrieve data from input fields for codes
+            const codeInputs = Array.from(dropdownContainer.querySelectorAll(".brand-input-codes"));
+            const codesInputValues = codeInputs.map(input => input.value.trim());
+            brandNamesCodes = codesInputValues.filter(value => value); // Exclude empty values
+
+            // Retrieve data from input fields for drugs
+            const drugInputs = Array.from(dropdownContainer.querySelectorAll(".brand-input-drugs"));
+            const drugsInputValues = drugInputs.map(input => input.value.trim());
+            brandNamesDrugs = drugsInputValues.filter(value => value); // Exclude empty values
+
+            localStorage.setItem("brandNamesCodes", JSON.stringify(brandNamesCodes));
+            localStorage.setItem("brandNamesDrugs", JSON.stringify(brandNamesDrugs));
+            selectedCodes = selectedCodes.map(item => item.split(" - ")[0].trim());
+            localStorage.setItem("selectedCodes", JSON.stringify(selectedCodes));
+            // Send POST request to `/cms-all-data`
+            await fetch("/cms-all-data/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": csrf_token,
+                },
+                body: JSON.stringify({
+                    selected_codes: JSON.parse(localStorage.getItem("selectedCodes")),
+                    brand_names_codes: JSON.parse(localStorage.getItem("brandNamesCodes")),
+                    selected_brnds: JSON.parse(localStorage.getItem("selectedBrnds")),
+                    selected_gnrcs: JSON.parse(localStorage.getItem("selectedGnrcs")),
+                    brand_names_drugs: JSON.parse(localStorage.getItem("brandNamesDrugs")),
+                    selected_scodes: JSON.parse(localStorage.getItem("selectedScodes")),
+                }),
+            });
+
+            // Update form action and method for redirection
+            form.action = "/openpay-cat-page";
+            form.method = "get";
+            form.submit(); // Submit the form
+        }
+    });
 
 
     // Initial setup
     await fetchHCPCSData();
-    createDropdown("dropdown-1", hcpcsData, true, "Search HCPCS Code...", false);
+    createDropdown("dropdown-1", hcpcsData, "Search HCPCS Code...", false);
 
-    addDropdownButton.addEventListener("click", () => {
-        const newId = `dropdown-${dropdownContainer.children.length + 1}`;
-        createDropdown(newId, isThirdSubmission ? nuccData : isSecondSubmission ? drugsData : hcpcsData, isThirdSubmission ? false : true);
-    });
+    skipBtn.addEventListener('click', async () => {
+        if (count == 0) {
 
-    skipBtn.addEventListener('click',async()=>{
-        if(count == 0){
-            
             await fetchDrugsData();
             heading.textContent = "Part-D Drugs Selection";
             dropdownContainer.innerHTML = "";
-            createDropdown("dropdown-1", drugsData, true, "Search Brand Name...", false);
+            createDropdown("dropdown-1", drugsData, true, "Search Brand Name...");
             isSecondSubmission = true;
             count = 1;
         }
-        else if(count == 1){
+        else if (count == 1) {
             await fetchNuccData();
             heading.textContent = "Speciality Taxonomy Code Selection";
-            skipBtn.style.display= 'none' ;
+            skipBtn.style.display = 'none';
             //add btn text modified
             addDropdownButton.textContent = 'Add Another Code';
             dropdownContainer.innerHTML = "";
-            createDropdown("dropdown-1", nuccData, false, "Search NUCC Codes...", false);
+            createDropdown("dropdown-1", nuccData, "Search NUCC Codes...");
             isThirdSubmission = true;
         }
     })
