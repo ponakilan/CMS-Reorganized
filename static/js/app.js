@@ -190,6 +190,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             });
             localStorage.setItem("selectedCodes", JSON.stringify(selectedCodes));
             console.log(selectedCodes);
+
+            if (selectedCodes.length === 0) {
+                alert("Please select at least one code before proceeding.");
+                return; 
+            }
             await fetchDrugsData();
             heading.textContent = "Part-D Drugs Selection";
             dropdownContainer.innerHTML = "";
@@ -212,6 +217,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             });
             console.log(selectedCodes);
             console.log(selectedBrnds);
+
+            if (selectedBrnds.length === 0) {
+                alert("Please select at least one drug before proceeding.");
+                return; 
+            }
+
             localStorage.setItem("selectedBrnds", JSON.stringify(selectedBrnds));
             localStorage.setItem("selectedGnrcs", JSON.stringify(selectedGnrcs));
 
@@ -324,24 +335,22 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Initial setup
     await fetchHCPCSData();
-    createDropdown("dropdown-1", hcpcsData, "Search HCPCS Code...", false);
+    createDropdown("dropdown-1", hcpcsData, "Search HCPCS Code...");
 
     skipBtn.addEventListener('click', async () => {
         if (count == 0) {
-
             await fetchDrugsData();
             heading.textContent = "Part-D Drugs Selection";
             dropdownContainer.innerHTML = "";
-            createDropdown("dropdown-1", drugsData, true, "Search Brand Name...");
+            createDropdown("dropdown-1", drugsData, "Search Brand Name...");
             isSecondSubmission = true;
             count = 1;
         }
         else if (count == 1) {
+
             await fetchNuccData();
             heading.textContent = "Speciality Taxonomy Code Selection";
             skipBtn.style.display = 'none';
-            //add btn text modified
-            addDropdownButton.textContent = 'Add Another Code';
             dropdownContainer.innerHTML = "";
             createDropdown("dropdown-1", nuccData, "Search NUCC Codes...");
             isThirdSubmission = true;
